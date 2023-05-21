@@ -13,12 +13,21 @@
 // *******
 
 // M1: Elevador de Cargas
-// Implementar las funciones aqui (Iago)
-void subirElevadorCargas();
+inline void subirElevadorCargas(){
+	pararElevadorCargas();
+	setBit(M1_diPORT, M1_di_X);
+	setBit(M1_enPORT, M1_en_X);
+}
 
-void bajarElevadorCargas();
+inline void bajarElevadorCargas(){
+	pararElevadorCargas();
+	clearBit(M1_diPORT, M1_di_X);
+	setBit(M1_enPORT, M1_en_X);
+}
 
-void pararElevadorCargas();
+inline void pararElevadorCargas(){
+	clearBit(M1_enPORT, M1_en_X);
+}
 
 
 // M2: Giro vertical del lanzador
@@ -26,7 +35,7 @@ void pararElevadorCargas();
 // default: lanzadorflag a 2 (=parado)
 uint8_t lanzadorFlag = 2;
 
-void girarVertical(int dir){
+inline void girarVertical(int dir){
 	clearBit(M2_enPORT, M2_en_X);  // parar motor
 	lanzadorFlag = dir;
 	if (dir==1){  //COMPROBAR
@@ -40,13 +49,13 @@ void girarVertical(int dir){
 	clearBit(M2_bkPORT,M2_bk_X);  // deshabilitar freno
 }
 
-void frenoVertical(){  // frenado instataneo
-	lanzadorFlag = 2;
+inline void frenoVertical(){  // frenado instataneo
 	setBit(M2_bkPORT,M2_bk_X);
-	clearBit(M2_enPORT,M4_en_X);
+	clearBit(M2_enPORT,M2_en_X);
+	lanzadorFlag = 2;
 }
 
-void pararVertical(){  // se utiliza para deshabilitar el motor
+inline void pararVertical(){  // se utiliza para deshabilitar el motor
 	clearBit(M2_enPORT, M2_en_X);
 	lanzadorFlag = 2;
 }
@@ -83,9 +92,21 @@ inline void pararCarrito(){
 
 // M5: Elevador de retorno de bolas
 
-// Implementar funciones (Iago)
-void elevarBola();
-void bajarBola();
+inline void subirElevadorRetorno(){
+	pararElevadorRetorno();
+	setBit(M5_diPORT, M5_di_X);
+	setBit(M5_enPORT, M5_en_X);
+}
+
+inline void bajarElevadorRetorno(){
+	pararElevadorRetorno();
+	clearBit(M5_diPORT, M5_di_X);
+	setBit(M5_enPORT, M5_en_X);
+}
+
+inline void pararElevadorRetorno(){
+	clearBit(M5_enPORT, M5_en_X);
+}
 
 // *******
 // SENSORES SW
@@ -94,38 +115,38 @@ void bajarBola();
 // getters para los sensores (leer pins directamente)
 // Sensor SW1:
 
-int getSensor1(){
+inline int getSensor1(){
 	return readBit(SW1PIN,SW1X);
 }
 
 // Sensor SW2:
 // ojo: aqui fin de carrera tambien en la mitad del trayecto!
 
-int getSensor2(){
+inline int getSensor2(){
 	return readBit(SW2PIN,SW2X);
 }
 
 // Sensor SW3:
 
-int getSensor3(){
+inline int getSensor3(){
 	return readBit(SW3PIN,SW3X);
 }
 
 // Sensor SW4:
 
-int getSensor4(){
+inline int getSensor4(){
 	return readBit(SW4PIN,SW4X);
 }
 
 // Sensor SW5:
 
-int getSensor5(){
+inline int getSensor5(){
 	return readBit(SW5PIN,SW5X);
 }
 
 // Sensor SW6:
 
-int getSensor6(){
+inline int getSensor6(){
 	return readBit(SW6PIN,SW6X);
 }
 
@@ -136,7 +157,7 @@ int getSensor6(){
 //MACROS
 
 // getter para los sensores opticos
-int getOptico(int num){
+inline int getOptico(int num){
 	return readBit(SOPIN, num);
 }
 
@@ -144,11 +165,11 @@ int getOptico(int num){
 // LED Y DISPLAYS
 // *******
 
-void encenderLED(){
+inline void encenderLED(){
 	setBit(L1PORT, L1X);
 }
 
-void apagarLED(){
+inline void apagarLED(){
 	clearBit(L1PORT, L1X);
 }
 

@@ -36,10 +36,13 @@ uint8_t puntuacion;
 //
 */
 
-void setDisplay(int numero){
-	
-	//Primero hago un lienzo, en el que pongo los displays apagados durante el ciclo de reloj para después poder poner el numero al gusto
+inline void apagarDisplay(){
 	PORTB &= ~(1<<PB6)&~(1<<PB5)&~(1<<PB4)&~(1<<PB3)&~(1<<PB2)&~(1<<PB1)&~(1<<PB0);  //Todos los bits de esos puertos a 1_
+}
+
+inline void setDisplay(int numero){
+	//Primero hago un lienzo, en el que pongo los displays apagados durante el ciclo de reloj para después poder poner el numero al gusto
+	apagarDisplay();
 	//PORTB = 0bX0000000
 	switch(numero)
 	{
@@ -78,6 +81,8 @@ void setDisplay(int numero){
 	}
 }
 
+// Cambio Thanos: poner else if z meter condicion parpadeo>200 en parpadeos >=180 (comprobar porfa)
+// Declarada funcion inline, que se llama dentro del main()
 inline void DisplayUpdater(){
 	if(estado_final == 1){
 		parpadeos++;
@@ -93,11 +98,11 @@ inline void DisplayUpdater(){
 				setDisplay(puntuacion%10);
 			}
 		}
-		if(parpadeos >= 180){
+		else if(parpadeos >= 180){
 			PORTB = 0x00;  // Apagados y DS da igual porque al estar apagados da igual a que display este apuntando
-		}
-		if(parpadeos == 200){
-			parpadeos = 0; // Reiniciar el contador de parpadeos
+			if(parpadeos == 200){
+				parpadeos = 0; // Reiniciar el contador de parpadeos
+			}
 		}
 	}
 	else{

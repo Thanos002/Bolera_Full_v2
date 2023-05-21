@@ -17,6 +17,7 @@
 // Prototipos de función
 
 void setup_Displays();
+void apagarDisplay();
 void setDisplay(int numero);
 
 void DisplayUpdater();

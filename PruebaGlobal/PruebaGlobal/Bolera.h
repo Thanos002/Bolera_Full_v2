@@ -38,14 +38,15 @@ void engancharCarrito();
 void liberarCarrito();
 void pararCarrito();
 
-// M5: Elevador de retorno de bolas
-void elevarBola();
-void bajarBola();
 
+// M5: Elevador de retorno de bolas
+
+void subirElevadorRetorno();
+void pararElevadorRetorno();
+void bajarElevadorRetorno();
 // *******
 // SENSORES SW
 // *******
-
 // Sensor SW1:
 int getSensor1();
 

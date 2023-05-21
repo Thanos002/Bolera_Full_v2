@@ -25,6 +25,10 @@ void setup_Sensores(){
 	sei();
 }
 
+void habilitarInterrupcionesSensores(){
+	PCMSK2 = 0x3F;
+}
+
 
 inline void OnPinChangeBolos(){
 	puntuacion++;

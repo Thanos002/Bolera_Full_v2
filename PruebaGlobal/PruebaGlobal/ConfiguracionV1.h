@@ -22,4 +22,8 @@ void setup_puertos();
 void setup_timer0();
 void setup_timer1();
 
+void resetTimer1();
+void disableTimer1Int();
+void enableTimer1Int();
+
 #endif /*CONFIGURACIONV1_H */

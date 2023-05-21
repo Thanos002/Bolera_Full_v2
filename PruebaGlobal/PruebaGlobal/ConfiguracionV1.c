@@ -30,6 +30,7 @@ cli();
 	
 sei();
 }
+
 void setup_timer0(){			//Preparado para interrumpir cada 5 ms
 	cli();
 	TCCR0A = 0b00000010;		//Modo CTC
@@ -39,14 +40,26 @@ void setup_timer0(){			//Preparado para interrumpir cada 5 ms
 	
 	sei();
 }	
-void setup_timer1(){			//Preparado para interrumpir cada 1 seg
+
+inline void resetTimer1(){
+	TCNT1 = 0x00;
+}
+
+inline void disableTimer1Int(){
+	TIMSK1 = 0x00;
+}
+
+inline void enableTimer1Int(){
+	TIMSK1 = 0b00000010;
+}
+
+void setup_timer1(){			//Preparado para interrumpir cada 30 seg
 	cli();
 	TCCR1A = 0b00000000;		//Modo CTC
-	TCCR1B = 0b00001100;		//Modo CTC y prescalado 256
+	TCCR1B = 0b00001101;		//Modo CTC y prescalado 1024
 	TCCR1C = 0x00;				//No nos afecta
-	TIMSK1 = 0b00000010;
-	OCR1A  = 31250;
-	
+	TIMSK1 = 0x00;				// Todavia no habilitamos interrupciones del timer
+	OCR1A  = 7813;
 	sei();
 }
 	

@@ -37,7 +37,7 @@ int disparador=0;
 //SET UP//
 
 
-// COMENTA QUE HACES!!
+// COMENTA QUE HACES!
 void setuptimer(){
 	TCCR0A= 0b00000010;
 	TCCR0B=0b00000011;
@@ -238,7 +238,7 @@ int disparo(){
 
 	//FUNCIONES COMPLEJAS//
 
-// NO SE USA
+// NO SE USA, SE USA LA MAQUINA DE ESTADOS A SU VEZ
 int recarga(int td,int ultimo_disparo){//td es el tiempo de delay y ultimo disparo indica si se ha realizado el disparo posterior a 30s
 	_delay_ms(4000);  // td fijo necesario
 	rutina=1;

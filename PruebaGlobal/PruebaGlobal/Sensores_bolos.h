@@ -18,6 +18,7 @@
 
 void setup_Sensores();
 
+void habilitarInterrupcionesSensores();
 void OnPinChangeBolos();
 
 #endif /* SENSORES_BOLOS_H_ */

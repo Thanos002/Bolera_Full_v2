@@ -17,7 +17,7 @@
 Position position = LEFT;
 volatile uint32_t ms_elapsed = 0;
 uint32_t last_interruption_time = 0;
-
+States state = HOME;
 
 // setup para el lanzador
 void setupLanzador(){
@@ -41,7 +41,7 @@ inline void rightInterrupt(){
 		girarVertical(0);
 	}
 	else{
-		frenoVertical();  // si no, frenamos
+		pararVertical();  // si no, paramos
 	}
 }
 
@@ -64,7 +64,7 @@ inline void leftInterrupt(){
 		girarVertical(1);  // cambiar de direccion en lanzamiento
 	}
 	else{
-		frenoVertical();
+		pararVertical();
 	}
 }
 
@@ -90,7 +90,7 @@ inline uint8_t getParpadeo(){
 // funcion que, si esta llamada, actualiza el estado de la led, para que esta parpadeando
 // llamar la funcion mediante interrupciones temporales (resolucion <50ms)
 inline void parpadearLED(){
-	if(ms_elapsed % 1000 < 900){
+	if(ms_elapsed % 200 <= 100){
 		apagarLED();
 	}
 	else{
@@ -109,34 +109,33 @@ inline void OnSW2Interruption(){
 		last_interruption_time = ms_elapsed;  // guardar tiempo acual
 		switch (lanzadorFlag){
 			case 1:  // moviemiento hacia derecha
-			// si estoy RIGHT
-			if (position==RIGHT){
-				rightInterrupt();
-			}
-			else if (position==LEFT){  // si estoy LEFT
-				middleInterrupt();
-			}
-			break;
+				// si estoy RIGHT
+				if (position==RIGHT){
+					rightInterrupt();
+				}
+				else if (position==LEFT){  // si estoy LEFT
+					middleInterrupt();
+				}
+				break;
 			case 0:  // moviendo hacia izq
-			// si estoy moviendo hacia la izquierda y estoy LEFT
-			if (position==LEFT){
-				leftInterrupt();
-			}
-			// movimiento hacia la izqrda, estoy RIGHT
-			else if (position==RIGHT){
-				middleInterrupt();
-			}
-			break;
+				// si estoy moviendo hacia la izquierda y estoy LEFT
+				if (position==LEFT){
+					leftInterrupt();
+				}
+				// movimiento hacia la izqrda, estoy RIGHT
+				else if (position==RIGHT){
+					middleInterrupt();
+				}
+				break;
+			// Puede haber interrupciones de bajada cuando estoy parado?
 			case 2:  // parado
-			if(position == LEFT){
-				leftInterrupt();
-			}
-			else{
-				rightInterrupt();
-			}
-			break;
-			default:
-			lanzadorFlag=2;
+				if(position == LEFT){
+					// leftInterrupt();
+				}
+				else{
+					// rightInterrupt();
+				}
+				break;
 		}
 	}
 }
@@ -146,5 +145,5 @@ inline void OnSW2Interruption(){
 // LANZAMIENTO: el sistema se encuentra el el proceso de lanzar la bola
 // TIRAR_BOLA: la bola fue lanzada para tirar los bolos
 
-States state = SIN_BOLA;
+
 
