@@ -1,0 +1,83 @@
+digraph interrupt_routines {
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [arrowhead=vee, arrowsize=0.8];
+
+    subgraph cluster0 {
+        label="ISR Functions";
+        labelloc=t;
+        color=lightgray;
+        style=rounded;
+        TIMER0_COMPA_vect;
+        TIMER1_COMPA_vect;
+        PCINT2_vect;
+        INT0_vect;
+        INT2_vect;
+        INT3_vect;
+    }
+
+    subgraph cluster1 {
+        label="Functions";
+        labelloc=t;
+        color=lightgray;
+        style=rounded;
+        DisplayUpdater;
+        updateTime;
+        UpdateTimeElevadores;
+        parpadearLED;
+        OnPinChangeBolos;
+        OnSW2Interruption;
+        OnSW5Interruption;
+    }
+
+    TIMER0_COMPA_vect -> DisplayUpdater;
+    TIMER0_COMPA_vect -> updateTime;
+    TIMER0_COMPA_vect -> UpdateTimeElevadores;
+    TIMER0_COMPA_vect -> parpadearLED;
+
+    TIMER1_COMPA_vect -> parpadearFlag;
+    TIMER1_COMPA_vect -> ultimoFlag;
+    TIMER1_COMPA_vect -> disableTimer1Int;
+
+    PCINT2_vect -> OnPinChangeBolos;
+
+    INT0_vect -> OnSW2Interruption;
+
+    INT2_vect -> habilitarInterrupcionesSensores;
+    INT2_vect -> state;
+
+    INT3_vect -> OnSW5Interruption;
+
+    DisplayUpdater -> apagarDisplay;
+    DisplayUpdater -> setDisplay;
+    DisplayUpdater -> estado_final;
+    DisplayUpdater -> parpadeos;
+    DisplayUpdater -> puntuacion;
+    DisplayUpdater -> PORTB;
+    DisplayUpdater -> PINB;
+
+    OnPinChangeBolos -> puntuacion;
+    OnPinChangeBolos -> puertoactual;
+    OnPinChangeBolos -> PCMSK2;
+
+    OnSW2Interruption -> last_interruption_time;
+    OnSW2Interruption -> position;
+    OnSW2Interruption -> state;
+    OnSW2Interruption -> lanzadorFlag;
+    OnSW2Interruption -> rightInterrupt;
+    OnSW2Interruption -> middleInterrupt;
+    OnSW2Interruption -> leftInterrupt;
+
+    OnSW5Interruption -> ERpos;
+    OnSW5Interruption -> bandera;
+    OnSW5Interruption -> readBit;
+    OnSW5Interruption -> clearBit;
+    OnSW5Interruption -> M5_diPORT;
+    OnSW5Interruption -> M5_di_X;
+    OnSW5Interruption -> M5_enPORT;
+    OnSW5Interruption -> M5_en_X;
+
+    {rank=same; TIMER0_COMPA_vect; TIMER1_COMPA_vect; PCINT2_vect; INT0_vect; INT2_vect; INT3_vect;}
+    {rank=same; DisplayUpdater; updateTime; UpdateTimeElevadores; parpadearLED;}
+    {rank=same; OnPinChangeBolos; OnSW2Interruption; OnSW5Interruption;}
+}

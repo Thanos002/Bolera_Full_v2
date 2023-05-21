@@ -1,0 +1,26 @@
+digraph DiagramaFlujo {
+    node [shape = rectangle];
+    Inicio [label = "Inicio"];
+    Configuracion [label = "Configuración de componentes"];
+    Bucle [label = "Bucle while(1):"];
+    InicioEstado [label = "HOME\nEsperando interrupción"];
+    SinBolaEstado [label = "SIN BOLA\nEsperando que la bola esté cargada en el lanzador"];
+    BolaLanzadorEstado [label = "BOLA LANZADOR\nEnganchar carrito y mover vastago atras"];
+    LanzamientoEstado [label = "LANZAMIENTO\nRealizando el lanzamiento de la bola"];
+    TirarBolaEstado [label = "TIRAR BOLA\nLiberar carrito\nEmpezar timer de 30 segundos"];
+    RetornoEstado [label = "RETORNO\nRealizando el retorno de la bola"];
+
+    Inicio -> Configuracion;
+    Configuracion -> Bucle;
+    Bucle -> InicioEstado;
+    InicioEstado -> SinBolaEstado [label = "Interruptor pulsado"];
+    InicioEstado -> InicioEstado;
+    SinBolaEstado -> BolaLanzadorEstado [label = "Bola cargada en Lanzador"];
+    SinBolaEstado -> SinBolaEstado;
+    BolaLanzadorEstado -> LanzamientoEstado [label = "Bola lista para lanzarla"];
+    LanzamientoEstado -> TirarBolaEstado [label = "Interruptor pulsado"];
+    TirarBolaEstado -> LanzamientoEstado [label = "Posición es DERECHA"];
+    TirarBolaEstado -> RetornoEstado [label = "Bola tirada correctamente"];
+    RetornoEstado -> InicioEstado [label = "Último Disparo"];
+    RetornoEstado -> SinBolaEstado [label = "No es Último Disparo"];
+}
