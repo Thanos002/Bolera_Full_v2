@@ -15,6 +15,8 @@
 // Function prototypes
 void setupLanzador();
 void lanzadorHome();
+void vastagoHome();
+void carritoHome();
 void rightInterrupt();
 void middleInterrupt();
 void leftInterrupt();

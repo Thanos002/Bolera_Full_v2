@@ -78,6 +78,8 @@ int main(void)
 	bajaER();  // comprobar si es necesario
 	homeEC();
 	subeEC();  // comprobar si es necesario
+	vastagoHome();
+	carritoHome();
 	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
     while (1) {
 		switch(state){
@@ -89,7 +91,7 @@ int main(void)
 			case SIN_BOLA:
 				subeEC();  // comprobar que EC esta en posicion alta
 				_delay_ms(1000);
-				girarVertical(1);
+				girarLanzador(1);
 				_delay_ms(2000);
 				bajaEC();  // coger la bola
 				_delay_ms(2000);
@@ -146,8 +148,8 @@ int main(void)
 				
 				//if(buffer+30000<getTime()){
 				//	parpadear = 1;}
-				girarVertical(0);
-				girarVertical(1);
+				girarLanzador(0);
+				girarLanzador(1);
 				// esperar interupciones
 				// alternativa: atender mediante interrupcion de SW6 (PCINT2)
 				loop_until_bit_is_set(SW6PIN,SW6X);  //esperar hasta se pulsa el disparo
@@ -160,14 +162,14 @@ int main(void)
 				// asegurar que estamos a la izquierda del Lanzador:
 				if(position==RIGHT){
 					state = LANZAMIENTO;  // si no, procedemos con el lanzamiento
-					girarVertical(0);  // opcional: intentar corregir posicion
+					girarLanzador(0);  // opcional: intentar corregir posicion
 					break;
 				}
 					
 				// El interruptor de disparo se ha pulsado
 				parpadearFlag = 0;
 				apagarLED();
-				frenoVertical();  // frenamos el lanzador
+				frenoLanzador();  // frenamos el lanzador
 				_delay_ms(button_check_delay_ms);
 				liberarCarrito();  // tiramos la bola
 				_delay_ms(long_delay);

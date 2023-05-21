@@ -31,17 +31,33 @@ void setupLanzador(){
 
 // lanzador home: se mueve a la izquierda y se guarda el flag position
 void lanzadorHome(){
-	girarVertical(0);
+	girarLanzador(0);
+	_delay_ms(long_delay);
+	pararLanzador();
 	position = LEFT;
+}
+
+void vastagoHome(){
+	moverVastagoAtras();
+	_delay_ms(button_check_delay_ms);
+	loop_until_bit_is_clear(SW3PIN,SW3X);
+	pararVastago();
+}
+
+void carritoHome(){
+	liberarCarrito();
+	_delay_ms(button_check_delay_ms);
+	loop_until_bit_is_clear(SW4PIN,SW4X);
+	pararCarrito();
 }
 
 // interrupcion del fin de carrera derecho,
 inline void rightInterrupt(){
 	if(state==LANZAMIENTO){  // si estamos en lanzamiento, cambiamos direccion
-		girarVertical(0);
+		girarLanzador(0);
 	}
 	else{
-		pararVertical();  // si no, paramos
+		pararLanzador();  // si no, paramos
 	}
 }
 
@@ -54,17 +70,17 @@ inline void middleInterrupt(){
 		position = LEFT;
 	}
 	if(state==LANZAMIENTO){  // cambiar de direccion en estado de lanzamiento
-		girarVertical(0);
+		girarLanzador(0);
 	}
 }
 
 // interrupcion del pulsador a la izquierda
 inline void leftInterrupt(){
 	if(state==LANZAMIENTO){
-		girarVertical(1);  // cambiar de direccion en lanzamiento
+		girarLanzador(1);  // cambiar de direccion en lanzamiento
 	}
 	else{
-		pararVertical();
+		pararLanzador();
 	}
 }
 

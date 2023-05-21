@@ -24,9 +24,9 @@ void pararElevadorCargas();
 
 // M2: Giro vertical del lanzador
 extern uint8_t lanzadorFlag;
-void girarVertical(int dir);
-void frenoVertical();
-void pararVertical();
+void girarLanzador(int dir);
+void frenoLanzador();
+void pararLanzador();
 
 // M3: Vastago
 void moverVastagoAdelante();

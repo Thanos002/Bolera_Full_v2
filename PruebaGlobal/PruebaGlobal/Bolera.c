@@ -35,7 +35,7 @@ inline void pararElevadorCargas(){
 // default: lanzadorflag a 2 (=parado)
 uint8_t lanzadorFlag = 2;
 
-inline void girarVertical(int dir){
+inline void girarLanzador(int dir){
 	clearBit(M2_enPORT, M2_en_X);  // parar motor
 	lanzadorFlag = dir;
 	if (dir==1){  //COMPROBAR
@@ -49,13 +49,13 @@ inline void girarVertical(int dir){
 	clearBit(M2_bkPORT,M2_bk_X);  // deshabilitar freno
 }
 
-inline void frenoVertical(){  // frenado instataneo
+inline void frenoLanzador(){  // frenado instataneo
 	setBit(M2_bkPORT,M2_bk_X);
 	clearBit(M2_enPORT,M2_en_X);
 	lanzadorFlag = 2;
 }
 
-inline void pararVertical(){  // se utiliza para deshabilitar el motor
+inline void pararLanzador(){  // se utiliza para deshabilitar el motor
 	clearBit(M2_enPORT, M2_en_X);
 	lanzadorFlag = 2;
 }
