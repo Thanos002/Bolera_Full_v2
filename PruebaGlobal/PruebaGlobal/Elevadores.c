@@ -12,182 +12,150 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-
 #include "IncFile1.h"
 
 
-volatile int ERpos;
-volatile int ECPos;
-volatile int rutina=0;
-volatile int Time=0;
-
-
-
-//MOTORES
-// EC: M1 di: PK6  en: PL0
-// ER: M5 di: PD5  en: PD7
-//SW
-// EC: SW1: PD6
-// ER: SW5: PD3 /INT3
-
-//PULSADOR DIRSPARO
-// SW6: PD2 INT2
+volatile int ERpos;		//Posición del Elevador de Retorno(ER).
+volatile int ECPos;		//Posición del Elevador de Carga(EC).
+volatile int rutina=0;	//Bandera para subida y bajada del ER.
+volatile int Time=0;	//Variable de tiempo
 
 
 //SET UP//
 
-
-
 void setupEC(){
-	setBit(M1_diDDR,M1_di_X);			//M1_diDDR=0x01
-	setBit(M1_enDDR,M1_en_X);			//M1_enDDR=0x01;
-	clearBit(SW1DDR,SW1X);				//SW1DDR=0x01;
-	clearBit(M1_enPORT,M1_en_X);		//M1_enPORT=0;
+	setBit(M1_diDDR,M1_di_X);			//M1_di como salida.
+	setBit(M1_enDDR,M1_en_X);			//M1_en como salida.
+	clearBit(SW1DDR,SW1X);				//SW1 como entrada.
+	clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
 }
 
 void setupER(){
-	setBit(M5_diDDR,M5_di_X);			//M5_diDDR=0x01;
-	setBit(M5_enDDR,M5_en_X);			//M5_enDDR=0x01;
- 	EICRA|=0x80;						//flanco de bajada
- 	EIMSK|=0x08;						//INT3
-	clearBit(M5_enPORT,M5_en_X);		//M5_enPORT=0;
+	setBit(M5_diDDR,M5_di_X);			//M5_di como salida.
+	setBit(M5_enDDR,M5_en_X);			//M5_en como salida.
+ 	EICRA|=0x80;						//SW5 interrumpe por flanco de bajada.
+ 	EIMSK|=0x08;						//Habilita INT3(SW5).
+	clearBit(M5_enPORT,M5_en_X);		//M5_enable off.
 }
 
-void setupElevadores(){
+void setupElevadores(){  //Realizamos todo el setup.
 	cli();
 	setupEC();
 	setupER();
 	sei();
 }
 
+//FUNCIONES HOME
+
+void homeEC(){							//Lleva el EC a su posición inicial (arriba).
+	clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
+	setBit(M1_diPORT,M1_di_X);			//Dirección ascendente (1).
+	setBit(M1_enPORT,M1_en_X);			//M1_enable on.
+	_delay_ms(2000);					//Esperamos para asegurar que sube. 
+	clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
+	ECPos=1;							//EC está arriba.
+}
+
+void homeER(){							//Lleva el ER a su posición inicial (abajo).
+	clearBit(M5_enPORT,M5_en_X);		//M5_enable off.
+	clearBit(M5_diPORT,M5_di_X);		//Dirección descendente (0);
+	setBit(M5_enPORT,M5_en_X);			//M5_enable on.
+	_delay_ms(3000);					//Esperamos para asegurar que baja.
+	clearBit(M5_enPORT,M5_en_X);		//M5_enable off.
+	ERpos=0;							//ER está abajo
+
+}
 
 
 //FUNCIONES EC//
 
-
-inline void bajaEC(){
-	clearBit(M1_enPORT,M1_en_X);			// antes de cambiar dir es necesario deshabilitar el motor
-	if(ECPos==1){
-		clearBit(M1_diPORT,M1_di_X);		//M1_diPORT=0x00;
-		setBit(M1_enPORT,M1_en_X);			//M1_enPORT=0x01;
-		_delay_ms(1000);
-		while((PIND & 0x40)!=0){}			//Espera a que vuelva a saltar SW
-		clearBit(M1_enPORT,M1_en_X);		//M1_enPORT=0
-		ECPos=0;
-	}
+inline void bajaEC(){							//Bajamos el EC y bloqueamos el programa hasta que llegue a abajo.
+	clearBit(M1_enPORT,M1_en_X);				//M5_enable off.
+		if(ECPos==1){							//Solo se ejecuta si el EC está arriba.
+			clearBit(M1_diPORT,M1_di_X);		//Dirección descendente (0);
+			setBit(M1_enPORT,M1_en_X);			//M1_enable on.
+			_delay_ms(1000);					//Esperamos a que suelte el SW1.(Probar con while((PIND & 0x40)==0){} )
+			while((PIND & 0x40)!=0){}			//Esperamos a que vuelva a pulsar SW1.
+			clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
+			ECPos=0;							//EC está abajo.
+		}
 }
 
-inline void subeEC(){
-	clearBit(M1_enPORT,M1_en_X);			// antes de cambiar dir es necesario deshabilitar el motor
-	if(ECPos==0){
-		setBit(M1_diPORT,M1_di_X);			//M1_diPORT=0;
-		setBit(M1_enPORT,M1_en_X);			//M1_enPORT=1;
-		_delay_ms(1000);					//Espera a que el SW1 se haya dejado de pulsar.
-		while((PIND & 0x40)!=0){}			//Espera a que vuelva a saltar SW
-		clearBit(M1_enPORT,M1_en_X);		//M1_enPORT=0
-		ECPos=1;
-	}
+inline void subeEC(){							//Subimos el EC y bloqueamos el programa hasta que llegue arriba.
+	clearBit(M1_enPORT,M1_en_X);				//M5_enable off.
+		if(ECPos==0){							//Solo se ejecuta si el EC está abajo.
+			setBit(M1_diPORT,M1_di_X);			//Dirección ascendente (1);
+			setBit(M1_enPORT,M1_en_X);			//M1_enable on.
+			_delay_ms(1000);					//Esperamos a que suelte el SW1.(Probar con while((PIND & 0x40)==0){} )
+			while((PIND & 0x40)!=0){}			//Esperamos a que vuelva a pulsar SW1.
+			clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
+			ECPos=1;							//EC está arriba.
+		}
 }
 
-//FUNCIONES HOME
 
-void homeEC(){
-	clearBit(M1_enPORT,M1_en_X);		// antes de cambiar dir es necesario deshabilitar el motor
-	setBit(M1_diPORT,M1_di_X);			//M1_diPORT=0x00; sube
-	setBit(M1_enPORT,M1_en_X);			//M1_enPORT=0x01;
-	_delay_ms(2000);					//Espera 2 segundos para asegurarse de que baja
-	clearBit(M1_enPORT,M1_en_X);		//M1_enPORT=0
-	ECPos=1;
-}
-
-void homeER(){
-	//Coloca el motor en su posición inicial
-	clearBit(M5_enPORT,M5_en_X);
-	clearBit(M5_diPORT,M5_di_X);		//M5 di=1
-	setBit(M5_enPORT,M5_en_X);			//M5 en=1
-	_delay_ms(3000);					//Espera 3 segundos para asegurarse de que sube
-	clearBit(M5_enPORT,M5_en_X);
-	ERpos=0;
-
-}
 
 //FUNCIONES ER//
 
 
 inline void bajaER(){
-	if(ERpos==1){
-				
-setBit(EIFR,3);
-
-		clearBit(M5_enPORT,M5_en_X);
-		clearBit(M5_diPORT,M5_di_X);	//M5_diPORT=0x01;
-		setBit(M5_enPORT,M5_en_X);
-		
-	
-			
+	if(ERpos==1){								//Bajamos el ER sin bloquear el programa.
+		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
+		clearBit(M5_diPORT,M5_di_X);			//Dirección descendente (0).
+		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
 	}
 }
 
 
 inline void subeER(){
-	if(ERpos==0){
-				
-	setBit(EIFR,3);
-	
-		clearBit(M5_enPORT,M5_en_X);
-		setBit(M5_diPORT,M5_di_X);	//M5_diPORT=0x00;
-		setBit(M5_enPORT,M5_en_X);
-		
-			
-
+	if(ERpos==0){								//Subimos el ER sin bloquear el programa.
+		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
+		setBit(M5_diPORT,M5_di_X);				//Dirección ascendente	(1);
+		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
 	}
+}
+inline void recarga(){							//El elevador sube y cuando llegue arriba bajará.
+	rutina=1;									//Bandera para que baje al llegar arriba.
+	subeER();									//Empieza a subir.
 }
 
 
 //INTERRUPCIONES//
 
-
-inline void OnSW5Interruption(){
-		setBit(EIFR,3);
-		clearBit(EIMSK,3);
-		Time=0;
-	if(rutina==0){
-		if(readBit(M5_diPIN,M5_di_X)==0){	
-			ERpos=0;
-			clearBit(M5_enPORT,M5_en_X);
+inline void OnSW5Interruption(){				//Interrupción para gestionar las paradas del ER.
+		clearBit(EIMSK,3);						//Deshabilitamos la interrupción.
+		setBit(EIFR,3);							//Limpiamos las banderas de la interrupción.
+		Time=0;									//Despues de un tiempo la volveremos a habilitar (antirrebotes).
+		if(rutina==0){							//Si queremos que pare.
+			if(readBit(M5_diPIN,M5_di_X)==0){	//Si estaba bajando.
+				ERpos=0;						//Está abajo.
+				clearBit(M5_enPORT,M5_en_X);	//M5_enable off.
+			}
+			if(readBit(M5_diPIN,M5_di_X)==1){	//Si estaba subiendo.
+				ERpos=1;						//Está arriba.
+				clearBit(M5_enPORT,M5_en_X);	//M5_enable off.
+			}
 		}
-		if(readBit(M5_diPIN,M5_di_X)==1){	
-			ERpos=1;
-			clearBit(M5_enPORT,M5_en_X);
-		}
-	}
-	else if (rutina==1){			//Rutina de reacomodo
-		ERpos=1;
-		rutina=0;
-		bajaER();
-		
+		else if (rutina==1){					//Si queremos que baje en lugar de que pare.
+			ERpos=1;							//Está arriba.
+			rutina=0;							//Bajamos la bandera.
+			bajaER();							//Empieza a bajar.
 		}
 			
 	
 	
 }
-inline void UpdateTimerElevadores(){
-	Time=Time+5;
-	if(Time>=500){
-		setBit(EIMSK,3);
-		setBit(EIFR,3);
+inline void UpdateTimerElevadores(){		//Rehabilita la interrupción de SW5(antirrebotes).
+	Time=Time+5;							//Salta cada 5ms.
+	if(Time>=500){							//Si ha pasado el tiempo de espera.(Intentar bajar ese tiempo).
+		setBit(EIMSK,3);					//Habilita la interrupción
+		setBit(EIFR,3);						//Limpia la bandera.
 	}
 }
 
 
 
-	//FUNCIONES COMPLEJAS//
 
-inline void recarga(){
-	
-	rutina=1;
-	subeER();
-}
 
 
 
