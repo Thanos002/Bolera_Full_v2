@@ -102,6 +102,7 @@ int main(void)
 				ultimoFlag = 0;
 				parpadearFlag = 0;
 				finalizadoFlag = 0;
+				puntuacion = 0;
 				// no hacemos nada, esperamos la interrupcion de disparo
 				//loop_until_bit_is_set(SW6PIN,SW6X);
 				//state = SIN_BOLA;
