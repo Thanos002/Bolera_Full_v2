@@ -19,22 +19,31 @@
 #include "Elevadores.h"
 
 // para debugging
-// #define _delay_ms(P) _delay_us(P)
+// #define _delay_ms(P) ultimoFlag=ultimoFlag;
 
 // BANDERAS (evitar si posible)
 
-uint8_t parpadearFlag =0;
-uint8_t ultimoFlag =0;
+volatile uint8_t parpadearFlag = 0;
+volatile uint8_t ultimoFlag = 0;
+volatile uint8_t habilitarEstadoFinal = 0;
+volatile int state1,state2,state3,state4,state5,state6;
+volatile int interrupt0 = 0;
+volatile int interrupt2 = 0;
 
 // Interrupciones:
 
 ISR(TIMER0_COMPA_vect){						//Interrupcion que ocurre cada 5ms
 	DisplayUpdater();  // update displays with high frecuency
 	updateTime();		// update Lanzadores Timer
-	UpdateTimeElevadores();  // update Elevadores Timer
 	if(parpadearFlag==1){
 		parpadearLED();   // enable parpadeo if necessary
 	}
+	state1 = getSensor1();
+	state2 = getSensor2();
+	state3 = getSensor3();
+	state4 = getSensor4();
+	state5 = getSensor5();
+	state6 = getSensor6();
 }
 
 ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos
@@ -50,15 +59,20 @@ ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
 // interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
 ISR(INT0_vect){
 	OnSW2Interruption();
+	interrupt0 ++;
 }
 
-ISR(INT2_vect){  // interrupcion del pulsador del disparo
-	habilitarInterrupcionesSensores();
+ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6)
+	interrupt2 ++;
 	if(state == LANZAMIENTO){
+		habilitarInterrupcionesSensores();
 		state = TIRAR_BOLA;
 	}
 	if(state == HOME){
 		state = SIN_BOLA;
+	}
+	if(state==FINAL){
+		state = HOME;
 	}
 }
 
@@ -69,36 +83,41 @@ ISR(INT3_vect) {  // interrupcion del sensor SW5
 int main(void)
 {
 	// proceso de setup de todos los componentes:
+	_delay_ms(200);
 	setup_puertos();
 	setupLanzador();
 	setup_timer0();
 	setup_timer1();
 	setupElevadores();
 	homeER();
-	bajaER();  // comprobar si es necesario
+	// bajaER();  // comprobar si es necesario
 	homeEC();
-	subeEC();  // comprobar si es necesario
+	// subeEC();  // comprobar si es necesario
 	vastagoHome();
 	carritoHome();
 	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
     while (1) {
 		switch(state){
-			case HOME:
+			case HOME:  // despues de init
+				ultimoFlag = 0;
+				parpadearFlag = 0;
+				finalizadoFlag = 0;
 				// no hacemos nada, esperamos la interrupcion de disparo
 				//loop_until_bit_is_set(SW6PIN,SW6X);
 				//state = SIN_BOLA;
-			break;
+				break;
 			case SIN_BOLA:
 				subeEC();  // comprobar que EC esta en posicion alta
-				_delay_ms(1000);
+				// _delay_ms(long_delay);  sube bloquante
 				girarLanzador(1);
-				_delay_ms(2000);
+				moverVastagoAtras();  // mover vastago atras para evitar que choca (ya esta)
+				_delay_ms(long_delay);
 				bajaEC();  // coger la bola
-				_delay_ms(2000);
+				// _delay_ms(long_delay);
 				subeEC(); // subir la bola		
 				// Aqui: verficiar que bola esta cargada:
 				state = BOLA_LANZADOR;
-			break;
+				break;
 			case BOLA_LANZADOR:
 				// proceso para enganchar la bola en el lanzador
 
@@ -136,7 +155,7 @@ int main(void)
 				resetTimer1();
 				enableTimer1Int();
 				//buffer = getTime();  // timer de 30 segundos
-			break;
+				break;
 
 			case LANZAMIENTO:
 					
@@ -148,15 +167,14 @@ int main(void)
 				
 				//if(buffer+30000<getTime()){
 				//	parpadear = 1;}
-				girarLanzador(0);
-				girarLanzador(1);
+				girarLanzador(0);  // girar hacia la derecha
+				_delay_ms(long_delay);
+				
 				// esperar interupciones
-				// alternativa: atender mediante interrupcion de SW6 (PCINT2)
-				loop_until_bit_is_set(SW6PIN,SW6X);  //esperar hasta se pulsa el disparo
+				// loop_until_bit_is_set(SW6PIN,SW6X);  //esperar hasta se pulsa el disparo
 				// cuando se interumpe, marcar state=TIRAR_BOLA
-				state = TIRAR_BOLA;
-
-			break;
+				// state = TIRAR_BOLA;
+				break;
 					
 			case TIRAR_BOLA:
 				// asegurar que estamos a la izquierda del Lanzador:
@@ -167,28 +185,38 @@ int main(void)
 				}
 					
 				// El interruptor de disparo se ha pulsado
-				parpadearFlag = 0;
+				parpadearFlag = 0;  // apagar led despues del disparo (y parpadeo)
 				apagarLED();
+				
+				if(ultimoFlag==1){  // si ya se hizo la ultima tirada
+					habilitarEstadoFinal = 1;  // pasar al estado final despues del retorno
+				}
+				
 				frenoLanzador();  // frenamos el lanzador
 				_delay_ms(button_check_delay_ms);
 				liberarCarrito();  // tiramos la bola
-				_delay_ms(long_delay);
+				loop_until_bit_is_clear(SW4PIN,SW4X);
 				pararCarrito();
 
 				state = RETORNO;  // inicar estado de retorno
+				break;
 			case RETORNO:
-				_delay_ms(6000);   // esperar hasta la bola llega
-				subeEC();  // subir la bola
+				_delay_ms(4000);   // esperar hasta la bola llega
+				recarga();
 				_delay_ms(long_delay);
-				bajaEC();  // bajar carrito otra vez
-				_delay_ms(long_delay);
-				if(ultimoFlag==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
-					state = HOME;  // volver a primer estado de espera
+				if(habilitarEstadoFinal==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
+					state = FINAL;  // volver a primer estado de espera
 				}
 				else{
 					state = SIN_BOLA; // volver a recoger la bola 
 				}
-			break;
+				break;
+			case FINAL:
+				finalizadoFlag = 1;  // parpadear display
+				break;
+			default:
+				state = HOME;
+				break;
 				
 		}
     }

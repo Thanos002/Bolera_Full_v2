@@ -26,11 +26,12 @@ void updateTime();
 void setTime(int time);
 uint32_t getTime();
 
-typedef enum {HOME, SIN_BOLA, BOLA_LANZADOR, LANZAMIENTO, TIRAR_BOLA, RETORNO} States;
+typedef enum {HOME, SIN_BOLA, BOLA_LANZADOR, LANZAMIENTO, TIRAR_BOLA, RETORNO, FINAL} States;
 void OnSW2Interruption();
-extern States state;
+extern volatile States state;
 
 typedef enum {LEFT, RIGHT} Position;
-extern Position position;
+extern volatile Position position;
+extern volatile uint8_t parpadearFlag;
 
 #endif /* LANZADOR_H_ */

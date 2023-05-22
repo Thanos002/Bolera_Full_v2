@@ -13,7 +13,7 @@
 */
 /************************************************************************/
 // CONSTANTES
-#define button_check_delay_ms 60
+#define button_check_delay_ms 500
 #define debounce_buffer_ms 50
 #define long_delay 2000
 

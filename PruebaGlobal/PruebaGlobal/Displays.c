@@ -14,10 +14,10 @@
 #define F_CPU 8000000UL
 #include <util/delay.h>
 
-uint16_t parpadeos=0;
-uint8_t estado_final = 0;
-uint16_t pulsador;
-uint8_t puntuacion;
+volatile uint16_t parpadeos=0;  // volatile pues se cambia con INT
+volatile uint8_t finalizadoFlag = 0;
+uint16_t pulsador;  // se usa esta variable?
+volatile uint8_t puntuacion;
 
 /*Ya hecho en ConfiguracionV1
 // void setup_Displays(){
@@ -84,7 +84,7 @@ inline void setDisplay(int numero){
 // Cambio Thanos: poner else if z meter condicion parpadeo>200 en parpadeos >=180 (comprobar porfa)
 // Declarada funcion inline, que se llama dentro del main()
 inline void DisplayUpdater(){
-	if(estado_final == 1){
+	if(finalizadoFlag == 1){
 		parpadeos++;
 		if(parpadeos <= 180){
 			//Preguntar Jorge pero creo que PORT7B no vale, tiene que ser PORTXi --> PXi para los puertos de E/S. No lo que pone en el datasheet, para este caso.
@@ -92,10 +92,10 @@ inline void DisplayUpdater(){
 			//Posible bandera 'Selector
 			
 			if(PINB & (1 << PB7)){				//Si está seleccionado Display 1, decenas
-				setDisplay(puntuacion/10);
+				setDisplay(puntuacion%10);
 			}
 			else{								//Si esta seleccionado Display 0, unidades
-				setDisplay(puntuacion%10);
+				setDisplay(puntuacion/10);
 			}
 		}
 		else if(parpadeos >= 180){

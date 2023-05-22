@@ -30,5 +30,5 @@ void setupPulsador();
 void setupElevadores();
 void OnSW5Interruption();
 
-int recarga(int td,int ultimo_disparo);//Le pasamos el tiempo de delay y la condición del ultimo disparo y procede a recargar la bola
+void recarga();//Le pasamos el tiempo de delay y la condición del ultimo disparo y procede a recargar la bola
 #endif

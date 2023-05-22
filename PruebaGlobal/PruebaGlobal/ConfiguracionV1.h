@@ -26,4 +26,6 @@ void resetTimer1();
 void disableTimer1Int();
 void enableTimer1Int();
 
+extern volatile uint8_t puntuacion;
+
 #endif /*CONFIGURACIONV1_H */

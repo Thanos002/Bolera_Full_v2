@@ -1,0 +1,3 @@
+C:/Users/thano/Universidad Politécnica de Madrid/Bolera 4 - General/BOLERA_FULLV1/Bolera_Full_v2/PruebaGlobal/PruebaGlobal/cmake-build-debug/CMakeFiles/PruebaGlobal.dir
+C:/Users/thano/Universidad Politécnica de Madrid/Bolera 4 - General/BOLERA_FULLV1/Bolera_Full_v2/PruebaGlobal/PruebaGlobal/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/thano/Universidad Politécnica de Madrid/Bolera 4 - General/BOLERA_FULLV1/Bolera_Full_v2/PruebaGlobal/PruebaGlobal/cmake-build-debug/CMakeFiles/rebuild_cache.dir

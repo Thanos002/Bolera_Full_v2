@@ -1,0 +1,89 @@
+// Logging PINS
+
+//$log PINB
+//$log PIND
+//$log PINK
+//$log PINL
+
+// Logging Timer Counter ??
+
+// HOME
+	PIND &= ~0b00001000		// Elevador de retorno SW5
+
+			// CARRITO y VÁSTAGO SIMULTÁNEO
+		PIND &= ~0b00010000		// Carrito	SW4 open
+		#3
+		PIND &= ~0b00000010		// Vástago SW3 adelante
+		#10
+		PIND &= ~0b00010000		// Carrito	SW4 close
+		#3
+		PIND &= ~0b00000010		// Vástago SW3 atrás
+
+
+	#50					// Eje vertical se mueve a derecha (inicialmente position = LEFT)
+	PIND &= ~0b00000001		// Eje vertical en derecha activa SW2 (middle interrupt)
+	#5
+	PIND |= 0b00000001		// Eje vertical entra en position = RIGHT
+	#50					
+	PIND &= ~0b00000001		// Eje vertical SW2 (rightinterrupt)
+
+	#100					// Elevador de carga sube
+	PIND &= ~0b01000000		// Elevador de carga SW1
+
+	#20						// Esperamos un poco
+	PIND |= 0b01000000		// Elevador de carga baja
+	#100				
+	PIND &= ~0b01000000		// Elevador de carga SW1
+	#5						// Carga la bola en elevador
+
+	PIND |= 0b01000000		// Elevador de carga sube
+	#100					
+	PIND &= ~0b01000000		// Elevador de carga llega al final
+	#5						// Carga la bola en el lanzador
+
+// LANZAMIENTO
+
+	PIND |= 0b00000001		// Eje vertical mueve a la izquierda
+	#50					
+	PIND &= ~0b00000001		// Eje vertical middleInterrupt
+	#2
+	PIND |= 0b00000001		// Eje vertical entra en LEFT position
+	#50					
+	PIND &= ~0b00000001		// SW2 izquierda del todo
+	#2						// Cambia de dirección a derecha
+	PIND |= 0b00000001
+	#50
+	PIND &= ~0b00000001		// middle Interrupt
+	#2
+	PIND |= 0b00000001		// Eje vertical mueve a la izquierda
+	#50					
+	PIND &= ~0b00000001		// SW2 izquierda del todo
+	#2						// Cambia de dirección a derecha
+	PIND |= 0b00000001
+	#25
+
+// SE PULSA SW6 => TIRAR BOLA
+	PIND &= ~0b000000100	// SW6
+	#3
+	PIND |= 0b000000100		// suelto SW6
+	#2
+	PIND |= 0b000010000		// Suelta carrito
+	#10
+	PIND &= ~0b000010000	// SW4 carrito
+
+// LA BOLA CHOCA CON LOS BOLOS Y CAE SOBRE EL ELEVADOR DE RETORNO
+	#500
+
+// ELEVACIÓN Y CAÍDA DE BOLA
+	PIND |= 0b01000000		// Elevador de carga baja
+	#100				
+	PIND &= ~0b01000000		// Elevador de carga SW1
+	#5						// Carga la bola en elevador
+
+	PIND |= 0b01000000		// Elevador de carga sube
+	#100					
+	PIND &= ~0b01000000		// Elevador de carga llega al final
+	#5						// Carga la bola en el lanzador
+
+
+$quit

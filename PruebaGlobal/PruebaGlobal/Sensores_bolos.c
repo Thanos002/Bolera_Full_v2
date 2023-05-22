@@ -14,7 +14,7 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-uint8_t puntuacion = 0;  // Comentario Thanos: ojo, doble declarcion de la variable en Displays.c
+// uint8_t puntuacion = 0;  // Comentario Thanos: ojo, doble declarcion de la variable en Displays.c
 
 /*Ya hecho en ConfiguracionV1*/
 void setup_Sensores(){

@@ -22,4 +22,6 @@ void setDisplay(int numero);
 
 void DisplayUpdater();
 
+extern volatile uint8_t finalizadoFlag;
+
 #endif /* DISPLAYS_H_ */

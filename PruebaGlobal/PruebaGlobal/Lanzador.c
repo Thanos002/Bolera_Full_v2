@@ -14,17 +14,20 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-Position position = LEFT;
+volatile Position position = RIGHT;
 volatile uint32_t ms_elapsed = 0;
-uint32_t last_interruption_time = 0;
-States state = HOME;
+volatile uint32_t last_interruption_time = 0;
+volatile States state = HOME;
+
+// para debugging
+// #define _delay_ms(P) position=position;
 
 // setup para el lanzador
 void setupLanzador(){
 	cli();
-	enableInterrupt(SW2EIFR);  // set EIMSK for SW2
+	enableInterrupt(SW2EIFR);  // set EIMSK for SW2 (INT0)
 	EICRA |= (1<<ISC01); // interrupcion solo en flanco de bajada, no modificando otros valores del registro
-	enableInterrupt(SW6EIFR);  //set EIMSK for SW6
+	enableInterrupt(SW6EIFR);  //set EIMSK for SW6 (INT2)
 	EICRA |= (1<<ISC21);
 	sei();
 }
@@ -45,6 +48,8 @@ void vastagoHome(){
 }
 
 void carritoHome(){
+	engancharCarrito();
+	_delay_ms(1000);
 	liberarCarrito();
 	_delay_ms(button_check_delay_ms);
 	loop_until_bit_is_clear(SW4PIN,SW4X);
@@ -97,12 +102,8 @@ inline void setTime(int time){
 inline uint32_t getTime(){
 	return ms_elapsed;
 }
-/*
-// getter para la bandera parpadear
-inline uint8_t getParpadeo(){
-	return parpadear;
-}
-*/
+
+
 // funcion que, si esta llamada, actualiza el estado de la led, para que esta parpadeando
 // llamar la funcion mediante interrupciones temporales (resolucion <50ms)
 inline void parpadearLED(){
