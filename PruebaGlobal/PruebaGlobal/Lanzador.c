@@ -29,6 +29,23 @@ void setupLanzador(){
 	EICRA |= (1<<ISC01); // interrupcion solo en flanco de bajada, no modificando otros valores del registro
 	enableInterrupt(SW6EIFR);  //set EIMSK for SW6 (INT2)
 	EICRA |= (1<<ISC21);
+	// Sensores:
+	setInput(SW2DDR, SW2X);
+	setInput(SW3DDR, SW3X);
+	setInput(SW4DDR, SW4X);
+	setInput(SW5DDR, SW5X);
+	// Motores:
+	setOutput(M1_diDDR, M1_di_X);
+	setOutput(M2_diDDR, M2_di_X);
+	setOutput(M3_diDDR, M3_di_X);
+	setOutput(M4_diDDR, M4_di_X);
+	setOutput(M5_diDDR, M5_di_X);
+	setOutput(M1_enDDR, M1_en_X);
+	setOutput(M2_enDDR, M2_en_X);
+	setOutput(M3_enDDR, M3_en_X);
+	setOutput(M4_enDDR, M4_en_X);
+	setOutput(M5_enDDR, M5_en_X);
+	setOutput(M2_bkDDR, M2_bk_X);
 	sei();
 }
 

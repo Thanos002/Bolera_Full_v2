@@ -101,7 +101,7 @@ int main(void)
 			case HOME:  // despues de init
 				ultimoFlag = 0;
 				parpadearFlag = 0;
-				finalizadoFlag = 0;
+				// finalizadoFlag = 0; re resetea en LANZAMIENTO
 				puntuacion = 0;
 				// no hacemos nada, esperamos la interrupcion de disparo
 				//loop_until_bit_is_set(SW6PIN,SW6X);
@@ -153,8 +153,11 @@ int main(void)
 				_delay_ms(button_check_delay_ms);
 					
 				state = LANZAMIENTO; // empezar lanzamiento
-				resetTimer1();
-				enableTimer1Int();
+				if(finalizadoFlag){
+					resetTimer1();
+					enableTimer1Int();
+					finalizadoFlag = 0;
+				}
 				//buffer = getTime();  // timer de 30 segundos
 				break;
 
@@ -168,6 +171,7 @@ int main(void)
 				
 				//if(buffer+30000<getTime()){
 				//	parpadear = 1;}
+				
 				girarLanzador(0);  // girar hacia la derecha
 				_delay_ms(long_delay);
 				

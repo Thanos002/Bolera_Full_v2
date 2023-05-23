@@ -3,58 +3,58 @@ PruebaGlobal.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000002  00800200  00000e76  00000f0a  2**0
+  0 .data         00000002  00800200  00000eb4  00000f48  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000e76  00000000  00000000  00000094  2**1
+  1 .text         00000eb4  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000025  00800202  00800202  00000f0c  2**0
+  2 .bss          00000027  00800202  00800202  00000f4a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000f0c  2**0
+  3 .comment      00000030  00000000  00000000  00000f4a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000f3c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000f7c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000002c0  00000000  00000000  00000f78  2**0
+  5 .debug_aranges 000002c0  00000000  00000000  00000fb8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000024ff  00000000  00000000  00001238  2**0
+  6 .debug_info   000024b1  00000000  00000000  00001278  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001210  00000000  00000000  00003737  2**0
+  7 .debug_abbrev 00001226  00000000  00000000  00003729  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000016b5  00000000  00000000  00004947  2**0
+  8 .debug_line   00001755  00000000  00000000  0000494f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000066c  00000000  00000000  00005ffc  2**2
+  9 .debug_frame  0000066c  00000000  00000000  000060a4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000af6  00000000  00000000  00006668  2**0
+ 10 .debug_str    00000af3  00000000  00000000  00006710  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000ba3  00000000  00000000  0000715e  2**0
+ 11 .debug_loc    00000b13  00000000  00000000  00007203  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000250  00000000  00000000  00007d01  2**0
+ 12 .debug_ranges 00000250  00000000  00000000  00007d16  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 a1 00 	jmp	0x142	; 0x142 <__ctors_end>
-   4:	0c 94 46 05 	jmp	0xa8c	; 0xa8c <__vector_1>
+   4:	0c 94 5e 05 	jmp	0xabc	; 0xabc <__vector_1>
    8:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
-   c:	0c 94 73 05 	jmp	0xae6	; 0xae6 <__vector_3>
-  10:	0c 94 b4 05 	jmp	0xb68	; 0xb68 <__vector_4>
+   c:	0c 94 8b 05 	jmp	0xb16	; 0xb16 <__vector_3>
+  10:	0c 94 cc 05 	jmp	0xb98	; 0xb98 <__vector_4>
   14:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   18:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   1c:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   20:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   24:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   28:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
-  2c:	0c 94 22 05 	jmp	0xa44	; 0xa44 <__vector_11>
+  2c:	0c 94 3a 05 	jmp	0xa74	; 0xa74 <__vector_11>
   30:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   34:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   38:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   3c:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   40:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
-  44:	0c 94 f9 04 	jmp	0x9f2	; 0x9f2 <__vector_17>
+  44:	0c 94 11 05 	jmp	0xa22	; 0xa22 <__vector_17>
   48:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   4c:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   50:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
-  54:	0c 94 a9 04 	jmp	0x952	; 0x952 <__vector_21>
+  54:	0c 94 c1 04 	jmp	0x982	; 0x982 <__vector_21>
   58:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   5c:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
   60:	0c 94 be 00 	jmp	0x17c	; 0x17c <__bad_interrupt>
@@ -130,13 +130,13 @@ Disassembly of section .text:
  12e:	d5 02       	muls	r29, r21
  130:	d9 02       	muls	r29, r25
  132:	dd 02       	muls	r29, r29
- 134:	0a 06       	cpc	r0, r26
- 136:	11 06       	cpc	r1, r17
- 138:	29 06       	cpc	r2, r25
- 13a:	7d 06       	cpc	r7, r29
- 13c:	8d 06       	cpc	r8, r29
- 13e:	b6 06       	cpc	r11, r22
- 140:	d4 06       	cpc	r13, r20
+ 134:	22 06       	cpc	r2, r18
+ 136:	29 06       	cpc	r2, r25
+ 138:	41 06       	cpc	r4, r17
+ 13a:	9c 06       	cpc	r9, r28
+ 13c:	ac 06       	cpc	r10, r28
+ 13e:	d5 06       	cpc	r13, r21
+ 140:	f3 06       	cpc	r15, r19
 
 00000142 <__ctors_end>:
  142:	11 24       	eor	r1, r1
@@ -150,7 +150,7 @@ Disassembly of section .text:
  14e:	12 e0       	ldi	r17, 0x02	; 2
  150:	a0 e0       	ldi	r26, 0x00	; 0
  152:	b2 e0       	ldi	r27, 0x02	; 2
- 154:	e6 e7       	ldi	r30, 0x76	; 118
+ 154:	e4 eb       	ldi	r30, 0xB4	; 180
  156:	fe e0       	ldi	r31, 0x0E	; 14
  158:	02 c0       	rjmp	.+4      	; 0x15e <__do_copy_data+0x10>
  15a:	05 90       	lpm	r0, Z+
@@ -169,11 +169,11 @@ Disassembly of section .text:
  16c:	1d 92       	st	X+, r1
 
 0000016e <.do_clear_bss_start>:
- 16e:	a7 32       	cpi	r26, 0x27	; 39
+ 16e:	a9 32       	cpi	r26, 0x29	; 41
  170:	b2 07       	cpc	r27, r18
  172:	e1 f7       	brne	.-8      	; 0x16c <.do_clear_bss_loop>
- 174:	0e 94 d8 05 	call	0xbb0	; 0xbb0 <main>
- 178:	0c 94 39 07 	jmp	0xe72	; 0xe72 <_exit>
+ 174:	0e 94 f0 05 	call	0xbe0	; 0xbe0 <main>
+ 178:	0c 94 58 07 	jmp	0xeb0	; 0xeb0 <_exit>
 
 0000017c <__bad_interrupt>:
  17c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -388,7 +388,7 @@ inline void apagarLED(){
 #include "ConfiguracionV1.h"
 #include "IncFile1.h"
 
-void setup_puertos(){
+void setup_puertos(){  // solo para Sensores Opticos y Displays
 cli();
  2bc:	f8 94       	cli
 //Puerto K						controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.		SensoresBolos.c
@@ -536,7 +536,7 @@ inline void DisplayUpdater(){
  370:	1f 9b       	sbis	0x03, 7	; 3
  372:	46 c0       	rjmp	.+140    	; 0x400 <__LOCK_REGION_LENGTH__>
 				setDisplay(puntuacion%10);
- 374:	e0 91 16 02 	lds	r30, 0x0216	; 0x800216 <puntuacion>
+ 374:	e0 91 18 02 	lds	r30, 0x0218	; 0x800218 <puntuacion>
 // 	sei();
 //
 */
@@ -573,7 +573,7 @@ inline void setDisplay(int numero){
  3a2:	fc 01       	movw	r30, r24
  3a4:	ee 58       	subi	r30, 0x8E	; 142
  3a6:	ff 4f       	sbci	r31, 0xFF	; 255
- 3a8:	0c 94 33 07 	jmp	0xe66	; 0xe66 <__tablejump2__>
+ 3a8:	0c 94 52 07 	jmp	0xea4	; 0xea4 <__tablejump2__>
 	{
 		case 0:	//0b00111111;
 		PORTB |= (1<<PB0)|(1<<PB1)|(1<<PB2)|(1<<PB3)|(1<<PB4)|(1<<PB5);
@@ -655,7 +655,7 @@ inline void setDisplay(int numero){
 			}
 			else{								//Si esta seleccionado Display 0, unidades
 				setDisplay(puntuacion/10);
- 400:	80 91 16 02 	lds	r24, 0x0216	; 0x800216 <puntuacion>
+ 400:	80 91 18 02 	lds	r24, 0x0218	; 0x800218 <puntuacion>
 // 	sei();
 //
 */
@@ -687,7 +687,7 @@ inline void setDisplay(int numero){
  424:	fc 01       	movw	r30, r24
  426:	e4 58       	subi	r30, 0x84	; 132
  428:	ff 4f       	sbci	r31, 0xFF	; 255
- 42a:	0c 94 33 07 	jmp	0xe66	; 0xe66 <__tablejump2__>
+ 42a:	0c 94 52 07 	jmp	0xea4	; 0xea4 <__tablejump2__>
 	{
 		case 0:	//0b00111111;
 		PORTB |= (1<<PB0)|(1<<PB1)|(1<<PB2)|(1<<PB3)|(1<<PB4)|(1<<PB5);
@@ -803,7 +803,7 @@ inline void setDisplay(int numero){
  4b4:	1f 9b       	sbis	0x03, 7	; 3
  4b6:	41 c0       	rjmp	.+130    	; 0x53a <__LOCK_REGION_LENGTH__+0x13a>
 			setDisplay(puntuacion/10);
- 4b8:	80 91 16 02 	lds	r24, 0x0216	; 0x800216 <puntuacion>
+ 4b8:	80 91 18 02 	lds	r24, 0x0218	; 0x800218 <puntuacion>
 // 	sei();
 //
 */
@@ -835,7 +835,7 @@ inline void setDisplay(int numero){
  4dc:	fc 01       	movw	r30, r24
  4de:	ea 57       	subi	r30, 0x7A	; 122
  4e0:	ff 4f       	sbci	r31, 0xFF	; 255
- 4e2:	0c 94 33 07 	jmp	0xe66	; 0xe66 <__tablejump2__>
+ 4e2:	0c 94 52 07 	jmp	0xea4	; 0xea4 <__tablejump2__>
 	{
 		case 0:	//0b00111111;
 		PORTB |= (1<<PB0)|(1<<PB1)|(1<<PB2)|(1<<PB3)|(1<<PB4)|(1<<PB5);
@@ -917,7 +917,7 @@ inline void setDisplay(int numero){
 		}
 		else{								//Si esta seleccionado Display 0, unidades
 			setDisplay(puntuacion%10);
- 53a:	e0 91 16 02 	lds	r30, 0x0216	; 0x800216 <puntuacion>
+ 53a:	e0 91 18 02 	lds	r30, 0x0218	; 0x800218 <puntuacion>
 // 	sei();
 //
 */
@@ -954,7 +954,7 @@ inline void setDisplay(int numero){
  568:	fc 01       	movw	r30, r24
  56a:	e0 57       	subi	r30, 0x70	; 112
  56c:	ff 4f       	sbci	r31, 0xFF	; 255
- 56e:	0c 94 33 07 	jmp	0xe66	; 0xe66 <__tablejump2__>
+ 56e:	0c 94 52 07 	jmp	0xea4	; 0xea4 <__tablejump2__>
 	{
 		case 0:	//0b00111111;
 		PORTB |= (1<<PB0)|(1<<PB1)|(1<<PB2)|(1<<PB3)|(1<<PB4)|(1<<PB5);
@@ -1032,12 +1032,12 @@ inline void setDisplay(int numero){
  5c4:	08 95       	ret
 
 000005c6 <setupEC>:
-}
-//Devuelve la posición de ER
 
-int getEstadoER(){
-	return ERpos;
-}
+inline void subeER(){
+	if(ERpos==0){								//Subimos el ER sin bloquear el programa.
+		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
+		setBit(M5_diPORT,M5_di_X);				//Dirección ascendente	(1);
+		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
  5c6:	e7 e0       	ldi	r30, 0x07	; 7
  5c8:	f1 e0       	ldi	r31, 0x01	; 1
  5ca:	80 81       	ld	r24, Z
@@ -1075,1340 +1075,1384 @@ int getEstadoER(){
  606:	78 94       	sei
  608:	08 95       	ret
 
-0000060a <bajaEC>:
+0000060a <homeEC>:
  60a:	eb e0       	ldi	r30, 0x0B	; 11
  60c:	f1 e0       	ldi	r31, 0x01	; 1
  60e:	80 81       	ld	r24, Z
  610:	8e 7f       	andi	r24, 0xFE	; 254
  612:	80 83       	st	Z, r24
- 614:	80 91 19 02 	lds	r24, 0x0219	; 0x800219 <ECPos>
- 618:	81 30       	cpi	r24, 0x01	; 1
- 61a:	e1 f4       	brne	.+56     	; 0x654 <bajaEC+0x4a>
- 61c:	e8 e0       	ldi	r30, 0x08	; 8
- 61e:	f1 e0       	ldi	r31, 0x01	; 1
- 620:	80 81       	ld	r24, Z
- 622:	8f 7b       	andi	r24, 0xBF	; 191
- 624:	80 83       	st	Z, r24
- 626:	eb e0       	ldi	r30, 0x0B	; 11
- 628:	f1 e0       	ldi	r31, 0x01	; 1
- 62a:	80 81       	ld	r24, Z
- 62c:	81 60       	ori	r24, 0x01	; 1
- 62e:	80 83       	st	Z, r24
- 630:	2f ef       	ldi	r18, 0xFF	; 255
- 632:	89 e6       	ldi	r24, 0x69	; 105
- 634:	98 e1       	ldi	r25, 0x18	; 24
- 636:	21 50       	subi	r18, 0x01	; 1
- 638:	80 40       	sbci	r24, 0x00	; 0
- 63a:	90 40       	sbci	r25, 0x00	; 0
- 63c:	e1 f7       	brne	.-8      	; 0x636 <bajaEC+0x2c>
- 63e:	00 c0       	rjmp	.+0      	; 0x640 <bajaEC+0x36>
- 640:	00 00       	nop
- 642:	4e 99       	sbic	0x09, 6	; 9
- 644:	fe cf       	rjmp	.-4      	; 0x642 <bajaEC+0x38>
- 646:	eb e0       	ldi	r30, 0x0B	; 11
- 648:	f1 e0       	ldi	r31, 0x01	; 1
- 64a:	80 81       	ld	r24, Z
- 64c:	8e 7f       	andi	r24, 0xFE	; 254
- 64e:	80 83       	st	Z, r24
- 650:	10 92 19 02 	sts	0x0219, r1	; 0x800219 <ECPos>
- 654:	08 95       	ret
+ 614:	a8 e0       	ldi	r26, 0x08	; 8
+ 616:	b1 e0       	ldi	r27, 0x01	; 1
+ 618:	8c 91       	ld	r24, X
+ 61a:	80 64       	ori	r24, 0x40	; 64
+ 61c:	8c 93       	st	X, r24
+ 61e:	80 81       	ld	r24, Z
+ 620:	81 60       	ori	r24, 0x01	; 1
+ 622:	80 83       	st	Z, r24
+ 624:	2f ef       	ldi	r18, 0xFF	; 255
+ 626:	83 ed       	ldi	r24, 0xD3	; 211
+ 628:	90 e3       	ldi	r25, 0x30	; 48
+ 62a:	21 50       	subi	r18, 0x01	; 1
+ 62c:	80 40       	sbci	r24, 0x00	; 0
+ 62e:	90 40       	sbci	r25, 0x00	; 0
+ 630:	e1 f7       	brne	.-8      	; 0x62a <homeEC+0x20>
+ 632:	00 c0       	rjmp	.+0      	; 0x634 <homeEC+0x2a>
+ 634:	00 00       	nop
+ 636:	80 81       	ld	r24, Z
+ 638:	8e 7f       	andi	r24, 0xFE	; 254
+ 63a:	80 83       	st	Z, r24
+ 63c:	81 e0       	ldi	r24, 0x01	; 1
+ 63e:	80 93 1b 02 	sts	0x021B, r24	; 0x80021b <ECPos>
+ 642:	08 95       	ret
 
-00000656 <subeEC>:
- 656:	eb e0       	ldi	r30, 0x0B	; 11
- 658:	f1 e0       	ldi	r31, 0x01	; 1
- 65a:	80 81       	ld	r24, Z
- 65c:	8e 7f       	andi	r24, 0xFE	; 254
- 65e:	80 83       	st	Z, r24
- 660:	80 91 19 02 	lds	r24, 0x0219	; 0x800219 <ECPos>
- 664:	81 11       	cpse	r24, r1
- 666:	1d c0       	rjmp	.+58     	; 0x6a2 <subeEC+0x4c>
- 668:	e8 e0       	ldi	r30, 0x08	; 8
- 66a:	f1 e0       	ldi	r31, 0x01	; 1
- 66c:	80 81       	ld	r24, Z
- 66e:	80 64       	ori	r24, 0x40	; 64
- 670:	80 83       	st	Z, r24
- 672:	eb e0       	ldi	r30, 0x0B	; 11
- 674:	f1 e0       	ldi	r31, 0x01	; 1
- 676:	80 81       	ld	r24, Z
- 678:	81 60       	ori	r24, 0x01	; 1
- 67a:	80 83       	st	Z, r24
- 67c:	2f ef       	ldi	r18, 0xFF	; 255
- 67e:	89 e6       	ldi	r24, 0x69	; 105
- 680:	98 e1       	ldi	r25, 0x18	; 24
- 682:	21 50       	subi	r18, 0x01	; 1
- 684:	80 40       	sbci	r24, 0x00	; 0
- 686:	90 40       	sbci	r25, 0x00	; 0
- 688:	e1 f7       	brne	.-8      	; 0x682 <subeEC+0x2c>
- 68a:	00 c0       	rjmp	.+0      	; 0x68c <subeEC+0x36>
- 68c:	00 00       	nop
+00000644 <homeER>:
+ 644:	5f 98       	cbi	0x0b, 7	; 11
+ 646:	5d 98       	cbi	0x0b, 5	; 11
+ 648:	5f 9a       	sbi	0x0b, 7	; 11
+ 64a:	2f ef       	ldi	r18, 0xFF	; 255
+ 64c:	8d e3       	ldi	r24, 0x3D	; 61
+ 64e:	99 e4       	ldi	r25, 0x49	; 73
+ 650:	21 50       	subi	r18, 0x01	; 1
+ 652:	80 40       	sbci	r24, 0x00	; 0
+ 654:	90 40       	sbci	r25, 0x00	; 0
+ 656:	e1 f7       	brne	.-8      	; 0x650 <homeER+0xc>
+ 658:	00 c0       	rjmp	.+0      	; 0x65a <homeER+0x16>
+ 65a:	00 00       	nop
+ 65c:	5f 98       	cbi	0x0b, 7	; 11
+ 65e:	10 92 1c 02 	sts	0x021C, r1	; 0x80021c <ERpos>
+ 662:	08 95       	ret
+
+00000664 <bajaEC>:
+ 664:	eb e0       	ldi	r30, 0x0B	; 11
+ 666:	f1 e0       	ldi	r31, 0x01	; 1
+ 668:	80 81       	ld	r24, Z
+ 66a:	8e 7f       	andi	r24, 0xFE	; 254
+ 66c:	80 83       	st	Z, r24
+ 66e:	80 91 1b 02 	lds	r24, 0x021B	; 0x80021b <ECPos>
+ 672:	81 30       	cpi	r24, 0x01	; 1
+ 674:	a9 f4       	brne	.+42     	; 0x6a0 <bajaEC+0x3c>
+ 676:	e8 e0       	ldi	r30, 0x08	; 8
+ 678:	f1 e0       	ldi	r31, 0x01	; 1
+ 67a:	80 81       	ld	r24, Z
+ 67c:	8f 7b       	andi	r24, 0xBF	; 191
+ 67e:	80 83       	st	Z, r24
+ 680:	eb e0       	ldi	r30, 0x0B	; 11
+ 682:	f1 e0       	ldi	r31, 0x01	; 1
+ 684:	80 81       	ld	r24, Z
+ 686:	81 60       	ori	r24, 0x01	; 1
+ 688:	80 83       	st	Z, r24
+ 68a:	4e 9b       	sbis	0x09, 6	; 9
+ 68c:	fe cf       	rjmp	.-4      	; 0x68a <bajaEC+0x26>
  68e:	4e 99       	sbic	0x09, 6	; 9
- 690:	fe cf       	rjmp	.-4      	; 0x68e <subeEC+0x38>
+ 690:	fe cf       	rjmp	.-4      	; 0x68e <bajaEC+0x2a>
  692:	eb e0       	ldi	r30, 0x0B	; 11
  694:	f1 e0       	ldi	r31, 0x01	; 1
  696:	80 81       	ld	r24, Z
  698:	8e 7f       	andi	r24, 0xFE	; 254
  69a:	80 83       	st	Z, r24
- 69c:	81 e0       	ldi	r24, 0x01	; 1
- 69e:	80 93 19 02 	sts	0x0219, r24	; 0x800219 <ECPos>
- 6a2:	08 95       	ret
+ 69c:	10 92 1b 02 	sts	0x021B, r1	; 0x80021b <ECPos>
+ 6a0:	08 95       	ret
 
-000006a4 <homeEC>:
- 6a4:	eb e0       	ldi	r30, 0x0B	; 11
- 6a6:	f1 e0       	ldi	r31, 0x01	; 1
- 6a8:	80 81       	ld	r24, Z
- 6aa:	8e 7f       	andi	r24, 0xFE	; 254
- 6ac:	80 83       	st	Z, r24
- 6ae:	a8 e0       	ldi	r26, 0x08	; 8
- 6b0:	b1 e0       	ldi	r27, 0x01	; 1
- 6b2:	8c 91       	ld	r24, X
- 6b4:	80 64       	ori	r24, 0x40	; 64
- 6b6:	8c 93       	st	X, r24
+000006a2 <subeEC>:
+ 6a2:	eb e0       	ldi	r30, 0x0B	; 11
+ 6a4:	f1 e0       	ldi	r31, 0x01	; 1
+ 6a6:	80 81       	ld	r24, Z
+ 6a8:	8e 7f       	andi	r24, 0xFE	; 254
+ 6aa:	80 83       	st	Z, r24
+ 6ac:	80 91 1b 02 	lds	r24, 0x021B	; 0x80021b <ECPos>
+ 6b0:	81 11       	cpse	r24, r1
+ 6b2:	16 c0       	rjmp	.+44     	; 0x6e0 <subeEC+0x3e>
+ 6b4:	e8 e0       	ldi	r30, 0x08	; 8
+ 6b6:	f1 e0       	ldi	r31, 0x01	; 1
  6b8:	80 81       	ld	r24, Z
- 6ba:	81 60       	ori	r24, 0x01	; 1
+ 6ba:	80 64       	ori	r24, 0x40	; 64
  6bc:	80 83       	st	Z, r24
- 6be:	2f ef       	ldi	r18, 0xFF	; 255
- 6c0:	83 ed       	ldi	r24, 0xD3	; 211
- 6c2:	90 e3       	ldi	r25, 0x30	; 48
- 6c4:	21 50       	subi	r18, 0x01	; 1
- 6c6:	80 40       	sbci	r24, 0x00	; 0
- 6c8:	90 40       	sbci	r25, 0x00	; 0
- 6ca:	e1 f7       	brne	.-8      	; 0x6c4 <homeEC+0x20>
- 6cc:	00 c0       	rjmp	.+0      	; 0x6ce <homeEC+0x2a>
- 6ce:	00 00       	nop
- 6d0:	80 81       	ld	r24, Z
- 6d2:	8e 7f       	andi	r24, 0xFE	; 254
- 6d4:	80 83       	st	Z, r24
- 6d6:	81 e0       	ldi	r24, 0x01	; 1
- 6d8:	80 93 19 02 	sts	0x0219, r24	; 0x800219 <ECPos>
- 6dc:	08 95       	ret
+ 6be:	eb e0       	ldi	r30, 0x0B	; 11
+ 6c0:	f1 e0       	ldi	r31, 0x01	; 1
+ 6c2:	80 81       	ld	r24, Z
+ 6c4:	81 60       	ori	r24, 0x01	; 1
+ 6c6:	80 83       	st	Z, r24
+ 6c8:	4e 9b       	sbis	0x09, 6	; 9
+ 6ca:	fe cf       	rjmp	.-4      	; 0x6c8 <subeEC+0x26>
+ 6cc:	4e 99       	sbic	0x09, 6	; 9
+ 6ce:	fe cf       	rjmp	.-4      	; 0x6cc <subeEC+0x2a>
+ 6d0:	eb e0       	ldi	r30, 0x0B	; 11
+ 6d2:	f1 e0       	ldi	r31, 0x01	; 1
+ 6d4:	80 81       	ld	r24, Z
+ 6d6:	8e 7f       	andi	r24, 0xFE	; 254
+ 6d8:	80 83       	st	Z, r24
+ 6da:	81 e0       	ldi	r24, 0x01	; 1
+ 6dc:	80 93 1b 02 	sts	0x021B, r24	; 0x80021b <ECPos>
+ 6e0:	08 95       	ret
 
-000006de <homeER>:
- 6de:	5f 98       	cbi	0x0b, 7	; 11
- 6e0:	5d 98       	cbi	0x0b, 5	; 11
- 6e2:	5f 9a       	sbi	0x0b, 7	; 11
- 6e4:	2f ef       	ldi	r18, 0xFF	; 255
- 6e6:	8d e3       	ldi	r24, 0x3D	; 61
- 6e8:	99 e4       	ldi	r25, 0x49	; 73
- 6ea:	21 50       	subi	r18, 0x01	; 1
- 6ec:	80 40       	sbci	r24, 0x00	; 0
- 6ee:	90 40       	sbci	r25, 0x00	; 0
- 6f0:	e1 f7       	brne	.-8      	; 0x6ea <homeER+0xc>
- 6f2:	00 c0       	rjmp	.+0      	; 0x6f4 <homeER+0x16>
- 6f4:	00 00       	nop
- 6f6:	5f 98       	cbi	0x0b, 7	; 11
- 6f8:	10 92 1a 02 	sts	0x021A, r1	; 0x80021a <ERpos>
- 6fc:	08 95       	ret
+000006e2 <recarga>:
+	}
+}
+inline void recarga(){								//El elevador sube y cuando llegue arriba bajará.
+	rutina=1;									//Bandera para que baje al llegar arriba.
+ 6e2:	81 e0       	ldi	r24, 0x01	; 1
+ 6e4:	80 93 07 02 	sts	0x0207, r24	; 0x800207 <rutina>
+	}
+}
 
-000006fe <bajaER>:
- 6fe:	80 91 1a 02 	lds	r24, 0x021A	; 0x80021a <ERpos>
- 702:	81 30       	cpi	r24, 0x01	; 1
- 704:	19 f4       	brne	.+6      	; 0x70c <bajaER+0xe>
- 706:	5f 98       	cbi	0x0b, 7	; 11
- 708:	5d 98       	cbi	0x0b, 5	; 11
- 70a:	5f 9a       	sbi	0x0b, 7	; 11
- 70c:	08 95       	ret
 
-0000070e <subeER>:
- 70e:	80 91 1a 02 	lds	r24, 0x021A	; 0x80021a <ERpos>
- 712:	81 11       	cpse	r24, r1
- 714:	03 c0       	rjmp	.+6      	; 0x71c <subeER+0xe>
- 716:	5f 98       	cbi	0x0b, 7	; 11
- 718:	5d 9a       	sbi	0x0b, 5	; 11
- 71a:	5f 9a       	sbi	0x0b, 7	; 11
- 71c:	08 95       	ret
+inline void subeER(){
+	if(ERpos==0){								//Subimos el ER sin bloquear el programa.
+ 6e8:	80 91 1c 02 	lds	r24, 0x021C	; 0x80021c <ERpos>
+ 6ec:	81 11       	cpse	r24, r1
+ 6ee:	03 c0       	rjmp	.+6      	; 0x6f6 <recarga+0x14>
+		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
+ 6f0:	5f 98       	cbi	0x0b, 7	; 11
+		setBit(M5_diPORT,M5_di_X);				//Dirección ascendente	(1);
+ 6f2:	5d 9a       	sbi	0x0b, 5	; 11
+		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
+ 6f4:	5f 9a       	sbi	0x0b, 7	; 11
+ 6f6:	08 95       	ret
 
-0000071e <OnSW5Interruption>:
+000006f8 <OnSW5Interruption>:
+
 
 //INTERRUPCIONES//
 
-
-inline void OnSW5Interruption(){
-	if(rutina==0){
- 71e:	80 91 05 02 	lds	r24, 0x0205	; 0x800205 <rutina>
- 722:	81 11       	cpse	r24, r1
- 724:	0b c0       	rjmp	.+22     	; 0x73c <OnSW5Interruption+0x1e>
-		if(readBit(M5_diPORT,M5_di_X)==0){	
- 726:	5d 99       	sbic	0x0b, 5	; 11
- 728:	03 c0       	rjmp	.+6      	; 0x730 <OnSW5Interruption+0x12>
-			ERpos=0;
- 72a:	10 92 1a 02 	sts	0x021A, r1	; 0x80021a <ERpos>
-			clearBit(M5_enPORT,M5_en_X);
- 72e:	5f 98       	cbi	0x0b, 7	; 11
+inline void OnSW5Interruption(){						//Interrupción para gestionar las paradas del ER.
+		clearBit(EIMSK,3);						//Deshabilitamos la interrupción.
+ 6f8:	eb 98       	cbi	0x1d, 3	; 29
+		setBit(EIFR,3);							//Limpiamos las banderas de la interrupción.
+ 6fa:	e3 9a       	sbi	0x1c, 3	; 28
+		Time=0;									//Despues de un tiempo la volveremos a habilitar (antirrebotes).
+ 6fc:	10 92 06 02 	sts	0x0206, r1	; 0x800206 <Time+0x1>
+ 700:	10 92 05 02 	sts	0x0205, r1	; 0x800205 <Time>
+		if(rutina==0){							//Si queremos que pare.
+ 704:	80 91 07 02 	lds	r24, 0x0207	; 0x800207 <rutina>
+ 708:	81 11       	cpse	r24, r1
+ 70a:	0c c0       	rjmp	.+24     	; 0x724 <OnSW5Interruption+0x2c>
+			if(readBit(M5_diPIN,M5_di_X)==0){	//Si estaba bajando.
+ 70c:	4d 99       	sbic	0x09, 5	; 9
+ 70e:	03 c0       	rjmp	.+6      	; 0x716 <OnSW5Interruption+0x1e>
+				ERpos=0;						//Está abajo.
+ 710:	10 92 1c 02 	sts	0x021C, r1	; 0x80021c <ERpos>
+				clearBit(M5_enPORT,M5_en_X);	//M5_enable off.
+ 714:	5f 98       	cbi	0x0b, 7	; 11
+			}
+			if(readBit(M5_diPIN,M5_di_X)==1){	//Si estaba subiendo.
+ 716:	4d 9b       	sbis	0x09, 5	; 9
+ 718:	14 c0       	rjmp	.+40     	; 0x742 <OnSW5Interruption+0x4a>
+				ERpos=1;						//Está arriba.
+ 71a:	81 e0       	ldi	r24, 0x01	; 1
+ 71c:	80 93 1c 02 	sts	0x021C, r24	; 0x80021c <ERpos>
+				clearBit(M5_enPORT,M5_en_X);	//M5_enable off.
+ 720:	5f 98       	cbi	0x0b, 7	; 11
+ 722:	08 95       	ret
+			}
 		}
-		if(readBit(M5_diPORT,M5_di_X)==1){	
- 730:	5d 9b       	sbis	0x0b, 5	; 11
- 732:	04 c0       	rjmp	.+8      	; 0x73c <OnSW5Interruption+0x1e>
-			ERpos=1;
- 734:	81 e0       	ldi	r24, 0x01	; 1
- 736:	80 93 1a 02 	sts	0x021A, r24	; 0x80021a <ERpos>
-			clearBit(M5_enPORT,M5_en_X);
- 73a:	5f 98       	cbi	0x0b, 7	; 11
-		}
-	}
-	if (rutina==1){			//Rutina de reacomodo
- 73c:	80 91 05 02 	lds	r24, 0x0205	; 0x800205 <rutina>
- 740:	81 30       	cpi	r24, 0x01	; 1
- 742:	31 f4       	brne	.+12     	; 0x750 <OnSW5Interruption+0x32>
-		ERpos = 1;
- 744:	80 93 1a 02 	sts	0x021A, r24	; 0x80021a <ERpos>
-		rutina=0;
- 748:	10 92 05 02 	sts	0x0205, r1	; 0x800205 <rutina>
-		bajaER();
- 74c:	0e 94 7f 03 	call	0x6fe	; 0x6fe <bajaER>
- 750:	08 95       	ret
+		else if (rutina==1){					//Si queremos que baje en lugar de que pare.
+ 724:	80 91 07 02 	lds	r24, 0x0207	; 0x800207 <rutina>
+ 728:	81 30       	cpi	r24, 0x01	; 1
+ 72a:	59 f4       	brne	.+22     	; 0x742 <OnSW5Interruption+0x4a>
+			ERpos=1;							//Está arriba.
+ 72c:	80 93 1c 02 	sts	0x021C, r24	; 0x80021c <ERpos>
+			rutina=0;							//Bajamos la bandera.
+ 730:	10 92 07 02 	sts	0x0207, r1	; 0x800207 <rutina>
 
-00000752 <recarga>:
+//FUNCIONES ER//
 
 
-	//FUNCIONES COMPLEJAS//
+inline void bajaER(){
+	if(ERpos==1){								//Bajamos el ER sin bloquear el programa.
+ 734:	80 91 1c 02 	lds	r24, 0x021C	; 0x80021c <ERpos>
+ 738:	81 30       	cpi	r24, 0x01	; 1
+ 73a:	19 f4       	brne	.+6      	; 0x742 <OnSW5Interruption+0x4a>
+		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
+ 73c:	5f 98       	cbi	0x0b, 7	; 11
+		clearBit(M5_diPORT,M5_di_X);			//Dirección descendente (0).
+ 73e:	5d 98       	cbi	0x0b, 5	; 11
+		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
+ 740:	5f 9a       	sbi	0x0b, 7	; 11
+ 742:	08 95       	ret
 
-void recarga(){ 
-	rutina=1;
- 752:	81 e0       	ldi	r24, 0x01	; 1
- 754:	80 93 05 02 	sts	0x0205, r24	; 0x800205 <rutina>
-	subeER();
- 758:	0e 94 87 03 	call	0x70e	; 0x70e <subeER>
- 75c:	08 95       	ret
-
-0000075e <setupLanzador>:
+00000744 <setupLanzador>:
 	ms_elapsed = time;
 }
 // getter para el valor del tiempo actual
 inline uint32_t getTime(){
 	return ms_elapsed;
 }
- 75e:	f8 94       	cli
- 760:	e8 9a       	sbi	0x1d, 0	; 29
- 762:	e9 e6       	ldi	r30, 0x69	; 105
- 764:	f0 e0       	ldi	r31, 0x00	; 0
+ 744:	f8 94       	cli
+ 746:	e8 9a       	sbi	0x1d, 0	; 29
+ 748:	e9 e6       	ldi	r30, 0x69	; 105
+ 74a:	f0 e0       	ldi	r31, 0x00	; 0
+ 74c:	80 81       	ld	r24, Z
+ 74e:	82 60       	ori	r24, 0x02	; 2
+ 750:	80 83       	st	Z, r24
+ 752:	ea 9a       	sbi	0x1d, 2	; 29
+ 754:	80 81       	ld	r24, Z
+ 756:	80 62       	ori	r24, 0x20	; 32
+ 758:	80 83       	st	Z, r24
+ 75a:	50 98       	cbi	0x0a, 0	; 10
+ 75c:	51 98       	cbi	0x0a, 1	; 10
+ 75e:	54 98       	cbi	0x0a, 4	; 10
+ 760:	53 98       	cbi	0x0a, 3	; 10
+ 762:	e7 e0       	ldi	r30, 0x07	; 7
+ 764:	f1 e0       	ldi	r31, 0x01	; 1
  766:	80 81       	ld	r24, Z
- 768:	82 60       	ori	r24, 0x02	; 2
+ 768:	80 64       	ori	r24, 0x40	; 64
  76a:	80 83       	st	Z, r24
- 76c:	ea 9a       	sbi	0x1d, 2	; 29
- 76e:	80 81       	ld	r24, Z
- 770:	80 62       	ori	r24, 0x20	; 32
- 772:	80 83       	st	Z, r24
- 774:	78 94       	sei
- 776:	08 95       	ret
+ 76c:	80 81       	ld	r24, Z
+ 76e:	80 68       	ori	r24, 0x80	; 128
+ 770:	80 83       	st	Z, r24
+ 772:	ea e0       	ldi	r30, 0x0A	; 10
+ 774:	f1 e0       	ldi	r31, 0x01	; 1
+ 776:	80 81       	ld	r24, Z
+ 778:	84 60       	ori	r24, 0x04	; 4
+ 77a:	80 83       	st	Z, r24
+ 77c:	80 81       	ld	r24, Z
+ 77e:	80 62       	ori	r24, 0x20	; 32
+ 780:	80 83       	st	Z, r24
+ 782:	55 9a       	sbi	0x0a, 5	; 10
+ 784:	80 81       	ld	r24, Z
+ 786:	81 60       	ori	r24, 0x01	; 1
+ 788:	80 83       	st	Z, r24
+ 78a:	80 81       	ld	r24, Z
+ 78c:	82 60       	ori	r24, 0x02	; 2
+ 78e:	80 83       	st	Z, r24
+ 790:	80 81       	ld	r24, Z
+ 792:	80 61       	ori	r24, 0x10	; 16
+ 794:	80 83       	st	Z, r24
+ 796:	80 81       	ld	r24, Z
+ 798:	80 68       	ori	r24, 0x80	; 128
+ 79a:	80 83       	st	Z, r24
+ 79c:	57 9a       	sbi	0x0a, 7	; 10
+ 79e:	80 81       	ld	r24, Z
+ 7a0:	88 60       	ori	r24, 0x08	; 8
+ 7a2:	80 83       	st	Z, r24
+ 7a4:	78 94       	sei
+ 7a6:	08 95       	ret
 
-00000778 <lanzadorHome>:
- 778:	80 e0       	ldi	r24, 0x00	; 0
- 77a:	90 e0       	ldi	r25, 0x00	; 0
- 77c:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
- 780:	2f ef       	ldi	r18, 0xFF	; 255
- 782:	83 ed       	ldi	r24, 0xD3	; 211
- 784:	90 e3       	ldi	r25, 0x30	; 48
- 786:	21 50       	subi	r18, 0x01	; 1
- 788:	80 40       	sbci	r24, 0x00	; 0
- 78a:	90 40       	sbci	r25, 0x00	; 0
- 78c:	e1 f7       	brne	.-8      	; 0x786 <lanzadorHome+0xe>
- 78e:	00 c0       	rjmp	.+0      	; 0x790 <lanzadorHome+0x18>
- 790:	00 00       	nop
- 792:	0e 94 ed 00 	call	0x1da	; 0x1da <pararLanzador>
- 796:	10 92 01 02 	sts	0x0201, r1	; 0x800201 <position>
- 79a:	08 95       	ret
+000007a8 <lanzadorHome>:
+ 7a8:	80 e0       	ldi	r24, 0x00	; 0
+ 7aa:	90 e0       	ldi	r25, 0x00	; 0
+ 7ac:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ 7b0:	2f ef       	ldi	r18, 0xFF	; 255
+ 7b2:	83 ed       	ldi	r24, 0xD3	; 211
+ 7b4:	90 e3       	ldi	r25, 0x30	; 48
+ 7b6:	21 50       	subi	r18, 0x01	; 1
+ 7b8:	80 40       	sbci	r24, 0x00	; 0
+ 7ba:	90 40       	sbci	r25, 0x00	; 0
+ 7bc:	e1 f7       	brne	.-8      	; 0x7b6 <lanzadorHome+0xe>
+ 7be:	00 c0       	rjmp	.+0      	; 0x7c0 <lanzadorHome+0x18>
+ 7c0:	00 00       	nop
+ 7c2:	0e 94 ed 00 	call	0x1da	; 0x1da <pararLanzador>
+ 7c6:	10 92 01 02 	sts	0x0201, r1	; 0x800201 <position>
+ 7ca:	08 95       	ret
 
-0000079c <vastagoHome>:
- 79c:	0e 94 02 01 	call	0x204	; 0x204 <moverVastagoAtras>
- 7a0:	2f ef       	ldi	r18, 0xFF	; 255
- 7a2:	84 e3       	ldi	r24, 0x34	; 52
- 7a4:	9c e0       	ldi	r25, 0x0C	; 12
- 7a6:	21 50       	subi	r18, 0x01	; 1
- 7a8:	80 40       	sbci	r24, 0x00	; 0
- 7aa:	90 40       	sbci	r25, 0x00	; 0
- 7ac:	e1 f7       	brne	.-8      	; 0x7a6 <vastagoHome+0xa>
- 7ae:	00 c0       	rjmp	.+0      	; 0x7b0 <vastagoHome+0x14>
- 7b0:	00 00       	nop
- 7b2:	49 99       	sbic	0x09, 1	; 9
- 7b4:	fe cf       	rjmp	.-4      	; 0x7b2 <vastagoHome+0x16>
- 7b6:	0e 94 0e 01 	call	0x21c	; 0x21c <pararVastago>
- 7ba:	08 95       	ret
+000007cc <vastagoHome>:
+ 7cc:	0e 94 02 01 	call	0x204	; 0x204 <moverVastagoAtras>
+ 7d0:	2f ef       	ldi	r18, 0xFF	; 255
+ 7d2:	84 e3       	ldi	r24, 0x34	; 52
+ 7d4:	9c e0       	ldi	r25, 0x0C	; 12
+ 7d6:	21 50       	subi	r18, 0x01	; 1
+ 7d8:	80 40       	sbci	r24, 0x00	; 0
+ 7da:	90 40       	sbci	r25, 0x00	; 0
+ 7dc:	e1 f7       	brne	.-8      	; 0x7d6 <vastagoHome+0xa>
+ 7de:	00 c0       	rjmp	.+0      	; 0x7e0 <vastagoHome+0x14>
+ 7e0:	00 00       	nop
+ 7e2:	49 99       	sbic	0x09, 1	; 9
+ 7e4:	fe cf       	rjmp	.-4      	; 0x7e2 <vastagoHome+0x16>
+ 7e6:	0e 94 0e 01 	call	0x21c	; 0x21c <pararVastago>
+ 7ea:	08 95       	ret
 
-000007bc <carritoHome>:
- 7bc:	0e 94 14 01 	call	0x228	; 0x228 <engancharCarrito>
- 7c0:	2f ef       	ldi	r18, 0xFF	; 255
- 7c2:	89 e6       	ldi	r24, 0x69	; 105
- 7c4:	98 e1       	ldi	r25, 0x18	; 24
- 7c6:	21 50       	subi	r18, 0x01	; 1
- 7c8:	80 40       	sbci	r24, 0x00	; 0
- 7ca:	90 40       	sbci	r25, 0x00	; 0
- 7cc:	e1 f7       	brne	.-8      	; 0x7c6 <carritoHome+0xa>
- 7ce:	00 c0       	rjmp	.+0      	; 0x7d0 <carritoHome+0x14>
- 7d0:	00 00       	nop
- 7d2:	0e 94 20 01 	call	0x240	; 0x240 <liberarCarrito>
- 7d6:	2f ef       	ldi	r18, 0xFF	; 255
- 7d8:	84 e3       	ldi	r24, 0x34	; 52
- 7da:	9c e0       	ldi	r25, 0x0C	; 12
- 7dc:	21 50       	subi	r18, 0x01	; 1
- 7de:	80 40       	sbci	r24, 0x00	; 0
- 7e0:	90 40       	sbci	r25, 0x00	; 0
- 7e2:	e1 f7       	brne	.-8      	; 0x7dc <carritoHome+0x20>
- 7e4:	00 c0       	rjmp	.+0      	; 0x7e6 <carritoHome+0x2a>
- 7e6:	00 00       	nop
- 7e8:	4c 99       	sbic	0x09, 4	; 9
- 7ea:	fe cf       	rjmp	.-4      	; 0x7e8 <carritoHome+0x2c>
- 7ec:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
- 7f0:	08 95       	ret
+000007ec <carritoHome>:
+ 7ec:	0e 94 14 01 	call	0x228	; 0x228 <engancharCarrito>
+ 7f0:	2f ef       	ldi	r18, 0xFF	; 255
+ 7f2:	89 e6       	ldi	r24, 0x69	; 105
+ 7f4:	98 e1       	ldi	r25, 0x18	; 24
+ 7f6:	21 50       	subi	r18, 0x01	; 1
+ 7f8:	80 40       	sbci	r24, 0x00	; 0
+ 7fa:	90 40       	sbci	r25, 0x00	; 0
+ 7fc:	e1 f7       	brne	.-8      	; 0x7f6 <carritoHome+0xa>
+ 7fe:	00 c0       	rjmp	.+0      	; 0x800 <carritoHome+0x14>
+ 800:	00 00       	nop
+ 802:	0e 94 20 01 	call	0x240	; 0x240 <liberarCarrito>
+ 806:	2f ef       	ldi	r18, 0xFF	; 255
+ 808:	84 e3       	ldi	r24, 0x34	; 52
+ 80a:	9c e0       	ldi	r25, 0x0C	; 12
+ 80c:	21 50       	subi	r18, 0x01	; 1
+ 80e:	80 40       	sbci	r24, 0x00	; 0
+ 810:	90 40       	sbci	r25, 0x00	; 0
+ 812:	e1 f7       	brne	.-8      	; 0x80c <carritoHome+0x20>
+ 814:	00 c0       	rjmp	.+0      	; 0x816 <carritoHome+0x2a>
+ 816:	00 00       	nop
+ 818:	4c 99       	sbic	0x09, 4	; 9
+ 81a:	fe cf       	rjmp	.-4      	; 0x818 <carritoHome+0x2c>
+ 81c:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
+ 820:	08 95       	ret
 
-000007f2 <updateTime>:
- 7f2:	80 91 0b 02 	lds	r24, 0x020B	; 0x80020b <ms_elapsed>
- 7f6:	90 91 0c 02 	lds	r25, 0x020C	; 0x80020c <ms_elapsed+0x1>
- 7fa:	a0 91 0d 02 	lds	r26, 0x020D	; 0x80020d <ms_elapsed+0x2>
- 7fe:	b0 91 0e 02 	lds	r27, 0x020E	; 0x80020e <ms_elapsed+0x3>
- 802:	05 96       	adiw	r24, 0x05	; 5
- 804:	a1 1d       	adc	r26, r1
- 806:	b1 1d       	adc	r27, r1
- 808:	80 93 0b 02 	sts	0x020B, r24	; 0x80020b <ms_elapsed>
- 80c:	90 93 0c 02 	sts	0x020C, r25	; 0x80020c <ms_elapsed+0x1>
- 810:	a0 93 0d 02 	sts	0x020D, r26	; 0x80020d <ms_elapsed+0x2>
- 814:	b0 93 0e 02 	sts	0x020E, r27	; 0x80020e <ms_elapsed+0x3>
- 818:	08 95       	ret
+00000822 <updateTime>:
+ 822:	80 91 0d 02 	lds	r24, 0x020D	; 0x80020d <ms_elapsed>
+ 826:	90 91 0e 02 	lds	r25, 0x020E	; 0x80020e <ms_elapsed+0x1>
+ 82a:	a0 91 0f 02 	lds	r26, 0x020F	; 0x80020f <ms_elapsed+0x2>
+ 82e:	b0 91 10 02 	lds	r27, 0x0210	; 0x800210 <ms_elapsed+0x3>
+ 832:	05 96       	adiw	r24, 0x05	; 5
+ 834:	a1 1d       	adc	r26, r1
+ 836:	b1 1d       	adc	r27, r1
+ 838:	80 93 0d 02 	sts	0x020D, r24	; 0x80020d <ms_elapsed>
+ 83c:	90 93 0e 02 	sts	0x020E, r25	; 0x80020e <ms_elapsed+0x1>
+ 840:	a0 93 0f 02 	sts	0x020F, r26	; 0x80020f <ms_elapsed+0x2>
+ 844:	b0 93 10 02 	sts	0x0210, r27	; 0x800210 <ms_elapsed+0x3>
+ 848:	08 95       	ret
 
-0000081a <parpadearLED>:
+0000084a <parpadearLED>:
 
 
 // funcion que, si esta llamada, actualiza el estado de la led, para que esta parpadeando
 // llamar la funcion mediante interrupciones temporales (resolucion <50ms)
 inline void parpadearLED(){
 	if(ms_elapsed % 200 <= 100){
- 81a:	60 91 0b 02 	lds	r22, 0x020B	; 0x80020b <ms_elapsed>
- 81e:	70 91 0c 02 	lds	r23, 0x020C	; 0x80020c <ms_elapsed+0x1>
- 822:	80 91 0d 02 	lds	r24, 0x020D	; 0x80020d <ms_elapsed+0x2>
- 826:	90 91 0e 02 	lds	r25, 0x020E	; 0x80020e <ms_elapsed+0x3>
- 82a:	28 ec       	ldi	r18, 0xC8	; 200
- 82c:	30 e0       	ldi	r19, 0x00	; 0
- 82e:	40 e0       	ldi	r20, 0x00	; 0
- 830:	50 e0       	ldi	r21, 0x00	; 0
- 832:	0e 94 11 07 	call	0xe22	; 0xe22 <__udivmodsi4>
- 836:	65 36       	cpi	r22, 0x65	; 101
- 838:	71 05       	cpc	r23, r1
- 83a:	81 05       	cpc	r24, r1
- 83c:	91 05       	cpc	r25, r1
- 83e:	18 f4       	brcc	.+6      	; 0x846 <parpadearLED+0x2c>
+ 84a:	60 91 0d 02 	lds	r22, 0x020D	; 0x80020d <ms_elapsed>
+ 84e:	70 91 0e 02 	lds	r23, 0x020E	; 0x80020e <ms_elapsed+0x1>
+ 852:	80 91 0f 02 	lds	r24, 0x020F	; 0x80020f <ms_elapsed+0x2>
+ 856:	90 91 10 02 	lds	r25, 0x0210	; 0x800210 <ms_elapsed+0x3>
+ 85a:	28 ec       	ldi	r18, 0xC8	; 200
+ 85c:	30 e0       	ldi	r19, 0x00	; 0
+ 85e:	40 e0       	ldi	r20, 0x00	; 0
+ 860:	50 e0       	ldi	r21, 0x00	; 0
+ 862:	0e 94 30 07 	call	0xe60	; 0xe60 <__udivmodsi4>
+ 866:	65 36       	cpi	r22, 0x65	; 101
+ 868:	71 05       	cpc	r23, r1
+ 86a:	81 05       	cpc	r24, r1
+ 86c:	91 05       	cpc	r25, r1
+ 86e:	18 f4       	brcc	.+6      	; 0x876 <parpadearLED+0x2c>
 		apagarLED();
- 840:	0e 94 58 01 	call	0x2b0	; 0x2b0 <apagarLED>
- 844:	08 95       	ret
+ 870:	0e 94 58 01 	call	0x2b0	; 0x2b0 <apagarLED>
+ 874:	08 95       	ret
 	}
 	else{
 		encenderLED();
- 846:	0e 94 52 01 	call	0x2a4	; 0x2a4 <encenderLED>
- 84a:	08 95       	ret
+ 876:	0e 94 52 01 	call	0x2a4	; 0x2a4 <encenderLED>
+ 87a:	08 95       	ret
 
-0000084c <OnSW2Interruption>:
+0000087c <OnSW2Interruption>:
 
 
 inline void OnSW2Interruption(){
 // debounce protection:
 // si hay dos interupciones entre menos que 50 ms
 	if(last_interruption_time +50 < ms_elapsed){
- 84c:	80 91 07 02 	lds	r24, 0x0207	; 0x800207 <last_interruption_time>
- 850:	90 91 08 02 	lds	r25, 0x0208	; 0x800208 <last_interruption_time+0x1>
- 854:	a0 91 09 02 	lds	r26, 0x0209	; 0x800209 <last_interruption_time+0x2>
- 858:	b0 91 0a 02 	lds	r27, 0x020A	; 0x80020a <last_interruption_time+0x3>
- 85c:	40 91 0b 02 	lds	r20, 0x020B	; 0x80020b <ms_elapsed>
- 860:	50 91 0c 02 	lds	r21, 0x020C	; 0x80020c <ms_elapsed+0x1>
- 864:	60 91 0d 02 	lds	r22, 0x020D	; 0x80020d <ms_elapsed+0x2>
- 868:	70 91 0e 02 	lds	r23, 0x020E	; 0x80020e <ms_elapsed+0x3>
- 86c:	c2 96       	adiw	r24, 0x32	; 50
- 86e:	a1 1d       	adc	r26, r1
- 870:	b1 1d       	adc	r27, r1
- 872:	84 17       	cp	r24, r20
- 874:	95 07       	cpc	r25, r21
- 876:	a6 07       	cpc	r26, r22
- 878:	b7 07       	cpc	r27, r23
- 87a:	08 f0       	brcs	.+2      	; 0x87e <OnSW2Interruption+0x32>
- 87c:	69 c0       	rjmp	.+210    	; 0x950 <OnSW2Interruption+0x104>
+ 87c:	80 91 09 02 	lds	r24, 0x0209	; 0x800209 <last_interruption_time>
+ 880:	90 91 0a 02 	lds	r25, 0x020A	; 0x80020a <last_interruption_time+0x1>
+ 884:	a0 91 0b 02 	lds	r26, 0x020B	; 0x80020b <last_interruption_time+0x2>
+ 888:	b0 91 0c 02 	lds	r27, 0x020C	; 0x80020c <last_interruption_time+0x3>
+ 88c:	40 91 0d 02 	lds	r20, 0x020D	; 0x80020d <ms_elapsed>
+ 890:	50 91 0e 02 	lds	r21, 0x020E	; 0x80020e <ms_elapsed+0x1>
+ 894:	60 91 0f 02 	lds	r22, 0x020F	; 0x80020f <ms_elapsed+0x2>
+ 898:	70 91 10 02 	lds	r23, 0x0210	; 0x800210 <ms_elapsed+0x3>
+ 89c:	c2 96       	adiw	r24, 0x32	; 50
+ 89e:	a1 1d       	adc	r26, r1
+ 8a0:	b1 1d       	adc	r27, r1
+ 8a2:	84 17       	cp	r24, r20
+ 8a4:	95 07       	cpc	r25, r21
+ 8a6:	a6 07       	cpc	r26, r22
+ 8a8:	b7 07       	cpc	r27, r23
+ 8aa:	08 f0       	brcs	.+2      	; 0x8ae <OnSW2Interruption+0x32>
+ 8ac:	69 c0       	rjmp	.+210    	; 0x980 <OnSW2Interruption+0x104>
 		last_interruption_time = ms_elapsed;  // guardar tiempo acual
- 87e:	80 91 0b 02 	lds	r24, 0x020B	; 0x80020b <ms_elapsed>
- 882:	90 91 0c 02 	lds	r25, 0x020C	; 0x80020c <ms_elapsed+0x1>
- 886:	a0 91 0d 02 	lds	r26, 0x020D	; 0x80020d <ms_elapsed+0x2>
- 88a:	b0 91 0e 02 	lds	r27, 0x020E	; 0x80020e <ms_elapsed+0x3>
- 88e:	80 93 07 02 	sts	0x0207, r24	; 0x800207 <last_interruption_time>
- 892:	90 93 08 02 	sts	0x0208, r25	; 0x800208 <last_interruption_time+0x1>
- 896:	a0 93 09 02 	sts	0x0209, r26	; 0x800209 <last_interruption_time+0x2>
- 89a:	b0 93 0a 02 	sts	0x020A, r27	; 0x80020a <last_interruption_time+0x3>
+ 8ae:	80 91 0d 02 	lds	r24, 0x020D	; 0x80020d <ms_elapsed>
+ 8b2:	90 91 0e 02 	lds	r25, 0x020E	; 0x80020e <ms_elapsed+0x1>
+ 8b6:	a0 91 0f 02 	lds	r26, 0x020F	; 0x80020f <ms_elapsed+0x2>
+ 8ba:	b0 91 10 02 	lds	r27, 0x0210	; 0x800210 <ms_elapsed+0x3>
+ 8be:	80 93 09 02 	sts	0x0209, r24	; 0x800209 <last_interruption_time>
+ 8c2:	90 93 0a 02 	sts	0x020A, r25	; 0x80020a <last_interruption_time+0x1>
+ 8c6:	a0 93 0b 02 	sts	0x020B, r26	; 0x80020b <last_interruption_time+0x2>
+ 8ca:	b0 93 0c 02 	sts	0x020C, r27	; 0x80020c <last_interruption_time+0x3>
 		switch (lanzadorFlag){
- 89e:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
- 8a2:	81 30       	cpi	r24, 0x01	; 1
- 8a4:	29 f0       	breq	.+10     	; 0x8b0 <OnSW2Interruption+0x64>
- 8a6:	58 f1       	brcs	.+86     	; 0x8fe <OnSW2Interruption+0xb2>
- 8a8:	82 30       	cpi	r24, 0x02	; 2
- 8aa:	09 f4       	brne	.+2      	; 0x8ae <OnSW2Interruption+0x62>
- 8ac:	4f c0       	rjmp	.+158    	; 0x94c <OnSW2Interruption+0x100>
- 8ae:	08 95       	ret
+ 8ce:	80 91 00 02 	lds	r24, 0x0200	; 0x800200 <__DATA_REGION_ORIGIN__>
+ 8d2:	81 30       	cpi	r24, 0x01	; 1
+ 8d4:	29 f0       	breq	.+10     	; 0x8e0 <OnSW2Interruption+0x64>
+ 8d6:	58 f1       	brcs	.+86     	; 0x92e <OnSW2Interruption+0xb2>
+ 8d8:	82 30       	cpi	r24, 0x02	; 2
+ 8da:	09 f4       	brne	.+2      	; 0x8de <OnSW2Interruption+0x62>
+ 8dc:	4f c0       	rjmp	.+158    	; 0x97c <OnSW2Interruption+0x100>
+ 8de:	08 95       	ret
 			case 1:  // moviemiento hacia derecha
 				// si estoy RIGHT
 				if (position==RIGHT){
- 8b0:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 8b4:	81 30       	cpi	r24, 0x01	; 1
- 8b6:	61 f4       	brne	.+24     	; 0x8d0 <OnSW2Interruption+0x84>
+ 8e0:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 8e4:	81 30       	cpi	r24, 0x01	; 1
+ 8e6:	61 f4       	brne	.+24     	; 0x900 <OnSW2Interruption+0x84>
 	pararCarrito();
 }
 
 // interrupcion del fin de carrera derecho,
 inline void rightInterrupt(){
 	if(state==LANZAMIENTO){  // si estamos en lanzamiento, cambiamos direccion
- 8b8:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- 8bc:	83 30       	cpi	r24, 0x03	; 3
- 8be:	29 f4       	brne	.+10     	; 0x8ca <OnSW2Interruption+0x7e>
+ 8e8:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ 8ec:	83 30       	cpi	r24, 0x03	; 3
+ 8ee:	29 f4       	brne	.+10     	; 0x8fa <OnSW2Interruption+0x7e>
 		girarLanzador(0);
- 8c0:	80 e0       	ldi	r24, 0x00	; 0
- 8c2:	90 e0       	ldi	r25, 0x00	; 0
- 8c4:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
- 8c8:	08 95       	ret
+ 8f0:	80 e0       	ldi	r24, 0x00	; 0
+ 8f2:	90 e0       	ldi	r25, 0x00	; 0
+ 8f4:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ 8f8:	08 95       	ret
 	}
 	else{
 		pararLanzador();  // si no, paramos
- 8ca:	0e 94 ed 00 	call	0x1da	; 0x1da <pararLanzador>
- 8ce:	08 95       	ret
+ 8fa:	0e 94 ed 00 	call	0x1da	; 0x1da <pararLanzador>
+ 8fe:	08 95       	ret
 			case 1:  // moviemiento hacia derecha
 				// si estoy RIGHT
 				if (position==RIGHT){
 					rightInterrupt();
 				}
 				else if (position==LEFT){  // si estoy LEFT
- 8d0:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 8d4:	81 11       	cpse	r24, r1
- 8d6:	3c c0       	rjmp	.+120    	; 0x950 <OnSW2Interruption+0x104>
+ 900:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 904:	81 11       	cpse	r24, r1
+ 906:	3c c0       	rjmp	.+120    	; 0x980 <OnSW2Interruption+0x104>
 	}
 }
 
 // interrupcion del pulsador medio
 inline void middleInterrupt(){
 	if(position==LEFT)	{
- 8d8:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 8dc:	81 11       	cpse	r24, r1
- 8de:	04 c0       	rjmp	.+8      	; 0x8e8 <OnSW2Interruption+0x9c>
+ 908:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 90c:	81 11       	cpse	r24, r1
+ 90e:	04 c0       	rjmp	.+8      	; 0x918 <OnSW2Interruption+0x9c>
 		position = RIGHT;  // cambiar position flag, que ahora estamos a la derecha
- 8e0:	81 e0       	ldi	r24, 0x01	; 1
- 8e2:	80 93 01 02 	sts	0x0201, r24	; 0x800201 <position>
- 8e6:	02 c0       	rjmp	.+4      	; 0x8ec <OnSW2Interruption+0xa0>
+ 910:	81 e0       	ldi	r24, 0x01	; 1
+ 912:	80 93 01 02 	sts	0x0201, r24	; 0x800201 <position>
+ 916:	02 c0       	rjmp	.+4      	; 0x91c <OnSW2Interruption+0xa0>
 	}
 	else{
 		position = LEFT;
- 8e8:	10 92 01 02 	sts	0x0201, r1	; 0x800201 <position>
+ 918:	10 92 01 02 	sts	0x0201, r1	; 0x800201 <position>
 	}
 	if(state==LANZAMIENTO){  // cambiar de direccion en estado de lanzamiento
- 8ec:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- 8f0:	83 30       	cpi	r24, 0x03	; 3
- 8f2:	71 f5       	brne	.+92     	; 0x950 <OnSW2Interruption+0x104>
+ 91c:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ 920:	83 30       	cpi	r24, 0x03	; 3
+ 922:	71 f5       	brne	.+92     	; 0x980 <OnSW2Interruption+0x104>
 		girarLanzador(0);
- 8f4:	80 e0       	ldi	r24, 0x00	; 0
- 8f6:	90 e0       	ldi	r25, 0x00	; 0
- 8f8:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
- 8fc:	08 95       	ret
+ 924:	80 e0       	ldi	r24, 0x00	; 0
+ 926:	90 e0       	ldi	r25, 0x00	; 0
+ 928:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ 92c:	08 95       	ret
 					middleInterrupt();
 				}
 				break;
 			case 0:  // moviendo hacia izq
 				// si estoy moviendo hacia la izquierda y estoy LEFT
 				if (position==LEFT){
- 8fe:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 902:	81 11       	cpse	r24, r1
- 904:	0c c0       	rjmp	.+24     	; 0x91e <OnSW2Interruption+0xd2>
+ 92e:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 932:	81 11       	cpse	r24, r1
+ 934:	0c c0       	rjmp	.+24     	; 0x94e <OnSW2Interruption+0xd2>
 	}
 }
 
 // interrupcion del pulsador a la izquierda
 inline void leftInterrupt(){
 	if(state==LANZAMIENTO){
- 906:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- 90a:	83 30       	cpi	r24, 0x03	; 3
- 90c:	29 f4       	brne	.+10     	; 0x918 <OnSW2Interruption+0xcc>
+ 936:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ 93a:	83 30       	cpi	r24, 0x03	; 3
+ 93c:	29 f4       	brne	.+10     	; 0x948 <OnSW2Interruption+0xcc>
 		girarLanzador(1);  // cambiar de direccion en lanzamiento
- 90e:	81 e0       	ldi	r24, 0x01	; 1
- 910:	90 e0       	ldi	r25, 0x00	; 0
- 912:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
- 916:	08 95       	ret
+ 93e:	81 e0       	ldi	r24, 0x01	; 1
+ 940:	90 e0       	ldi	r25, 0x00	; 0
+ 942:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ 946:	08 95       	ret
 	}
 	else{
 		pararLanzador();
- 918:	0e 94 ed 00 	call	0x1da	; 0x1da <pararLanzador>
- 91c:	08 95       	ret
+ 948:	0e 94 ed 00 	call	0x1da	; 0x1da <pararLanzador>
+ 94c:	08 95       	ret
 				// si estoy moviendo hacia la izquierda y estoy LEFT
 				if (position==LEFT){
 					leftInterrupt();
 				}
 				// movimiento hacia la izqrda, estoy RIGHT
 				else if (position==RIGHT){
- 91e:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 922:	81 30       	cpi	r24, 0x01	; 1
- 924:	a9 f4       	brne	.+42     	; 0x950 <OnSW2Interruption+0x104>
+ 94e:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 952:	81 30       	cpi	r24, 0x01	; 1
+ 954:	a9 f4       	brne	.+42     	; 0x980 <OnSW2Interruption+0x104>
 	}
 }
 
 // interrupcion del pulsador medio
 inline void middleInterrupt(){
 	if(position==LEFT)	{
- 926:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 92a:	81 11       	cpse	r24, r1
- 92c:	04 c0       	rjmp	.+8      	; 0x936 <OnSW2Interruption+0xea>
+ 956:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 95a:	81 11       	cpse	r24, r1
+ 95c:	04 c0       	rjmp	.+8      	; 0x966 <OnSW2Interruption+0xea>
 		position = RIGHT;  // cambiar position flag, que ahora estamos a la derecha
- 92e:	81 e0       	ldi	r24, 0x01	; 1
- 930:	80 93 01 02 	sts	0x0201, r24	; 0x800201 <position>
- 934:	02 c0       	rjmp	.+4      	; 0x93a <OnSW2Interruption+0xee>
+ 95e:	81 e0       	ldi	r24, 0x01	; 1
+ 960:	80 93 01 02 	sts	0x0201, r24	; 0x800201 <position>
+ 964:	02 c0       	rjmp	.+4      	; 0x96a <OnSW2Interruption+0xee>
 	}
 	else{
 		position = LEFT;
- 936:	10 92 01 02 	sts	0x0201, r1	; 0x800201 <position>
+ 966:	10 92 01 02 	sts	0x0201, r1	; 0x800201 <position>
 	}
 	if(state==LANZAMIENTO){  // cambiar de direccion en estado de lanzamiento
- 93a:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- 93e:	83 30       	cpi	r24, 0x03	; 3
- 940:	39 f4       	brne	.+14     	; 0x950 <OnSW2Interruption+0x104>
+ 96a:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ 96e:	83 30       	cpi	r24, 0x03	; 3
+ 970:	39 f4       	brne	.+14     	; 0x980 <OnSW2Interruption+0x104>
 		girarLanzador(0);
- 942:	80 e0       	ldi	r24, 0x00	; 0
- 944:	90 e0       	ldi	r25, 0x00	; 0
- 946:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
- 94a:	08 95       	ret
+ 972:	80 e0       	ldi	r24, 0x00	; 0
+ 974:	90 e0       	ldi	r25, 0x00	; 0
+ 976:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ 97a:	08 95       	ret
 					middleInterrupt();
 				}
 				break;
 			// Puede haber interrupciones de bajada cuando estoy parado?
 			case 2:  // parado
 				if(position == LEFT){
- 94c:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- 950:	08 95       	ret
+ 97c:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ 980:	08 95       	ret
 
-00000952 <__vector_21>:
+00000982 <__vector_21>:
 volatile int interrupt0 = 0;
 volatile int interrupt2 = 0;
 
 // Interrupciones:
 
 ISR(TIMER0_COMPA_vect){						//Interrupcion que ocurre cada 5ms
- 952:	1f 92       	push	r1
- 954:	0f 92       	push	r0
- 956:	0f b6       	in	r0, 0x3f	; 63
- 958:	0f 92       	push	r0
- 95a:	11 24       	eor	r1, r1
- 95c:	2f 93       	push	r18
- 95e:	3f 93       	push	r19
- 960:	4f 93       	push	r20
- 962:	5f 93       	push	r21
- 964:	6f 93       	push	r22
- 966:	7f 93       	push	r23
- 968:	8f 93       	push	r24
- 96a:	9f 93       	push	r25
- 96c:	af 93       	push	r26
- 96e:	bf 93       	push	r27
- 970:	ef 93       	push	r30
- 972:	ff 93       	push	r31
+ 982:	1f 92       	push	r1
+ 984:	0f 92       	push	r0
+ 986:	0f b6       	in	r0, 0x3f	; 63
+ 988:	0f 92       	push	r0
+ 98a:	11 24       	eor	r1, r1
+ 98c:	2f 93       	push	r18
+ 98e:	3f 93       	push	r19
+ 990:	4f 93       	push	r20
+ 992:	5f 93       	push	r21
+ 994:	6f 93       	push	r22
+ 996:	7f 93       	push	r23
+ 998:	8f 93       	push	r24
+ 99a:	9f 93       	push	r25
+ 99c:	af 93       	push	r26
+ 99e:	bf 93       	push	r27
+ 9a0:	ef 93       	push	r30
+ 9a2:	ff 93       	push	r31
 	DisplayUpdater();  // update displays with high frecuency
- 974:	0e 94 9f 01 	call	0x33e	; 0x33e <DisplayUpdater>
+ 9a4:	0e 94 9f 01 	call	0x33e	; 0x33e <DisplayUpdater>
 	updateTime();		// update Lanzadores Timer
- 978:	0e 94 f9 03 	call	0x7f2	; 0x7f2 <updateTime>
+ 9a8:	0e 94 11 04 	call	0x822	; 0x822 <updateTime>
 	if(parpadearFlag==1){
- 97c:	80 91 15 02 	lds	r24, 0x0215	; 0x800215 <parpadearFlag>
- 980:	81 30       	cpi	r24, 0x01	; 1
- 982:	11 f4       	brne	.+4      	; 0x988 <__vector_21+0x36>
+ 9ac:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <parpadearFlag>
+ 9b0:	81 30       	cpi	r24, 0x01	; 1
+ 9b2:	11 f4       	brne	.+4      	; 0x9b8 <__vector_21+0x36>
 		parpadearLED();   // enable parpadeo if necessary
- 984:	0e 94 0d 04 	call	0x81a	; 0x81a <parpadearLED>
+ 9b4:	0e 94 25 04 	call	0x84a	; 0x84a <parpadearLED>
 	}
 	state1 = getSensor1();
- 988:	0e 94 32 01 	call	0x264	; 0x264 <getSensor1>
- 98c:	90 93 20 02 	sts	0x0220, r25	; 0x800220 <state1+0x1>
- 990:	80 93 1f 02 	sts	0x021F, r24	; 0x80021f <state1>
+ 9b8:	0e 94 32 01 	call	0x264	; 0x264 <getSensor1>
+ 9bc:	90 93 22 02 	sts	0x0222, r25	; 0x800222 <state1+0x1>
+ 9c0:	80 93 21 02 	sts	0x0221, r24	; 0x800221 <state1>
 	state2 = getSensor2();
- 994:	0e 94 38 01 	call	0x270	; 0x270 <getSensor2>
- 998:	90 93 24 02 	sts	0x0224, r25	; 0x800224 <state2+0x1>
- 99c:	80 93 23 02 	sts	0x0223, r24	; 0x800223 <state2>
+ 9c4:	0e 94 38 01 	call	0x270	; 0x270 <getSensor2>
+ 9c8:	90 93 26 02 	sts	0x0226, r25	; 0x800226 <state2+0x1>
+ 9cc:	80 93 25 02 	sts	0x0225, r24	; 0x800225 <state2>
 	state3 = getSensor3();
- 9a0:	0e 94 3c 01 	call	0x278	; 0x278 <getSensor3>
- 9a4:	90 93 22 02 	sts	0x0222, r25	; 0x800222 <state3+0x1>
- 9a8:	80 93 21 02 	sts	0x0221, r24	; 0x800221 <state3>
+ 9d0:	0e 94 3c 01 	call	0x278	; 0x278 <getSensor3>
+ 9d4:	90 93 24 02 	sts	0x0224, r25	; 0x800224 <state3+0x1>
+ 9d8:	80 93 23 02 	sts	0x0223, r24	; 0x800223 <state3>
 	state4 = getSensor4();
- 9ac:	0e 94 41 01 	call	0x282	; 0x282 <getSensor4>
- 9b0:	90 93 1c 02 	sts	0x021C, r25	; 0x80021c <state4+0x1>
- 9b4:	80 93 1b 02 	sts	0x021B, r24	; 0x80021b <state4>
+ 9dc:	0e 94 41 01 	call	0x282	; 0x282 <getSensor4>
+ 9e0:	90 93 1e 02 	sts	0x021E, r25	; 0x80021e <state4+0x1>
+ 9e4:	80 93 1d 02 	sts	0x021D, r24	; 0x80021d <state4>
 	state5 = getSensor5();
- 9b8:	0e 94 46 01 	call	0x28c	; 0x28c <getSensor5>
- 9bc:	90 93 1e 02 	sts	0x021E, r25	; 0x80021e <state5+0x1>
- 9c0:	80 93 1d 02 	sts	0x021D, r24	; 0x80021d <state5>
+ 9e8:	0e 94 46 01 	call	0x28c	; 0x28c <getSensor5>
+ 9ec:	90 93 20 02 	sts	0x0220, r25	; 0x800220 <state5+0x1>
+ 9f0:	80 93 1f 02 	sts	0x021F, r24	; 0x80021f <state5>
 	state6 = getSensor6();
- 9c4:	0e 94 4c 01 	call	0x298	; 0x298 <getSensor6>
- 9c8:	90 93 26 02 	sts	0x0226, r25	; 0x800226 <state6+0x1>
- 9cc:	80 93 25 02 	sts	0x0225, r24	; 0x800225 <state6>
+ 9f4:	0e 94 4c 01 	call	0x298	; 0x298 <getSensor6>
+ 9f8:	90 93 28 02 	sts	0x0228, r25	; 0x800228 <state6+0x1>
+ 9fc:	80 93 27 02 	sts	0x0227, r24	; 0x800227 <state6>
 }
- 9d0:	ff 91       	pop	r31
- 9d2:	ef 91       	pop	r30
- 9d4:	bf 91       	pop	r27
- 9d6:	af 91       	pop	r26
- 9d8:	9f 91       	pop	r25
- 9da:	8f 91       	pop	r24
- 9dc:	7f 91       	pop	r23
- 9de:	6f 91       	pop	r22
- 9e0:	5f 91       	pop	r21
- 9e2:	4f 91       	pop	r20
- 9e4:	3f 91       	pop	r19
- 9e6:	2f 91       	pop	r18
- 9e8:	0f 90       	pop	r0
- 9ea:	0f be       	out	0x3f, r0	; 63
- 9ec:	0f 90       	pop	r0
- 9ee:	1f 90       	pop	r1
- 9f0:	18 95       	reti
+ a00:	ff 91       	pop	r31
+ a02:	ef 91       	pop	r30
+ a04:	bf 91       	pop	r27
+ a06:	af 91       	pop	r26
+ a08:	9f 91       	pop	r25
+ a0a:	8f 91       	pop	r24
+ a0c:	7f 91       	pop	r23
+ a0e:	6f 91       	pop	r22
+ a10:	5f 91       	pop	r21
+ a12:	4f 91       	pop	r20
+ a14:	3f 91       	pop	r19
+ a16:	2f 91       	pop	r18
+ a18:	0f 90       	pop	r0
+ a1a:	0f be       	out	0x3f, r0	; 63
+ a1c:	0f 90       	pop	r0
+ a1e:	1f 90       	pop	r1
+ a20:	18 95       	reti
 
-000009f2 <__vector_17>:
+00000a22 <__vector_17>:
 
 ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos
- 9f2:	1f 92       	push	r1
- 9f4:	0f 92       	push	r0
- 9f6:	0f b6       	in	r0, 0x3f	; 63
- 9f8:	0f 92       	push	r0
- 9fa:	11 24       	eor	r1, r1
- 9fc:	2f 93       	push	r18
- 9fe:	3f 93       	push	r19
- a00:	4f 93       	push	r20
- a02:	5f 93       	push	r21
- a04:	6f 93       	push	r22
- a06:	7f 93       	push	r23
- a08:	8f 93       	push	r24
- a0a:	9f 93       	push	r25
- a0c:	af 93       	push	r26
- a0e:	bf 93       	push	r27
- a10:	ef 93       	push	r30
- a12:	ff 93       	push	r31
+ a22:	1f 92       	push	r1
+ a24:	0f 92       	push	r0
+ a26:	0f b6       	in	r0, 0x3f	; 63
+ a28:	0f 92       	push	r0
+ a2a:	11 24       	eor	r1, r1
+ a2c:	2f 93       	push	r18
+ a2e:	3f 93       	push	r19
+ a30:	4f 93       	push	r20
+ a32:	5f 93       	push	r21
+ a34:	6f 93       	push	r22
+ a36:	7f 93       	push	r23
+ a38:	8f 93       	push	r24
+ a3a:	9f 93       	push	r25
+ a3c:	af 93       	push	r26
+ a3e:	bf 93       	push	r27
+ a40:	ef 93       	push	r30
+ a42:	ff 93       	push	r31
 	parpadearFlag = 1;
- a14:	81 e0       	ldi	r24, 0x01	; 1
- a16:	80 93 15 02 	sts	0x0215, r24	; 0x800215 <parpadearFlag>
+ a44:	81 e0       	ldi	r24, 0x01	; 1
+ a46:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <parpadearFlag>
 	ultimoFlag = 1;
- a1a:	80 93 14 02 	sts	0x0214, r24	; 0x800214 <ultimoFlag>
+ a4a:	80 93 16 02 	sts	0x0216, r24	; 0x800216 <ultimoFlag>
 	disableTimer1Int();
- a1e:	0e 94 86 01 	call	0x30c	; 0x30c <disableTimer1Int>
+ a4e:	0e 94 86 01 	call	0x30c	; 0x30c <disableTimer1Int>
 }
- a22:	ff 91       	pop	r31
- a24:	ef 91       	pop	r30
- a26:	bf 91       	pop	r27
- a28:	af 91       	pop	r26
- a2a:	9f 91       	pop	r25
- a2c:	8f 91       	pop	r24
- a2e:	7f 91       	pop	r23
- a30:	6f 91       	pop	r22
- a32:	5f 91       	pop	r21
- a34:	4f 91       	pop	r20
- a36:	3f 91       	pop	r19
- a38:	2f 91       	pop	r18
- a3a:	0f 90       	pop	r0
- a3c:	0f be       	out	0x3f, r0	; 63
- a3e:	0f 90       	pop	r0
- a40:	1f 90       	pop	r1
- a42:	18 95       	reti
+ a52:	ff 91       	pop	r31
+ a54:	ef 91       	pop	r30
+ a56:	bf 91       	pop	r27
+ a58:	af 91       	pop	r26
+ a5a:	9f 91       	pop	r25
+ a5c:	8f 91       	pop	r24
+ a5e:	7f 91       	pop	r23
+ a60:	6f 91       	pop	r22
+ a62:	5f 91       	pop	r21
+ a64:	4f 91       	pop	r20
+ a66:	3f 91       	pop	r19
+ a68:	2f 91       	pop	r18
+ a6a:	0f 90       	pop	r0
+ a6c:	0f be       	out	0x3f, r0	; 63
+ a6e:	0f 90       	pop	r0
+ a70:	1f 90       	pop	r1
+ a72:	18 95       	reti
 
-00000a44 <__vector_11>:
+00000a74 <__vector_11>:
 
 ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
- a44:	1f 92       	push	r1
- a46:	0f 92       	push	r0
- a48:	0f b6       	in	r0, 0x3f	; 63
- a4a:	0f 92       	push	r0
- a4c:	11 24       	eor	r1, r1
- a4e:	2f 93       	push	r18
- a50:	3f 93       	push	r19
- a52:	4f 93       	push	r20
- a54:	5f 93       	push	r21
- a56:	6f 93       	push	r22
- a58:	7f 93       	push	r23
- a5a:	8f 93       	push	r24
- a5c:	9f 93       	push	r25
- a5e:	af 93       	push	r26
- a60:	bf 93       	push	r27
- a62:	ef 93       	push	r30
- a64:	ff 93       	push	r31
+ a74:	1f 92       	push	r1
+ a76:	0f 92       	push	r0
+ a78:	0f b6       	in	r0, 0x3f	; 63
+ a7a:	0f 92       	push	r0
+ a7c:	11 24       	eor	r1, r1
+ a7e:	2f 93       	push	r18
+ a80:	3f 93       	push	r19
+ a82:	4f 93       	push	r20
+ a84:	5f 93       	push	r21
+ a86:	6f 93       	push	r22
+ a88:	7f 93       	push	r23
+ a8a:	8f 93       	push	r24
+ a8c:	9f 93       	push	r25
+ a8e:	af 93       	push	r26
+ a90:	bf 93       	push	r27
+ a92:	ef 93       	push	r30
+ a94:	ff 93       	push	r31
 	OnPinChangeBolos();
- a66:	0e 94 de 06 	call	0xdbc	; 0xdbc <OnPinChangeBolos>
+ a96:	0e 94 fd 06 	call	0xdfa	; 0xdfa <OnPinChangeBolos>
 }
- a6a:	ff 91       	pop	r31
- a6c:	ef 91       	pop	r30
- a6e:	bf 91       	pop	r27
- a70:	af 91       	pop	r26
- a72:	9f 91       	pop	r25
- a74:	8f 91       	pop	r24
- a76:	7f 91       	pop	r23
- a78:	6f 91       	pop	r22
- a7a:	5f 91       	pop	r21
- a7c:	4f 91       	pop	r20
- a7e:	3f 91       	pop	r19
- a80:	2f 91       	pop	r18
- a82:	0f 90       	pop	r0
- a84:	0f be       	out	0x3f, r0	; 63
- a86:	0f 90       	pop	r0
- a88:	1f 90       	pop	r1
- a8a:	18 95       	reti
+ a9a:	ff 91       	pop	r31
+ a9c:	ef 91       	pop	r30
+ a9e:	bf 91       	pop	r27
+ aa0:	af 91       	pop	r26
+ aa2:	9f 91       	pop	r25
+ aa4:	8f 91       	pop	r24
+ aa6:	7f 91       	pop	r23
+ aa8:	6f 91       	pop	r22
+ aaa:	5f 91       	pop	r21
+ aac:	4f 91       	pop	r20
+ aae:	3f 91       	pop	r19
+ ab0:	2f 91       	pop	r18
+ ab2:	0f 90       	pop	r0
+ ab4:	0f be       	out	0x3f, r0	; 63
+ ab6:	0f 90       	pop	r0
+ ab8:	1f 90       	pop	r1
+ aba:	18 95       	reti
 
-00000a8c <__vector_1>:
+00000abc <__vector_1>:
 
 // interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
 ISR(INT0_vect){
- a8c:	1f 92       	push	r1
- a8e:	0f 92       	push	r0
- a90:	0f b6       	in	r0, 0x3f	; 63
- a92:	0f 92       	push	r0
- a94:	11 24       	eor	r1, r1
- a96:	2f 93       	push	r18
- a98:	3f 93       	push	r19
- a9a:	4f 93       	push	r20
- a9c:	5f 93       	push	r21
- a9e:	6f 93       	push	r22
- aa0:	7f 93       	push	r23
- aa2:	8f 93       	push	r24
- aa4:	9f 93       	push	r25
- aa6:	af 93       	push	r26
- aa8:	bf 93       	push	r27
- aaa:	ef 93       	push	r30
- aac:	ff 93       	push	r31
+ abc:	1f 92       	push	r1
+ abe:	0f 92       	push	r0
+ ac0:	0f b6       	in	r0, 0x3f	; 63
+ ac2:	0f 92       	push	r0
+ ac4:	11 24       	eor	r1, r1
+ ac6:	2f 93       	push	r18
+ ac8:	3f 93       	push	r19
+ aca:	4f 93       	push	r20
+ acc:	5f 93       	push	r21
+ ace:	6f 93       	push	r22
+ ad0:	7f 93       	push	r23
+ ad2:	8f 93       	push	r24
+ ad4:	9f 93       	push	r25
+ ad6:	af 93       	push	r26
+ ad8:	bf 93       	push	r27
+ ada:	ef 93       	push	r30
+ adc:	ff 93       	push	r31
 	OnSW2Interruption();
- aae:	0e 94 26 04 	call	0x84c	; 0x84c <OnSW2Interruption>
+ ade:	0e 94 3e 04 	call	0x87c	; 0x87c <OnSW2Interruption>
 	interrupt0 ++;
- ab2:	80 91 11 02 	lds	r24, 0x0211	; 0x800211 <interrupt0>
- ab6:	90 91 12 02 	lds	r25, 0x0212	; 0x800212 <interrupt0+0x1>
- aba:	01 96       	adiw	r24, 0x01	; 1
- abc:	90 93 12 02 	sts	0x0212, r25	; 0x800212 <interrupt0+0x1>
- ac0:	80 93 11 02 	sts	0x0211, r24	; 0x800211 <interrupt0>
+ ae2:	80 91 13 02 	lds	r24, 0x0213	; 0x800213 <interrupt0>
+ ae6:	90 91 14 02 	lds	r25, 0x0214	; 0x800214 <interrupt0+0x1>
+ aea:	01 96       	adiw	r24, 0x01	; 1
+ aec:	90 93 14 02 	sts	0x0214, r25	; 0x800214 <interrupt0+0x1>
+ af0:	80 93 13 02 	sts	0x0213, r24	; 0x800213 <interrupt0>
 }
- ac4:	ff 91       	pop	r31
- ac6:	ef 91       	pop	r30
- ac8:	bf 91       	pop	r27
- aca:	af 91       	pop	r26
- acc:	9f 91       	pop	r25
- ace:	8f 91       	pop	r24
- ad0:	7f 91       	pop	r23
- ad2:	6f 91       	pop	r22
- ad4:	5f 91       	pop	r21
- ad6:	4f 91       	pop	r20
- ad8:	3f 91       	pop	r19
- ada:	2f 91       	pop	r18
- adc:	0f 90       	pop	r0
- ade:	0f be       	out	0x3f, r0	; 63
- ae0:	0f 90       	pop	r0
- ae2:	1f 90       	pop	r1
- ae4:	18 95       	reti
+ af4:	ff 91       	pop	r31
+ af6:	ef 91       	pop	r30
+ af8:	bf 91       	pop	r27
+ afa:	af 91       	pop	r26
+ afc:	9f 91       	pop	r25
+ afe:	8f 91       	pop	r24
+ b00:	7f 91       	pop	r23
+ b02:	6f 91       	pop	r22
+ b04:	5f 91       	pop	r21
+ b06:	4f 91       	pop	r20
+ b08:	3f 91       	pop	r19
+ b0a:	2f 91       	pop	r18
+ b0c:	0f 90       	pop	r0
+ b0e:	0f be       	out	0x3f, r0	; 63
+ b10:	0f 90       	pop	r0
+ b12:	1f 90       	pop	r1
+ b14:	18 95       	reti
 
-00000ae6 <__vector_3>:
+00000b16 <__vector_3>:
 
 ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6)
- ae6:	1f 92       	push	r1
- ae8:	0f 92       	push	r0
- aea:	0f b6       	in	r0, 0x3f	; 63
- aec:	0f 92       	push	r0
- aee:	11 24       	eor	r1, r1
- af0:	2f 93       	push	r18
- af2:	3f 93       	push	r19
- af4:	4f 93       	push	r20
- af6:	5f 93       	push	r21
- af8:	6f 93       	push	r22
- afa:	7f 93       	push	r23
- afc:	8f 93       	push	r24
- afe:	9f 93       	push	r25
- b00:	af 93       	push	r26
- b02:	bf 93       	push	r27
- b04:	ef 93       	push	r30
- b06:	ff 93       	push	r31
+ b16:	1f 92       	push	r1
+ b18:	0f 92       	push	r0
+ b1a:	0f b6       	in	r0, 0x3f	; 63
+ b1c:	0f 92       	push	r0
+ b1e:	11 24       	eor	r1, r1
+ b20:	2f 93       	push	r18
+ b22:	3f 93       	push	r19
+ b24:	4f 93       	push	r20
+ b26:	5f 93       	push	r21
+ b28:	6f 93       	push	r22
+ b2a:	7f 93       	push	r23
+ b2c:	8f 93       	push	r24
+ b2e:	9f 93       	push	r25
+ b30:	af 93       	push	r26
+ b32:	bf 93       	push	r27
+ b34:	ef 93       	push	r30
+ b36:	ff 93       	push	r31
 	interrupt2 ++;
- b08:	80 91 0f 02 	lds	r24, 0x020F	; 0x80020f <interrupt2>
- b0c:	90 91 10 02 	lds	r25, 0x0210	; 0x800210 <interrupt2+0x1>
- b10:	01 96       	adiw	r24, 0x01	; 1
- b12:	90 93 10 02 	sts	0x0210, r25	; 0x800210 <interrupt2+0x1>
- b16:	80 93 0f 02 	sts	0x020F, r24	; 0x80020f <interrupt2>
+ b38:	80 91 11 02 	lds	r24, 0x0211	; 0x800211 <interrupt2>
+ b3c:	90 91 12 02 	lds	r25, 0x0212	; 0x800212 <interrupt2+0x1>
+ b40:	01 96       	adiw	r24, 0x01	; 1
+ b42:	90 93 12 02 	sts	0x0212, r25	; 0x800212 <interrupt2+0x1>
+ b46:	80 93 11 02 	sts	0x0211, r24	; 0x800211 <interrupt2>
 	if(state == LANZAMIENTO){
- b1a:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- b1e:	83 30       	cpi	r24, 0x03	; 3
- b20:	29 f4       	brne	.+10     	; 0xb2c <__vector_3+0x46>
+ b4a:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ b4e:	83 30       	cpi	r24, 0x03	; 3
+ b50:	29 f4       	brne	.+10     	; 0xb5c <__vector_3+0x46>
 		habilitarInterrupcionesSensores();
- b22:	0e 94 da 06 	call	0xdb4	; 0xdb4 <habilitarInterrupcionesSensores>
+ b52:	0e 94 f9 06 	call	0xdf2	; 0xdf2 <habilitarInterrupcionesSensores>
 		state = TIRAR_BOLA;
- b26:	84 e0       	ldi	r24, 0x04	; 4
- b28:	80 93 06 02 	sts	0x0206, r24	; 0x800206 <state>
+ b56:	84 e0       	ldi	r24, 0x04	; 4
+ b58:	80 93 08 02 	sts	0x0208, r24	; 0x800208 <state>
 	}
 	if(state == HOME){
- b2c:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- b30:	81 11       	cpse	r24, r1
- b32:	03 c0       	rjmp	.+6      	; 0xb3a <__vector_3+0x54>
+ b5c:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ b60:	81 11       	cpse	r24, r1
+ b62:	03 c0       	rjmp	.+6      	; 0xb6a <__vector_3+0x54>
 		state = SIN_BOLA;
- b34:	81 e0       	ldi	r24, 0x01	; 1
- b36:	80 93 06 02 	sts	0x0206, r24	; 0x800206 <state>
+ b64:	81 e0       	ldi	r24, 0x01	; 1
+ b66:	80 93 08 02 	sts	0x0208, r24	; 0x800208 <state>
 	}
 	if(state==FINAL){
- b3a:	80 91 06 02 	lds	r24, 0x0206	; 0x800206 <state>
- b3e:	86 30       	cpi	r24, 0x06	; 6
- b40:	11 f4       	brne	.+4      	; 0xb46 <__vector_3+0x60>
+ b6a:	80 91 08 02 	lds	r24, 0x0208	; 0x800208 <state>
+ b6e:	86 30       	cpi	r24, 0x06	; 6
+ b70:	11 f4       	brne	.+4      	; 0xb76 <__vector_3+0x60>
 		state = HOME;
- b42:	10 92 06 02 	sts	0x0206, r1	; 0x800206 <state>
+ b72:	10 92 08 02 	sts	0x0208, r1	; 0x800208 <state>
 	}
 }
- b46:	ff 91       	pop	r31
- b48:	ef 91       	pop	r30
- b4a:	bf 91       	pop	r27
- b4c:	af 91       	pop	r26
- b4e:	9f 91       	pop	r25
- b50:	8f 91       	pop	r24
- b52:	7f 91       	pop	r23
- b54:	6f 91       	pop	r22
- b56:	5f 91       	pop	r21
- b58:	4f 91       	pop	r20
- b5a:	3f 91       	pop	r19
- b5c:	2f 91       	pop	r18
- b5e:	0f 90       	pop	r0
- b60:	0f be       	out	0x3f, r0	; 63
- b62:	0f 90       	pop	r0
- b64:	1f 90       	pop	r1
- b66:	18 95       	reti
+ b76:	ff 91       	pop	r31
+ b78:	ef 91       	pop	r30
+ b7a:	bf 91       	pop	r27
+ b7c:	af 91       	pop	r26
+ b7e:	9f 91       	pop	r25
+ b80:	8f 91       	pop	r24
+ b82:	7f 91       	pop	r23
+ b84:	6f 91       	pop	r22
+ b86:	5f 91       	pop	r21
+ b88:	4f 91       	pop	r20
+ b8a:	3f 91       	pop	r19
+ b8c:	2f 91       	pop	r18
+ b8e:	0f 90       	pop	r0
+ b90:	0f be       	out	0x3f, r0	; 63
+ b92:	0f 90       	pop	r0
+ b94:	1f 90       	pop	r1
+ b96:	18 95       	reti
 
-00000b68 <__vector_4>:
+00000b98 <__vector_4>:
 
 ISR(INT3_vect) {  // interrupcion del sensor SW5 
- b68:	1f 92       	push	r1
- b6a:	0f 92       	push	r0
- b6c:	0f b6       	in	r0, 0x3f	; 63
- b6e:	0f 92       	push	r0
- b70:	11 24       	eor	r1, r1
- b72:	2f 93       	push	r18
- b74:	3f 93       	push	r19
- b76:	4f 93       	push	r20
- b78:	5f 93       	push	r21
- b7a:	6f 93       	push	r22
- b7c:	7f 93       	push	r23
- b7e:	8f 93       	push	r24
- b80:	9f 93       	push	r25
- b82:	af 93       	push	r26
- b84:	bf 93       	push	r27
- b86:	ef 93       	push	r30
- b88:	ff 93       	push	r31
+ b98:	1f 92       	push	r1
+ b9a:	0f 92       	push	r0
+ b9c:	0f b6       	in	r0, 0x3f	; 63
+ b9e:	0f 92       	push	r0
+ ba0:	11 24       	eor	r1, r1
+ ba2:	2f 93       	push	r18
+ ba4:	3f 93       	push	r19
+ ba6:	4f 93       	push	r20
+ ba8:	5f 93       	push	r21
+ baa:	6f 93       	push	r22
+ bac:	7f 93       	push	r23
+ bae:	8f 93       	push	r24
+ bb0:	9f 93       	push	r25
+ bb2:	af 93       	push	r26
+ bb4:	bf 93       	push	r27
+ bb6:	ef 93       	push	r30
+ bb8:	ff 93       	push	r31
 	OnSW5Interruption();
- b8a:	0e 94 8f 03 	call	0x71e	; 0x71e <OnSW5Interruption>
+ bba:	0e 94 7c 03 	call	0x6f8	; 0x6f8 <OnSW5Interruption>
 }
- b8e:	ff 91       	pop	r31
- b90:	ef 91       	pop	r30
- b92:	bf 91       	pop	r27
- b94:	af 91       	pop	r26
- b96:	9f 91       	pop	r25
- b98:	8f 91       	pop	r24
- b9a:	7f 91       	pop	r23
- b9c:	6f 91       	pop	r22
- b9e:	5f 91       	pop	r21
- ba0:	4f 91       	pop	r20
- ba2:	3f 91       	pop	r19
- ba4:	2f 91       	pop	r18
- ba6:	0f 90       	pop	r0
- ba8:	0f be       	out	0x3f, r0	; 63
- baa:	0f 90       	pop	r0
- bac:	1f 90       	pop	r1
- bae:	18 95       	reti
+ bbe:	ff 91       	pop	r31
+ bc0:	ef 91       	pop	r30
+ bc2:	bf 91       	pop	r27
+ bc4:	af 91       	pop	r26
+ bc6:	9f 91       	pop	r25
+ bc8:	8f 91       	pop	r24
+ bca:	7f 91       	pop	r23
+ bcc:	6f 91       	pop	r22
+ bce:	5f 91       	pop	r21
+ bd0:	4f 91       	pop	r20
+ bd2:	3f 91       	pop	r19
+ bd4:	2f 91       	pop	r18
+ bd6:	0f 90       	pop	r0
+ bd8:	0f be       	out	0x3f, r0	; 63
+ bda:	0f 90       	pop	r0
+ bdc:	1f 90       	pop	r1
+ bde:	18 95       	reti
 
-00000bb0 <main>:
+00000be0 <main>:
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- bb0:	2f ef       	ldi	r18, 0xFF	; 255
- bb2:	81 ee       	ldi	r24, 0xE1	; 225
- bb4:	94 e0       	ldi	r25, 0x04	; 4
- bb6:	21 50       	subi	r18, 0x01	; 1
- bb8:	80 40       	sbci	r24, 0x00	; 0
- bba:	90 40       	sbci	r25, 0x00	; 0
- bbc:	e1 f7       	brne	.-8      	; 0xbb6 <main+0x6>
- bbe:	00 c0       	rjmp	.+0      	; 0xbc0 <main+0x10>
- bc0:	00 00       	nop
+ be0:	2f ef       	ldi	r18, 0xFF	; 255
+ be2:	81 ee       	ldi	r24, 0xE1	; 225
+ be4:	94 e0       	ldi	r25, 0x04	; 4
+ be6:	21 50       	subi	r18, 0x01	; 1
+ be8:	80 40       	sbci	r24, 0x00	; 0
+ bea:	90 40       	sbci	r25, 0x00	; 0
+ bec:	e1 f7       	brne	.-8      	; 0xbe6 <main+0x6>
+ bee:	00 c0       	rjmp	.+0      	; 0xbf0 <main+0x10>
+ bf0:	00 00       	nop
 
 int main(void)
 {
 	// proceso de setup de todos los componentes:
 	_delay_ms(200);
 	setup_puertos();
- bc2:	0e 94 5e 01 	call	0x2bc	; 0x2bc <setup_puertos>
+ bf2:	0e 94 5e 01 	call	0x2bc	; 0x2bc <setup_puertos>
 	setupLanzador();
- bc6:	0e 94 af 03 	call	0x75e	; 0x75e <setupLanzador>
+ bf6:	0e 94 a2 03 	call	0x744	; 0x744 <setupLanzador>
 	setup_timer0();
- bca:	0e 94 76 01 	call	0x2ec	; 0x2ec <setup_timer0>
+ bfa:	0e 94 76 01 	call	0x2ec	; 0x2ec <setup_timer0>
 	setup_timer1();
- bce:	0e 94 8d 01 	call	0x31a	; 0x31a <setup_timer1>
+ bfe:	0e 94 8d 01 	call	0x31a	; 0x31a <setup_timer1>
 	setupElevadores();
- bd2:	0e 94 fe 02 	call	0x5fc	; 0x5fc <setupElevadores>
+ c02:	0e 94 fe 02 	call	0x5fc	; 0x5fc <setupElevadores>
 	homeER();
- bd6:	0e 94 6f 03 	call	0x6de	; 0x6de <homeER>
+ c06:	0e 94 22 03 	call	0x644	; 0x644 <homeER>
 	// bajaER();  // comprobar si es necesario
 	homeEC();
- bda:	0e 94 52 03 	call	0x6a4	; 0x6a4 <homeEC>
+ c0a:	0e 94 05 03 	call	0x60a	; 0x60a <homeEC>
 	// subeEC();  // comprobar si es necesario
 	vastagoHome();
- bde:	0e 94 ce 03 	call	0x79c	; 0x79c <vastagoHome>
+ c0e:	0e 94 e6 03 	call	0x7cc	; 0x7cc <vastagoHome>
 	carritoHome();
- be2:	0e 94 de 03 	call	0x7bc	; 0x7bc <carritoHome>
+ c12:	0e 94 f6 03 	call	0x7ec	; 0x7ec <carritoHome>
 	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
- be6:	0e 94 bc 03 	call	0x778	; 0x778 <lanzadorHome>
+ c16:	0e 94 d4 03 	call	0x7a8	; 0x7a8 <lanzadorHome>
 				while(getSensor3()!=0);
 				pararVastago();
 					
 				_delay_ms(button_check_delay_ms);
 					
 				state = LANZAMIENTO; // empezar lanzamiento
- bea:	d3 e0       	ldi	r29, 0x03	; 3
+ c1a:	d3 e0       	ldi	r29, 0x03	; 3
 				else{
 					state = SIN_BOLA; // volver a recoger la bola 
 				}
 				break;
 			case FINAL:
 				finalizadoFlag = 1;  // parpadear display
- bec:	c1 e0       	ldi	r28, 0x01	; 1
+ c1c:	c1 e0       	ldi	r28, 0x01	; 1
 			case RETORNO:
 				_delay_ms(4000);   // esperar hasta la bola llega
 				recarga();
 				_delay_ms(long_delay);
 				if(habilitarEstadoFinal==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
 					state = FINAL;  // volver a primer estado de espera
- bee:	0f 2e       	mov	r0, r31
- bf0:	f6 e0       	ldi	r31, 0x06	; 6
- bf2:	ff 2e       	mov	r15, r31
- bf4:	f0 2d       	mov	r31, r0
+ c1e:	0f 2e       	mov	r0, r31
+ c20:	f6 e0       	ldi	r31, 0x06	; 6
+ c22:	ff 2e       	mov	r15, r31
+ c24:	f0 2d       	mov	r31, r0
 				_delay_ms(button_check_delay_ms);
 				liberarCarrito();  // tiramos la bola
 				loop_until_bit_is_clear(SW4PIN,SW4X);
 				pararCarrito();
 
 				state = RETORNO;  // inicar estado de retorno
- bf6:	05 e0       	ldi	r16, 0x05	; 5
+ c26:	05 e0       	ldi	r16, 0x05	; 5
 				_delay_ms(long_delay);
 				bajaEC();  // coger la bola
 				// _delay_ms(long_delay);
 				subeEC(); // subir la bola		
 				// Aqui: verficiar que bola esta cargada:
 				state = BOLA_LANZADOR;
- bf8:	12 e0       	ldi	r17, 0x02	; 2
+ c28:	12 e0       	ldi	r17, 0x02	; 2
 	// subeEC();  // comprobar si es necesario
 	vastagoHome();
 	carritoHome();
 	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
     while (1) {
 		switch(state){
- bfa:	e0 91 06 02 	lds	r30, 0x0206	; 0x800206 <state>
- bfe:	8e 2f       	mov	r24, r30
- c00:	90 e0       	ldi	r25, 0x00	; 0
- c02:	87 30       	cpi	r24, 0x07	; 7
- c04:	91 05       	cpc	r25, r1
- c06:	08 f0       	brcs	.+2      	; 0xc0a <main+0x5a>
- c08:	d2 c0       	rjmp	.+420    	; 0xdae <main+0x1fe>
- c0a:	fc 01       	movw	r30, r24
- c0c:	e6 56       	subi	r30, 0x66	; 102
- c0e:	ff 4f       	sbci	r31, 0xFF	; 255
- c10:	0c 94 33 07 	jmp	0xe66	; 0xe66 <__tablejump2__>
+ c2a:	e0 91 08 02 	lds	r30, 0x0208	; 0x800208 <state>
+ c2e:	8e 2f       	mov	r24, r30
+ c30:	90 e0       	ldi	r25, 0x00	; 0
+ c32:	87 30       	cpi	r24, 0x07	; 7
+ c34:	91 05       	cpc	r25, r1
+ c36:	08 f0       	brcs	.+2      	; 0xc3a <main+0x5a>
+ c38:	d9 c0       	rjmp	.+434    	; 0xdec <main+0x20c>
+ c3a:	fc 01       	movw	r30, r24
+ c3c:	e6 56       	subi	r30, 0x66	; 102
+ c3e:	ff 4f       	sbci	r31, 0xFF	; 255
+ c40:	0c 94 52 07 	jmp	0xea4	; 0xea4 <__tablejump2__>
 			case HOME:  // despues de init
 				ultimoFlag = 0;
- c14:	10 92 14 02 	sts	0x0214, r1	; 0x800214 <ultimoFlag>
+ c44:	10 92 16 02 	sts	0x0216, r1	; 0x800216 <ultimoFlag>
 				parpadearFlag = 0;
- c18:	10 92 15 02 	sts	0x0215, r1	; 0x800215 <parpadearFlag>
-				finalizadoFlag = 0;
- c1c:	10 92 02 02 	sts	0x0202, r1	; 0x800202 <__data_end>
+ c48:	10 92 17 02 	sts	0x0217, r1	; 0x800217 <parpadearFlag>
+				// finalizadoFlag = 0; re resetea en LANZAMIENTO
+				puntuacion = 0;
+ c4c:	10 92 18 02 	sts	0x0218, r1	; 0x800218 <puntuacion>
 				// no hacemos nada, esperamos la interrupcion de disparo
 				//loop_until_bit_is_set(SW6PIN,SW6X);
 				//state = SIN_BOLA;
 				break;
- c20:	ec cf       	rjmp	.-40     	; 0xbfa <main+0x4a>
+ c50:	ec cf       	rjmp	.-40     	; 0xc2a <main+0x4a>
 			case SIN_BOLA:
 				subeEC();  // comprobar que EC esta en posicion alta
- c22:	0e 94 2b 03 	call	0x656	; 0x656 <subeEC>
+ c52:	0e 94 51 03 	call	0x6a2	; 0x6a2 <subeEC>
 				// _delay_ms(long_delay);  sube bloquante
 				girarLanzador(1);
- c26:	81 e0       	ldi	r24, 0x01	; 1
- c28:	90 e0       	ldi	r25, 0x00	; 0
- c2a:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ c56:	81 e0       	ldi	r24, 0x01	; 1
+ c58:	90 e0       	ldi	r25, 0x00	; 0
+ c5a:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
 				moverVastagoAtras();  // mover vastago atras para evitar que choca (ya esta)
- c2e:	0e 94 02 01 	call	0x204	; 0x204 <moverVastagoAtras>
- c32:	2f ef       	ldi	r18, 0xFF	; 255
- c34:	83 ed       	ldi	r24, 0xD3	; 211
- c36:	90 e3       	ldi	r25, 0x30	; 48
- c38:	21 50       	subi	r18, 0x01	; 1
- c3a:	80 40       	sbci	r24, 0x00	; 0
- c3c:	90 40       	sbci	r25, 0x00	; 0
- c3e:	e1 f7       	brne	.-8      	; 0xc38 <main+0x88>
- c40:	00 c0       	rjmp	.+0      	; 0xc42 <main+0x92>
- c42:	00 00       	nop
+ c5e:	0e 94 02 01 	call	0x204	; 0x204 <moverVastagoAtras>
+ c62:	2f ef       	ldi	r18, 0xFF	; 255
+ c64:	83 ed       	ldi	r24, 0xD3	; 211
+ c66:	90 e3       	ldi	r25, 0x30	; 48
+ c68:	21 50       	subi	r18, 0x01	; 1
+ c6a:	80 40       	sbci	r24, 0x00	; 0
+ c6c:	90 40       	sbci	r25, 0x00	; 0
+ c6e:	e1 f7       	brne	.-8      	; 0xc68 <main+0x88>
+ c70:	00 c0       	rjmp	.+0      	; 0xc72 <main+0x92>
+ c72:	00 00       	nop
 				_delay_ms(long_delay);
 				bajaEC();  // coger la bola
- c44:	0e 94 05 03 	call	0x60a	; 0x60a <bajaEC>
+ c74:	0e 94 32 03 	call	0x664	; 0x664 <bajaEC>
 				// _delay_ms(long_delay);
 				subeEC(); // subir la bola		
- c48:	0e 94 2b 03 	call	0x656	; 0x656 <subeEC>
+ c78:	0e 94 51 03 	call	0x6a2	; 0x6a2 <subeEC>
 				// Aqui: verficiar que bola esta cargada:
 				state = BOLA_LANZADOR;
- c4c:	10 93 06 02 	sts	0x0206, r17	; 0x800206 <state>
+ c7c:	10 93 08 02 	sts	0x0208, r17	; 0x800208 <state>
 				break;
- c50:	d4 cf       	rjmp	.-88     	; 0xbfa <main+0x4a>
+ c80:	d4 cf       	rjmp	.-88     	; 0xc2a <main+0x4a>
 			case BOLA_LANZADOR:
 				// proceso para enganchar la bola en el lanzador
 
 				// liberamos el carrito
 				do {
 					liberarCarrito();
- c52:	0e 94 20 01 	call	0x240	; 0x240 <liberarCarrito>
- c56:	2f ef       	ldi	r18, 0xFF	; 255
- c58:	84 e3       	ldi	r24, 0x34	; 52
- c5a:	9c e0       	ldi	r25, 0x0C	; 12
- c5c:	21 50       	subi	r18, 0x01	; 1
- c5e:	80 40       	sbci	r24, 0x00	; 0
- c60:	90 40       	sbci	r25, 0x00	; 0
- c62:	e1 f7       	brne	.-8      	; 0xc5c <main+0xac>
- c64:	00 c0       	rjmp	.+0      	; 0xc66 <main+0xb6>
- c66:	00 00       	nop
+ c82:	0e 94 20 01 	call	0x240	; 0x240 <liberarCarrito>
+ c86:	2f ef       	ldi	r18, 0xFF	; 255
+ c88:	84 e3       	ldi	r24, 0x34	; 52
+ c8a:	9c e0       	ldi	r25, 0x0C	; 12
+ c8c:	21 50       	subi	r18, 0x01	; 1
+ c8e:	80 40       	sbci	r24, 0x00	; 0
+ c90:	90 40       	sbci	r25, 0x00	; 0
+ c92:	e1 f7       	brne	.-8      	; 0xc8c <main+0xac>
+ c94:	00 c0       	rjmp	.+0      	; 0xc96 <main+0xb6>
+ c96:	00 00       	nop
 				_delay_ms(button_check_delay_ms);}
 				while(getSensor4()!=0);
- c68:	0e 94 41 01 	call	0x282	; 0x282 <getSensor4>
- c6c:	89 2b       	or	r24, r25
- c6e:	89 f7       	brne	.-30     	; 0xc52 <main+0xa2>
+ c98:	0e 94 41 01 	call	0x282	; 0x282 <getSensor4>
+ c9c:	89 2b       	or	r24, r25
+ c9e:	89 f7       	brne	.-30     	; 0xc82 <main+0xa2>
 				pararCarrito();
- c70:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
+ ca0:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
 					
 				// movemos el vastago adelante
 				do {
 					moverVastagoAdelante();
- c74:	0e 94 f6 00 	call	0x1ec	; 0x1ec <moverVastagoAdelante>
- c78:	2f ef       	ldi	r18, 0xFF	; 255
- c7a:	84 e3       	ldi	r24, 0x34	; 52
- c7c:	9c e0       	ldi	r25, 0x0C	; 12
- c7e:	21 50       	subi	r18, 0x01	; 1
- c80:	80 40       	sbci	r24, 0x00	; 0
- c82:	90 40       	sbci	r25, 0x00	; 0
- c84:	e1 f7       	brne	.-8      	; 0xc7e <main+0xce>
- c86:	00 c0       	rjmp	.+0      	; 0xc88 <main+0xd8>
- c88:	00 00       	nop
+ ca4:	0e 94 f6 00 	call	0x1ec	; 0x1ec <moverVastagoAdelante>
+ ca8:	2f ef       	ldi	r18, 0xFF	; 255
+ caa:	84 e3       	ldi	r24, 0x34	; 52
+ cac:	9c e0       	ldi	r25, 0x0C	; 12
+ cae:	21 50       	subi	r18, 0x01	; 1
+ cb0:	80 40       	sbci	r24, 0x00	; 0
+ cb2:	90 40       	sbci	r25, 0x00	; 0
+ cb4:	e1 f7       	brne	.-8      	; 0xcae <main+0xce>
+ cb6:	00 c0       	rjmp	.+0      	; 0xcb8 <main+0xd8>
+ cb8:	00 00       	nop
 				_delay_ms(button_check_delay_ms);}
 				while(getSensor3()!=0);
- c8a:	0e 94 3c 01 	call	0x278	; 0x278 <getSensor3>
- c8e:	89 2b       	or	r24, r25
- c90:	89 f7       	brne	.-30     	; 0xc74 <main+0xc4>
+ cba:	0e 94 3c 01 	call	0x278	; 0x278 <getSensor3>
+ cbe:	89 2b       	or	r24, r25
+ cc0:	89 f7       	brne	.-30     	; 0xca4 <main+0xc4>
 				pararVastago();
- c92:	0e 94 0e 01 	call	0x21c	; 0x21c <pararVastago>
+ cc2:	0e 94 0e 01 	call	0x21c	; 0x21c <pararVastago>
 					
 				// enganchamos el carrito
 				do {
 					engancharCarrito();
- c96:	0e 94 14 01 	call	0x228	; 0x228 <engancharCarrito>
- c9a:	2f ef       	ldi	r18, 0xFF	; 255
- c9c:	84 e3       	ldi	r24, 0x34	; 52
- c9e:	9c e0       	ldi	r25, 0x0C	; 12
- ca0:	21 50       	subi	r18, 0x01	; 1
- ca2:	80 40       	sbci	r24, 0x00	; 0
- ca4:	90 40       	sbci	r25, 0x00	; 0
- ca6:	e1 f7       	brne	.-8      	; 0xca0 <main+0xf0>
- ca8:	00 c0       	rjmp	.+0      	; 0xcaa <main+0xfa>
- caa:	00 00       	nop
+ cc6:	0e 94 14 01 	call	0x228	; 0x228 <engancharCarrito>
+ cca:	2f ef       	ldi	r18, 0xFF	; 255
+ ccc:	84 e3       	ldi	r24, 0x34	; 52
+ cce:	9c e0       	ldi	r25, 0x0C	; 12
+ cd0:	21 50       	subi	r18, 0x01	; 1
+ cd2:	80 40       	sbci	r24, 0x00	; 0
+ cd4:	90 40       	sbci	r25, 0x00	; 0
+ cd6:	e1 f7       	brne	.-8      	; 0xcd0 <main+0xf0>
+ cd8:	00 c0       	rjmp	.+0      	; 0xcda <main+0xfa>
+ cda:	00 00       	nop
 				_delay_ms(button_check_delay_ms);}
 				while(getSensor4()!=0);
- cac:	0e 94 41 01 	call	0x282	; 0x282 <getSensor4>
- cb0:	89 2b       	or	r24, r25
- cb2:	89 f7       	brne	.-30     	; 0xc96 <main+0xe6>
+ cdc:	0e 94 41 01 	call	0x282	; 0x282 <getSensor4>
+ ce0:	89 2b       	or	r24, r25
+ ce2:	89 f7       	brne	.-30     	; 0xcc6 <main+0xe6>
 				pararCarrito();
- cb4:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
+ ce4:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
 					
 				//movemos el vastago atras (enganchar gomas)
 				do {
 					moverVastagoAtras();
- cb8:	0e 94 02 01 	call	0x204	; 0x204 <moverVastagoAtras>
- cbc:	2f ef       	ldi	r18, 0xFF	; 255
- cbe:	84 e3       	ldi	r24, 0x34	; 52
- cc0:	9c e0       	ldi	r25, 0x0C	; 12
- cc2:	21 50       	subi	r18, 0x01	; 1
- cc4:	80 40       	sbci	r24, 0x00	; 0
- cc6:	90 40       	sbci	r25, 0x00	; 0
- cc8:	e1 f7       	brne	.-8      	; 0xcc2 <main+0x112>
- cca:	00 c0       	rjmp	.+0      	; 0xccc <main+0x11c>
- ccc:	00 00       	nop
+ ce8:	0e 94 02 01 	call	0x204	; 0x204 <moverVastagoAtras>
+ cec:	2f ef       	ldi	r18, 0xFF	; 255
+ cee:	84 e3       	ldi	r24, 0x34	; 52
+ cf0:	9c e0       	ldi	r25, 0x0C	; 12
+ cf2:	21 50       	subi	r18, 0x01	; 1
+ cf4:	80 40       	sbci	r24, 0x00	; 0
+ cf6:	90 40       	sbci	r25, 0x00	; 0
+ cf8:	e1 f7       	brne	.-8      	; 0xcf2 <main+0x112>
+ cfa:	00 c0       	rjmp	.+0      	; 0xcfc <main+0x11c>
+ cfc:	00 00       	nop
 				_delay_ms(button_check_delay_ms);}
 				while(getSensor3()!=0);
- cce:	0e 94 3c 01 	call	0x278	; 0x278 <getSensor3>
- cd2:	89 2b       	or	r24, r25
- cd4:	89 f7       	brne	.-30     	; 0xcb8 <main+0x108>
+ cfe:	0e 94 3c 01 	call	0x278	; 0x278 <getSensor3>
+ d02:	89 2b       	or	r24, r25
+ d04:	89 f7       	brne	.-30     	; 0xce8 <main+0x108>
 				pararVastago();
- cd6:	0e 94 0e 01 	call	0x21c	; 0x21c <pararVastago>
- cda:	2f ef       	ldi	r18, 0xFF	; 255
- cdc:	84 e3       	ldi	r24, 0x34	; 52
- cde:	9c e0       	ldi	r25, 0x0C	; 12
- ce0:	21 50       	subi	r18, 0x01	; 1
- ce2:	80 40       	sbci	r24, 0x00	; 0
- ce4:	90 40       	sbci	r25, 0x00	; 0
- ce6:	e1 f7       	brne	.-8      	; 0xce0 <main+0x130>
- ce8:	00 c0       	rjmp	.+0      	; 0xcea <main+0x13a>
- cea:	00 00       	nop
+ d06:	0e 94 0e 01 	call	0x21c	; 0x21c <pararVastago>
+ d0a:	2f ef       	ldi	r18, 0xFF	; 255
+ d0c:	84 e3       	ldi	r24, 0x34	; 52
+ d0e:	9c e0       	ldi	r25, 0x0C	; 12
+ d10:	21 50       	subi	r18, 0x01	; 1
+ d12:	80 40       	sbci	r24, 0x00	; 0
+ d14:	90 40       	sbci	r25, 0x00	; 0
+ d16:	e1 f7       	brne	.-8      	; 0xd10 <main+0x130>
+ d18:	00 c0       	rjmp	.+0      	; 0xd1a <main+0x13a>
+ d1a:	00 00       	nop
 					
 				_delay_ms(button_check_delay_ms);
 					
 				state = LANZAMIENTO; // empezar lanzamiento
- cec:	d0 93 06 02 	sts	0x0206, r29	; 0x800206 <state>
-				resetTimer1();
- cf0:	0e 94 81 01 	call	0x302	; 0x302 <resetTimer1>
-				enableTimer1Int();
- cf4:	0e 94 89 01 	call	0x312	; 0x312 <enableTimer1Int>
-				//buffer = getTime();  // timer de 30 segundos
+ d1c:	d0 93 08 02 	sts	0x0208, r29	; 0x800208 <state>
+				if(finalizadoFlag){
+ d20:	80 91 02 02 	lds	r24, 0x0202	; 0x800202 <__data_end>
+ d24:	88 23       	and	r24, r24
+ d26:	09 f4       	brne	.+2      	; 0xd2a <main+0x14a>
+ d28:	80 cf       	rjmp	.-256    	; 0xc2a <main+0x4a>
+					resetTimer1();
+ d2a:	0e 94 81 01 	call	0x302	; 0x302 <resetTimer1>
+					enableTimer1Int();
+ d2e:	0e 94 89 01 	call	0x312	; 0x312 <enableTimer1Int>
+					finalizadoFlag = 0;
+ d32:	10 92 02 02 	sts	0x0202, r1	; 0x800202 <__data_end>
+ d36:	79 cf       	rjmp	.-270    	; 0xc2a <main+0x4a>
 				break;
- cf8:	80 cf       	rjmp	.-256    	; 0xbfa <main+0x4a>
 
 			case LANZAMIENTO:
 					
 				// encender LED
 				encenderLED();
- cfa:	0e 94 52 01 	call	0x2a4	; 0x2a4 <encenderLED>
-				// despues de 30 seg. se habilita la bandera parpadear
+ d38:	0e 94 52 01 	call	0x2a4	; 0x2a4 <encenderLED>
 				// Integracion: posiblemente sacarlo de los estados al nivel del main, asi se acualiza independientemente del estado
 				
 				//if(buffer+30000<getTime()){
 				//	parpadear = 1;}
+				
 				girarLanzador(0);  // girar hacia la derecha
- cfe:	80 e0       	ldi	r24, 0x00	; 0
- d00:	90 e0       	ldi	r25, 0x00	; 0
- d02:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
- d06:	2f ef       	ldi	r18, 0xFF	; 255
- d08:	83 ed       	ldi	r24, 0xD3	; 211
- d0a:	90 e3       	ldi	r25, 0x30	; 48
- d0c:	21 50       	subi	r18, 0x01	; 1
- d0e:	80 40       	sbci	r24, 0x00	; 0
- d10:	90 40       	sbci	r25, 0x00	; 0
- d12:	e1 f7       	brne	.-8      	; 0xd0c <main+0x15c>
- d14:	00 c0       	rjmp	.+0      	; 0xd16 <main+0x166>
- d16:	00 00       	nop
- d18:	70 cf       	rjmp	.-288    	; 0xbfa <main+0x4a>
+ d3c:	80 e0       	ldi	r24, 0x00	; 0
+ d3e:	90 e0       	ldi	r25, 0x00	; 0
+ d40:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ d44:	2f ef       	ldi	r18, 0xFF	; 255
+ d46:	83 ed       	ldi	r24, 0xD3	; 211
+ d48:	90 e3       	ldi	r25, 0x30	; 48
+ d4a:	21 50       	subi	r18, 0x01	; 1
+ d4c:	80 40       	sbci	r24, 0x00	; 0
+ d4e:	90 40       	sbci	r25, 0x00	; 0
+ d50:	e1 f7       	brne	.-8      	; 0xd4a <main+0x16a>
+ d52:	00 c0       	rjmp	.+0      	; 0xd54 <main+0x174>
+ d54:	00 00       	nop
+ d56:	69 cf       	rjmp	.-302    	; 0xc2a <main+0x4a>
 				// state = TIRAR_BOLA;
 				break;
 					
 			case TIRAR_BOLA:
 				// asegurar que estamos a la izquierda del Lanzador:
 				if(position==RIGHT){
- d1a:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
- d1e:	81 30       	cpi	r24, 0x01	; 1
- d20:	39 f4       	brne	.+14     	; 0xd30 <main+0x180>
+ d58:	80 91 01 02 	lds	r24, 0x0201	; 0x800201 <position>
+ d5c:	81 30       	cpi	r24, 0x01	; 1
+ d5e:	39 f4       	brne	.+14     	; 0xd6e <main+0x18e>
 					state = LANZAMIENTO;  // si no, procedemos con el lanzamiento
- d22:	d0 93 06 02 	sts	0x0206, r29	; 0x800206 <state>
+ d60:	d0 93 08 02 	sts	0x0208, r29	; 0x800208 <state>
 					girarLanzador(0);  // opcional: intentar corregir posicion
- d26:	80 e0       	ldi	r24, 0x00	; 0
- d28:	90 e0       	ldi	r25, 0x00	; 0
- d2a:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
+ d64:	80 e0       	ldi	r24, 0x00	; 0
+ d66:	90 e0       	ldi	r25, 0x00	; 0
+ d68:	0e 94 c0 00 	call	0x180	; 0x180 <girarLanzador>
 					break;
- d2e:	65 cf       	rjmp	.-310    	; 0xbfa <main+0x4a>
+ d6c:	5e cf       	rjmp	.-324    	; 0xc2a <main+0x4a>
 				}
 					
 				// El interruptor de disparo se ha pulsado
 				parpadearFlag = 0;  // apagar led despues del disparo (y parpadeo)
- d30:	10 92 15 02 	sts	0x0215, r1	; 0x800215 <parpadearFlag>
+ d6e:	10 92 17 02 	sts	0x0217, r1	; 0x800217 <parpadearFlag>
 				apagarLED();
- d34:	0e 94 58 01 	call	0x2b0	; 0x2b0 <apagarLED>
+ d72:	0e 94 58 01 	call	0x2b0	; 0x2b0 <apagarLED>
 				
 				if(ultimoFlag==1){  // si ya se hizo la ultima tirada
- d38:	80 91 14 02 	lds	r24, 0x0214	; 0x800214 <ultimoFlag>
- d3c:	81 30       	cpi	r24, 0x01	; 1
- d3e:	11 f4       	brne	.+4      	; 0xd44 <main+0x194>
+ d76:	80 91 16 02 	lds	r24, 0x0216	; 0x800216 <ultimoFlag>
+ d7a:	81 30       	cpi	r24, 0x01	; 1
+ d7c:	11 f4       	brne	.+4      	; 0xd82 <main+0x1a2>
 					habilitarEstadoFinal = 1;  // pasar al estado final despues del retorno
- d40:	c0 93 13 02 	sts	0x0213, r28	; 0x800213 <habilitarEstadoFinal>
+ d7e:	c0 93 15 02 	sts	0x0215, r28	; 0x800215 <habilitarEstadoFinal>
 				}
 				
 				frenoLanzador();  // frenamos el lanzador
- d44:	0e 94 e1 00 	call	0x1c2	; 0x1c2 <frenoLanzador>
- d48:	2f ef       	ldi	r18, 0xFF	; 255
- d4a:	84 e3       	ldi	r24, 0x34	; 52
- d4c:	9c e0       	ldi	r25, 0x0C	; 12
- d4e:	21 50       	subi	r18, 0x01	; 1
- d50:	80 40       	sbci	r24, 0x00	; 0
- d52:	90 40       	sbci	r25, 0x00	; 0
- d54:	e1 f7       	brne	.-8      	; 0xd4e <main+0x19e>
- d56:	00 c0       	rjmp	.+0      	; 0xd58 <main+0x1a8>
- d58:	00 00       	nop
+ d82:	0e 94 e1 00 	call	0x1c2	; 0x1c2 <frenoLanzador>
+ d86:	2f ef       	ldi	r18, 0xFF	; 255
+ d88:	84 e3       	ldi	r24, 0x34	; 52
+ d8a:	9c e0       	ldi	r25, 0x0C	; 12
+ d8c:	21 50       	subi	r18, 0x01	; 1
+ d8e:	80 40       	sbci	r24, 0x00	; 0
+ d90:	90 40       	sbci	r25, 0x00	; 0
+ d92:	e1 f7       	brne	.-8      	; 0xd8c <main+0x1ac>
+ d94:	00 c0       	rjmp	.+0      	; 0xd96 <main+0x1b6>
+ d96:	00 00       	nop
 				_delay_ms(button_check_delay_ms);
 				liberarCarrito();  // tiramos la bola
- d5a:	0e 94 20 01 	call	0x240	; 0x240 <liberarCarrito>
+ d98:	0e 94 20 01 	call	0x240	; 0x240 <liberarCarrito>
 				loop_until_bit_is_clear(SW4PIN,SW4X);
- d5e:	4c 99       	sbic	0x09, 4	; 9
- d60:	fe cf       	rjmp	.-4      	; 0xd5e <main+0x1ae>
+ d9c:	4c 99       	sbic	0x09, 4	; 9
+ d9e:	fe cf       	rjmp	.-4      	; 0xd9c <main+0x1bc>
 				pararCarrito();
- d62:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
+ da0:	0e 94 2c 01 	call	0x258	; 0x258 <pararCarrito>
 
 				state = RETORNO;  // inicar estado de retorno
- d66:	00 93 06 02 	sts	0x0206, r16	; 0x800206 <state>
+ da4:	00 93 08 02 	sts	0x0208, r16	; 0x800208 <state>
 				break;
- d6a:	47 cf       	rjmp	.-370    	; 0xbfa <main+0x4a>
- d6c:	2f ef       	ldi	r18, 0xFF	; 255
- d6e:	87 ea       	ldi	r24, 0xA7	; 167
- d70:	91 e6       	ldi	r25, 0x61	; 97
- d72:	21 50       	subi	r18, 0x01	; 1
- d74:	80 40       	sbci	r24, 0x00	; 0
- d76:	90 40       	sbci	r25, 0x00	; 0
- d78:	e1 f7       	brne	.-8      	; 0xd72 <main+0x1c2>
- d7a:	00 c0       	rjmp	.+0      	; 0xd7c <main+0x1cc>
- d7c:	00 00       	nop
+ da8:	40 cf       	rjmp	.-384    	; 0xc2a <main+0x4a>
+ daa:	2f ef       	ldi	r18, 0xFF	; 255
+ dac:	87 ea       	ldi	r24, 0xA7	; 167
+ dae:	91 e6       	ldi	r25, 0x61	; 97
+ db0:	21 50       	subi	r18, 0x01	; 1
+ db2:	80 40       	sbci	r24, 0x00	; 0
+ db4:	90 40       	sbci	r25, 0x00	; 0
+ db6:	e1 f7       	brne	.-8      	; 0xdb0 <main+0x1d0>
+ db8:	00 c0       	rjmp	.+0      	; 0xdba <main+0x1da>
+ dba:	00 00       	nop
 			case RETORNO:
 				_delay_ms(4000);   // esperar hasta la bola llega
 				recarga();
- d7e:	0e 94 a9 03 	call	0x752	; 0x752 <recarga>
- d82:	2f ef       	ldi	r18, 0xFF	; 255
- d84:	83 ed       	ldi	r24, 0xD3	; 211
- d86:	90 e3       	ldi	r25, 0x30	; 48
- d88:	21 50       	subi	r18, 0x01	; 1
- d8a:	80 40       	sbci	r24, 0x00	; 0
- d8c:	90 40       	sbci	r25, 0x00	; 0
- d8e:	e1 f7       	brne	.-8      	; 0xd88 <main+0x1d8>
- d90:	00 c0       	rjmp	.+0      	; 0xd92 <main+0x1e2>
- d92:	00 00       	nop
+ dbc:	0e 94 71 03 	call	0x6e2	; 0x6e2 <recarga>
+ dc0:	2f ef       	ldi	r18, 0xFF	; 255
+ dc2:	83 ed       	ldi	r24, 0xD3	; 211
+ dc4:	90 e3       	ldi	r25, 0x30	; 48
+ dc6:	21 50       	subi	r18, 0x01	; 1
+ dc8:	80 40       	sbci	r24, 0x00	; 0
+ dca:	90 40       	sbci	r25, 0x00	; 0
+ dcc:	e1 f7       	brne	.-8      	; 0xdc6 <main+0x1e6>
+ dce:	00 c0       	rjmp	.+0      	; 0xdd0 <main+0x1f0>
+ dd0:	00 00       	nop
 				_delay_ms(long_delay);
 				if(habilitarEstadoFinal==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
- d94:	80 91 13 02 	lds	r24, 0x0213	; 0x800213 <habilitarEstadoFinal>
- d98:	81 30       	cpi	r24, 0x01	; 1
- d9a:	19 f4       	brne	.+6      	; 0xda2 <main+0x1f2>
+ dd2:	80 91 15 02 	lds	r24, 0x0215	; 0x800215 <habilitarEstadoFinal>
+ dd6:	81 30       	cpi	r24, 0x01	; 1
+ dd8:	19 f4       	brne	.+6      	; 0xde0 <main+0x200>
 					state = FINAL;  // volver a primer estado de espera
- d9c:	f0 92 06 02 	sts	0x0206, r15	; 0x800206 <state>
- da0:	2c cf       	rjmp	.-424    	; 0xbfa <main+0x4a>
+ dda:	f0 92 08 02 	sts	0x0208, r15	; 0x800208 <state>
+ dde:	25 cf       	rjmp	.-438    	; 0xc2a <main+0x4a>
 				}
 				else{
 					state = SIN_BOLA; // volver a recoger la bola 
- da2:	c0 93 06 02 	sts	0x0206, r28	; 0x800206 <state>
- da6:	29 cf       	rjmp	.-430    	; 0xbfa <main+0x4a>
+ de0:	c0 93 08 02 	sts	0x0208, r28	; 0x800208 <state>
+ de4:	22 cf       	rjmp	.-444    	; 0xc2a <main+0x4a>
 				}
 				break;
 			case FINAL:
 				finalizadoFlag = 1;  // parpadear display
- da8:	c0 93 02 02 	sts	0x0202, r28	; 0x800202 <__data_end>
+ de6:	c0 93 02 02 	sts	0x0202, r28	; 0x800202 <__data_end>
 				break;
- dac:	26 cf       	rjmp	.-436    	; 0xbfa <main+0x4a>
+ dea:	1f cf       	rjmp	.-450    	; 0xc2a <main+0x4a>
 			default:
 				state = HOME;
- dae:	10 92 06 02 	sts	0x0206, r1	; 0x800206 <state>
+ dec:	10 92 08 02 	sts	0x0208, r1	; 0x800208 <state>
 				break;
- db2:	23 cf       	rjmp	.-442    	; 0xbfa <main+0x4a>
+ df0:	1c cf       	rjmp	.-456    	; 0xc2a <main+0x4a>
 
-00000db4 <habilitarInterrupcionesSensores>:
+00000df2 <habilitarInterrupcionesSensores>:
 	PCMSK2 = 0x3F;         // 0b00111111 Hay que habilitarlos cuando llegue la señal de disparo, pq durante las deshabilitamos (Bolos)
 	sei();
 }
 
 void habilitarInterrupcionesSensores(){
 	PCMSK2 = 0x3F;
- db4:	8f e3       	ldi	r24, 0x3F	; 63
- db6:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- dba:	08 95       	ret
+ df2:	8f e3       	ldi	r24, 0x3F	; 63
+ df4:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ df8:	08 95       	ret
 
-00000dbc <OnPinChangeBolos>:
+00000dfa <OnPinChangeBolos>:
 }
 
 
 inline void OnPinChangeBolos(){
 	puntuacion++;
- dbc:	80 91 16 02 	lds	r24, 0x0216	; 0x800216 <puntuacion>
- dc0:	8f 5f       	subi	r24, 0xFF	; 255
- dc2:	80 93 16 02 	sts	0x0216, r24	; 0x800216 <puntuacion>
+ dfa:	80 91 18 02 	lds	r24, 0x0218	; 0x800218 <puntuacion>
+ dfe:	8f 5f       	subi	r24, 0xFF	; 255
+ e00:	80 93 18 02 	sts	0x0218, r24	; 0x800218 <puntuacion>
 	uint8_t puertoactual = ~PINK;  //PINK normalmente estará a 1 !!
- dc6:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <__TEXT_REGION_LENGTH__+0x7f0106>
- dca:	80 95       	com	r24
+ e04:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <__TEXT_REGION_LENGTH__+0x7f0106>
+ e08:	80 95       	com	r24
 	//volatile uint8_t bitscambiados= 0;
 	//	bitscambiados = ~(puertoactual ^ puertoanterior); //Lo negamos por el tema de que esta en nivel alto y pasa a nivel bajo
 	
 	//AND bit a bit para determinar si un bit en particular ha cambiado en el puerto
 	if(puertoactual & (0b00000001)){
- dcc:	80 ff       	sbrs	r24, 0
- dce:	05 c0       	rjmp	.+10     	; 0xdda <OnPinChangeBolos+0x1e>
+ e0a:	80 ff       	sbrs	r24, 0
+ e0c:	05 c0       	rjmp	.+10     	; 0xe18 <OnPinChangeBolos+0x1e>
 		PCMSK2 &=~(1<<PCINT16);
- dd0:	ed e6       	ldi	r30, 0x6D	; 109
- dd2:	f0 e0       	ldi	r31, 0x00	; 0
- dd4:	90 81       	ld	r25, Z
- dd6:	9e 7f       	andi	r25, 0xFE	; 254
- dd8:	90 83       	st	Z, r25
+ e0e:	ed e6       	ldi	r30, 0x6D	; 109
+ e10:	f0 e0       	ldi	r31, 0x00	; 0
+ e12:	90 81       	ld	r25, Z
+ e14:	9e 7f       	andi	r25, 0xFE	; 254
+ e16:	90 83       	st	Z, r25
 	} //Deshabilito esa interrupcion para que no rebote
 	if(puertoactual & (0b00000010)){
- dda:	81 ff       	sbrs	r24, 1
- ddc:	05 c0       	rjmp	.+10     	; 0xde8 <OnPinChangeBolos+0x2c>
+ e18:	81 ff       	sbrs	r24, 1
+ e1a:	05 c0       	rjmp	.+10     	; 0xe26 <OnPinChangeBolos+0x2c>
 		PCMSK2 &=~(1<<PCINT17);
- dde:	ed e6       	ldi	r30, 0x6D	; 109
- de0:	f0 e0       	ldi	r31, 0x00	; 0
- de2:	90 81       	ld	r25, Z
- de4:	9d 7f       	andi	r25, 0xFD	; 253
- de6:	90 83       	st	Z, r25
+ e1c:	ed e6       	ldi	r30, 0x6D	; 109
+ e1e:	f0 e0       	ldi	r31, 0x00	; 0
+ e20:	90 81       	ld	r25, Z
+ e22:	9d 7f       	andi	r25, 0xFD	; 253
+ e24:	90 83       	st	Z, r25
 	}
 	if(puertoactual & (0b00000100)){
- de8:	82 ff       	sbrs	r24, 2
- dea:	05 c0       	rjmp	.+10     	; 0xdf6 <OnPinChangeBolos+0x3a>
+ e26:	82 ff       	sbrs	r24, 2
+ e28:	05 c0       	rjmp	.+10     	; 0xe34 <OnPinChangeBolos+0x3a>
 		PCMSK2 &=~(1<<PCINT18);
- dec:	ed e6       	ldi	r30, 0x6D	; 109
- dee:	f0 e0       	ldi	r31, 0x00	; 0
- df0:	90 81       	ld	r25, Z
- df2:	9b 7f       	andi	r25, 0xFB	; 251
- df4:	90 83       	st	Z, r25
+ e2a:	ed e6       	ldi	r30, 0x6D	; 109
+ e2c:	f0 e0       	ldi	r31, 0x00	; 0
+ e2e:	90 81       	ld	r25, Z
+ e30:	9b 7f       	andi	r25, 0xFB	; 251
+ e32:	90 83       	st	Z, r25
 	}
 	if(puertoactual & (0b00001000)){
- df6:	83 ff       	sbrs	r24, 3
- df8:	05 c0       	rjmp	.+10     	; 0xe04 <OnPinChangeBolos+0x48>
+ e34:	83 ff       	sbrs	r24, 3
+ e36:	05 c0       	rjmp	.+10     	; 0xe42 <OnPinChangeBolos+0x48>
 		PCMSK2 &=~(1<<PCINT19);
- dfa:	ed e6       	ldi	r30, 0x6D	; 109
- dfc:	f0 e0       	ldi	r31, 0x00	; 0
- dfe:	90 81       	ld	r25, Z
- e00:	97 7f       	andi	r25, 0xF7	; 247
- e02:	90 83       	st	Z, r25
+ e38:	ed e6       	ldi	r30, 0x6D	; 109
+ e3a:	f0 e0       	ldi	r31, 0x00	; 0
+ e3c:	90 81       	ld	r25, Z
+ e3e:	97 7f       	andi	r25, 0xF7	; 247
+ e40:	90 83       	st	Z, r25
 	}
 	if(puertoactual & (0b00010000)){
- e04:	84 ff       	sbrs	r24, 4
- e06:	05 c0       	rjmp	.+10     	; 0xe12 <OnPinChangeBolos+0x56>
+ e42:	84 ff       	sbrs	r24, 4
+ e44:	05 c0       	rjmp	.+10     	; 0xe50 <OnPinChangeBolos+0x56>
 		PCMSK2 &=~(1<<PCINT20);
- e08:	ed e6       	ldi	r30, 0x6D	; 109
- e0a:	f0 e0       	ldi	r31, 0x00	; 0
- e0c:	90 81       	ld	r25, Z
- e0e:	9f 7e       	andi	r25, 0xEF	; 239
- e10:	90 83       	st	Z, r25
+ e46:	ed e6       	ldi	r30, 0x6D	; 109
+ e48:	f0 e0       	ldi	r31, 0x00	; 0
+ e4a:	90 81       	ld	r25, Z
+ e4c:	9f 7e       	andi	r25, 0xEF	; 239
+ e4e:	90 83       	st	Z, r25
 	}
 	if(puertoactual & (0b00100000)){
- e12:	85 ff       	sbrs	r24, 5
- e14:	05 c0       	rjmp	.+10     	; 0xe20 <OnPinChangeBolos+0x64>
+ e50:	85 ff       	sbrs	r24, 5
+ e52:	05 c0       	rjmp	.+10     	; 0xe5e <OnPinChangeBolos+0x64>
 		PCMSK2 &=~(1<<PCINT21);
- e16:	ed e6       	ldi	r30, 0x6D	; 109
- e18:	f0 e0       	ldi	r31, 0x00	; 0
- e1a:	80 81       	ld	r24, Z
- e1c:	8f 7d       	andi	r24, 0xDF	; 223
- e1e:	80 83       	st	Z, r24
- e20:	08 95       	ret
+ e54:	ed e6       	ldi	r30, 0x6D	; 109
+ e56:	f0 e0       	ldi	r31, 0x00	; 0
+ e58:	80 81       	ld	r24, Z
+ e5a:	8f 7d       	andi	r24, 0xDF	; 223
+ e5c:	80 83       	st	Z, r24
+ e5e:	08 95       	ret
 
-00000e22 <__udivmodsi4>:
- e22:	a1 e2       	ldi	r26, 0x21	; 33
- e24:	1a 2e       	mov	r1, r26
- e26:	aa 1b       	sub	r26, r26
- e28:	bb 1b       	sub	r27, r27
- e2a:	fd 01       	movw	r30, r26
- e2c:	0d c0       	rjmp	.+26     	; 0xe48 <__udivmodsi4_ep>
+00000e60 <__udivmodsi4>:
+ e60:	a1 e2       	ldi	r26, 0x21	; 33
+ e62:	1a 2e       	mov	r1, r26
+ e64:	aa 1b       	sub	r26, r26
+ e66:	bb 1b       	sub	r27, r27
+ e68:	fd 01       	movw	r30, r26
+ e6a:	0d c0       	rjmp	.+26     	; 0xe86 <__udivmodsi4_ep>
 
-00000e2e <__udivmodsi4_loop>:
- e2e:	aa 1f       	adc	r26, r26
- e30:	bb 1f       	adc	r27, r27
- e32:	ee 1f       	adc	r30, r30
- e34:	ff 1f       	adc	r31, r31
- e36:	a2 17       	cp	r26, r18
- e38:	b3 07       	cpc	r27, r19
- e3a:	e4 07       	cpc	r30, r20
- e3c:	f5 07       	cpc	r31, r21
- e3e:	20 f0       	brcs	.+8      	; 0xe48 <__udivmodsi4_ep>
- e40:	a2 1b       	sub	r26, r18
- e42:	b3 0b       	sbc	r27, r19
- e44:	e4 0b       	sbc	r30, r20
- e46:	f5 0b       	sbc	r31, r21
+00000e6c <__udivmodsi4_loop>:
+ e6c:	aa 1f       	adc	r26, r26
+ e6e:	bb 1f       	adc	r27, r27
+ e70:	ee 1f       	adc	r30, r30
+ e72:	ff 1f       	adc	r31, r31
+ e74:	a2 17       	cp	r26, r18
+ e76:	b3 07       	cpc	r27, r19
+ e78:	e4 07       	cpc	r30, r20
+ e7a:	f5 07       	cpc	r31, r21
+ e7c:	20 f0       	brcs	.+8      	; 0xe86 <__udivmodsi4_ep>
+ e7e:	a2 1b       	sub	r26, r18
+ e80:	b3 0b       	sbc	r27, r19
+ e82:	e4 0b       	sbc	r30, r20
+ e84:	f5 0b       	sbc	r31, r21
 
-00000e48 <__udivmodsi4_ep>:
- e48:	66 1f       	adc	r22, r22
- e4a:	77 1f       	adc	r23, r23
- e4c:	88 1f       	adc	r24, r24
- e4e:	99 1f       	adc	r25, r25
- e50:	1a 94       	dec	r1
- e52:	69 f7       	brne	.-38     	; 0xe2e <__udivmodsi4_loop>
- e54:	60 95       	com	r22
- e56:	70 95       	com	r23
- e58:	80 95       	com	r24
- e5a:	90 95       	com	r25
- e5c:	9b 01       	movw	r18, r22
- e5e:	ac 01       	movw	r20, r24
- e60:	bd 01       	movw	r22, r26
- e62:	cf 01       	movw	r24, r30
- e64:	08 95       	ret
+00000e86 <__udivmodsi4_ep>:
+ e86:	66 1f       	adc	r22, r22
+ e88:	77 1f       	adc	r23, r23
+ e8a:	88 1f       	adc	r24, r24
+ e8c:	99 1f       	adc	r25, r25
+ e8e:	1a 94       	dec	r1
+ e90:	69 f7       	brne	.-38     	; 0xe6c <__udivmodsi4_loop>
+ e92:	60 95       	com	r22
+ e94:	70 95       	com	r23
+ e96:	80 95       	com	r24
+ e98:	90 95       	com	r25
+ e9a:	9b 01       	movw	r18, r22
+ e9c:	ac 01       	movw	r20, r24
+ e9e:	bd 01       	movw	r22, r26
+ ea0:	cf 01       	movw	r24, r30
+ ea2:	08 95       	ret
 
-00000e66 <__tablejump2__>:
- e66:	ee 0f       	add	r30, r30
- e68:	ff 1f       	adc	r31, r31
- e6a:	05 90       	lpm	r0, Z+
- e6c:	f4 91       	lpm	r31, Z
- e6e:	e0 2d       	mov	r30, r0
- e70:	09 94       	ijmp
+00000ea4 <__tablejump2__>:
+ ea4:	ee 0f       	add	r30, r30
+ ea6:	ff 1f       	adc	r31, r31
+ ea8:	05 90       	lpm	r0, Z+
+ eaa:	f4 91       	lpm	r31, Z
+ eac:	e0 2d       	mov	r30, r0
+ eae:	09 94       	ijmp
 
-00000e72 <_exit>:
- e72:	f8 94       	cli
+00000eb0 <_exit>:
+ eb0:	f8 94       	cli
 
-00000e74 <__stop_program>:
- e74:	ff cf       	rjmp	.-2      	; 0xe74 <__stop_program>
+00000eb2 <__stop_program>:
+ eb2:	ff cf       	rjmp	.-2      	; 0xeb2 <__stop_program>

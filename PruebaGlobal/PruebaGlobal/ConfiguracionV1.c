@@ -8,7 +8,7 @@
 #include "ConfiguracionV1.h"
 #include "IncFile1.h"
 
-void setup_puertos(){
+void setup_puertos(){  // solo para Sensores Opticos y Displays
 cli();
 //Puerto K						controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.		SensoresBolos.c
 	DDRK = 0xC0;				//0b11000000
@@ -55,11 +55,10 @@ inline void enableTimer1Int(){
 
 void setup_timer1(){			//Preparado para interrumpir cada 30 seg
 	cli();
-	TCCR1A = 0b00000000;		//Modo CTC
-	TCCR1B = 0b00001101;		//Modo CTC y prescalado 1024
-	TCCR1C = 0x00;				//No nos afecta
-	TIMSK1 = 0x00;				// Todavia no habilitamos interrupciones del timer
-	OCR1A  = 7813;
+	TCCR1A = 0b00000000;
+	TCCR1B = 0b00001101;
+	TIMSK1 = (1<<OCIE1A);
+	OCR1A  = 23436;				// timer para interrumpir cada 3 segundos
 	sei();
 }
 	
