@@ -13,12 +13,14 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "IncFile1.h"
+#include "Elevadores.h"
 
 
-volatile int ERpos;		//Posición del Elevador de Retorno(ER).
-volatile int ECPos;		//Posición del Elevador de Carga(EC).
-volatile int rutina=0;	//Bandera para subida y bajada del ER.
-volatile int Time=0;	//Variable de tiempo
+volatile uint8_t ERpos;		//Posición del Elevador de Retorno(ER).
+volatile uint8_t ECPos;		//Posición del Elevador de Carga(EC).
+volatile uint8_t rutina=0;	//Bandera para subida y bajada del ER.
+volatile uint16_t Time=0;	//Variable de tiempo
+
 
 
 //SET UP//
@@ -69,25 +71,24 @@ void homeER(){							//Lleva el ER a su posición inicial (abajo).
 
 //FUNCIONES EC//
 
-inline void bajaEC(){							//Bajamos el EC y bloqueamos el programa hasta que llegue a abajo.
+inline void bajaEC(){									//Bajamos el EC y bloqueamos el programa hasta que llegue a abajo.
 	clearBit(M1_enPORT,M1_en_X);				//M5_enable off.
 		if(ECPos==1){							//Solo se ejecuta si el EC está arriba.
 			clearBit(M1_diPORT,M1_di_X);		//Dirección descendente (0);
 			setBit(M1_enPORT,M1_en_X);			//M1_enable on.
-			_delay_ms(1000);					//Esperamos a que suelte el SW1.(Probar con while((PIND & 0x40)==0){} )
-			while((PIND & 0x40)!=0){}			//Esperamos a que vuelva a pulsar SW1.
+			while((PIND & 0x40)==0){};			//Esperamos a que suelte el SW1.(Probar con while((PIND & 0x40)==0){} )
+			while((PIND & 0x40)!=0){};			//Esperamos a que vuelva a pulsar SW1.
 			clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
 			ECPos=0;							//EC está abajo.
 		}
 }
-
-inline void subeEC(){							//Subimos el EC y bloqueamos el programa hasta que llegue arriba.
+inline void subeEC(){									//Subimos el EC y bloqueamos el programa hasta que llegue arriba.
 	clearBit(M1_enPORT,M1_en_X);				//M5_enable off.
 		if(ECPos==0){							//Solo se ejecuta si el EC está abajo.
 			setBit(M1_diPORT,M1_di_X);			//Dirección ascendente (1);
 			setBit(M1_enPORT,M1_en_X);			//M1_enable on.
-			_delay_ms(1000);					//Esperamos a que suelte el SW1.(Probar con while((PIND & 0x40)==0){} )
-			while((PIND & 0x40)!=0){}			//Esperamos a que vuelva a pulsar SW1.
+			while((PIND & 0x40)==0){};			//Esperamos a que suelte el SW1.(Probar con while((PIND & 0x40)==0){} )
+			while((PIND & 0x40)!=0){};			//Esperamos a que vuelva a pulsar SW1.
 			clearBit(M1_enPORT,M1_en_X);		//M1_enable off.
 			ECPos=1;							//EC está arriba.
 		}
@@ -114,7 +115,7 @@ inline void subeER(){
 		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
 	}
 }
-inline void recarga(){							//El elevador sube y cuando llegue arriba bajará.
+inline void recarga(){								//El elevador sube y cuando llegue arriba bajará.
 	rutina=1;									//Bandera para que baje al llegar arriba.
 	subeER();									//Empieza a subir.
 }
@@ -122,7 +123,7 @@ inline void recarga(){							//El elevador sube y cuando llegue arriba bajará.
 
 //INTERRUPCIONES//
 
-inline void OnSW5Interruption(){				//Interrupción para gestionar las paradas del ER.
+inline void OnSW5Interruption(){						//Interrupción para gestionar las paradas del ER.
 		clearBit(EIMSK,3);						//Deshabilitamos la interrupción.
 		setBit(EIFR,3);							//Limpiamos las banderas de la interrupción.
 		Time=0;									//Despues de un tiempo la volveremos a habilitar (antirrebotes).
@@ -145,9 +146,9 @@ inline void OnSW5Interruption(){				//Interrupción para gestionar las paradas de
 	
 	
 }
-inline void UpdateTimerElevadores(){		//Rehabilita la interrupción de SW5(antirrebotes).
+inline void UpdateTimerElevadores(){				//Rehabilita la interrupción de SW5(antirrebotes).
 	Time=Time+5;							//Salta cada 5ms.
-	if(Time>=500){							//Si ha pasado el tiempo de espera.(Intentar bajar ese tiempo).
+	if(Time>=20){							//Si ha pasado el tiempo de espera.
 		setBit(EIMSK,3);					//Habilita la interrupción
 		setBit(EIFR,3);						//Limpia la bandera.
 	}
