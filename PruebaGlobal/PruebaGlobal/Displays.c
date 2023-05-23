@@ -110,7 +110,7 @@ inline void DisplayUpdater(){
 		PORTB ^= (1<<PB7);					//Máscara en el bit de seleccion para alternarlo cada 5 ms, es decir un refresco de 200 veces/segundo
 		//Posible bandera 'Selector
 		
-		if(PINB & (1 << PB7)){				//Si está seleccionado Display 1, decenas
+		if(~PINB & (1 << PB7)){				//Si está seleccionado Display 1, decenas
 			setDisplay(puntuacion/10);
 		}
 		else{								//Si esta seleccionado Display 0, unidades
