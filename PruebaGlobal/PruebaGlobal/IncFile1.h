@@ -13,9 +13,10 @@
 */
 /************************************************************************/
 // CONSTANTES
-#define button_check_delay_ms 500
+#define button_check_delay_ms 200
 #define debounce_buffer_ms 50
-#define long_delay 2000
+#define long_delay 1000
+#define doublePressbuffer 500
 
 /************************************************************************/
 //MACROS SW

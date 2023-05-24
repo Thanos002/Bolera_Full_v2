@@ -29,6 +29,10 @@ void habilitarInterrupcionesSensores(){
 	PCMSK2 = 0x3F;
 }
 
+void deshabilitarInterrupcionesSensores(){
+	PCMSK2 = 0x00;
+}
+
 
 inline void OnPinChangeBolos(){
 	puntuacion++;

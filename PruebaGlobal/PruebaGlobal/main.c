@@ -25,15 +25,21 @@
 
 volatile uint8_t parpadearFlag = 0;
 volatile uint8_t ultimoFlag = 0;
-volatile uint8_t habilitarEstadoFinal = 0;
+volatile uint8_t habilitarEstadoFinal = 1;  // empezar con 1 y luego se resetea
+volatile uint8_t timerTicks = 0;
+uint8_t oscillando = 0;
+
+// debugging:
 volatile int state1,state2,state3,state4,state5,state6;
 volatile int interrupt0 = 0;
 volatile int interrupt2 = 0;
 
+/************************************************************************/
 // Interrupciones:
 
 ISR(TIMER0_COMPA_vect){						//Interrupcion que ocurre cada 5ms
 	DisplayUpdater();  // update displays with high frecuency
+	UpdateTimerElevadores();  // 
 	updateTime();		// update Lanzadores Timer
 	if(parpadearFlag==1){
 		parpadearLED();   // enable parpadeo if necessary
@@ -46,10 +52,14 @@ ISR(TIMER0_COMPA_vect){						//Interrupcion que ocurre cada 5ms
 	state6 = getSensor6();
 }
 
-ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos
-	parpadearFlag = 1;
-	ultimoFlag = 1;
-	disableTimer1Int();
+ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos (10*3 segundos del timer 1)
+	timerTicks++;
+	if(timerTicks==10){
+		parpadearFlag = 1;
+		ultimoFlag = 1;
+		disableTimer1Int();
+		timerTicks = 0;
+	}
 }
 
 ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
@@ -57,12 +67,15 @@ ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
 }
 
 // interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
+// solo me interesan durante el estado de LANZAMIENTO
 ISR(INT0_vect){
-	OnSW2Interruption();
-	interrupt0 ++;
+	interrupt0++;
+	if(state==LANZAMIENTO){
+		OnSW2Interruption();
+	}
 }
 
-ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6)
+ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6), maneja los cambios de estado cuando se pulsa
 	interrupt2 ++;
 	if(state == LANZAMIENTO){
 		habilitarInterrupcionesSensores();
@@ -79,6 +92,8 @@ ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6)
 ISR(INT3_vect) {  // interrupcion del sensor SW5 
 	OnSW5Interruption();
 }
+
+/************************************************************************/
 
 int main(void)
 {
@@ -101,7 +116,7 @@ int main(void)
 			case HOME:  // despues de init
 				ultimoFlag = 0;
 				parpadearFlag = 0;
-				// finalizadoFlag = 0; re resetea en LANZAMIENTO
+				finalizadoFlag = 0;
 				puntuacion = 0;
 				// no hacemos nada, esperamos la interrupcion de disparo
 				//loop_until_bit_is_set(SW6PIN,SW6X);
@@ -151,29 +166,22 @@ int main(void)
 				pararVastago();
 					
 				_delay_ms(button_check_delay_ms);
-					
-				state = LANZAMIENTO; // empezar lanzamiento
-				if(finalizadoFlag){
-					resetTimer1();
-					enableTimer1Int();
-					finalizadoFlag = 0;
-				}
+				
 				//buffer = getTime();  // timer de 30 segundos
+				
+				if(oscillando==0){
+					girarLanzador(0);  // girar hacia la izquierda
+					_delay_ms(1000);
+					oscillando = 1;
+				}
+				
+				state = LANZAMIENTO; // empezar lanzamiento
+				
 				break;
 
 			case LANZAMIENTO:
-					
-				// encender LED
+				
 				encenderLED();
-					
-				// despues de 30 seg. se habilita la bandera parpadear
-				// Integracion: posiblemente sacarlo de los estados al nivel del main, asi se acualiza independientemente del estado
-				
-				//if(buffer+30000<getTime()){
-				//	parpadear = 1;}
-				
-				girarLanzador(0);  // girar hacia la derecha
-				_delay_ms(long_delay);
 				
 				// esperar interupciones
 				// loop_until_bit_is_set(SW6PIN,SW6X);  //esperar hasta se pulsa el disparo
@@ -182,13 +190,16 @@ int main(void)
 				break;
 					
 			case TIRAR_BOLA:
-				// asegurar que estamos a la izquierda del Lanzador:
-				if(position==RIGHT){
-					state = LANZAMIENTO;  // si no, procedemos con el lanzamiento
-					girarLanzador(0);  // opcional: intentar corregir posicion
-					break;
+			
+				if(habilitarEstadoFinal){  // empezar timer de 30 segundos
+					resetTimer1();
+					enableTimer1Int();
+					timerTicks = 0;
+					habilitarEstadoFinal = 0;  // resetear flag de finalizado
 				}
-					
+				
+				oscillando=0;  // deshabilitar bandera de oscillacion
+				
 				// El interruptor de disparo se ha pulsado
 				parpadearFlag = 0;  // apagar led despues del disparo (y parpadeo)
 				apagarLED();
@@ -200,6 +211,7 @@ int main(void)
 				frenoLanzador();  // frenamos el lanzador
 				_delay_ms(button_check_delay_ms);
 				liberarCarrito();  // tiramos la bola
+				_delay_ms(button_check_delay_ms);
 				loop_until_bit_is_clear(SW4PIN,SW4X);
 				pararCarrito();
 
@@ -218,6 +230,7 @@ int main(void)
 				break;
 			case FINAL:
 				finalizadoFlag = 1;  // parpadear display
+				
 				break;
 			default:
 				state = HOME;

@@ -65,50 +65,21 @@ void vastagoHome(){
 }
 
 void carritoHome(){
-	engancharCarrito();
-	_delay_ms(1000);
 	liberarCarrito();
 	_delay_ms(button_check_delay_ms);
 	loop_until_bit_is_clear(SW4PIN,SW4X);
 	pararCarrito();
 }
 
-// interrupcion del fin de carrera derecho,
-inline void rightInterrupt(){
-	if(state==LANZAMIENTO){  // si estamos en lanzamiento, cambiamos direccion
-		girarLanzador(0);
-	}
-	else{
-		pararLanzador();  // si no, paramos
-	}
-}
-
-// interrupcion del pulsador medio
-inline void middleInterrupt(){
-	if(position==LEFT)	{
-		position = RIGHT;  // cambiar position flag, que ahora estamos a la derecha
-	}
-	else{
-		position = LEFT;
-	}
-	if(state==LANZAMIENTO){  // cambiar de direccion en estado de lanzamiento
-		girarLanzador(0);
-	}
-}
-
-// interrupcion del pulsador a la izquierda
-inline void leftInterrupt(){
-	if(state==LANZAMIENTO){
-		girarLanzador(1);  // cambiar de direccion en lanzamiento
-	}
-	else{
-		pararLanzador();
-	}
-}
-
 // funciones usadas para el timer de main
 inline void updateTime(){
 	ms_elapsed += 5;
+	if(ms_elapsed - last_interruption_time<doublePressbuffer){  // comprobar si ha pasado el tiempo requisito para rehabilitar interrupciones SW2
+		disableInterrupt(SW2EIFR);
+	}
+	else{
+		enableInterrupt(SW2EIFR);
+	}
 }
 
 // setter para el tiempo acual
@@ -137,39 +108,14 @@ inline void parpadearLED(){
 
 
 inline void OnSW2Interruption(){
-// debounce protection:
-// si hay dos interupciones entre menos que 50 ms
-	if(last_interruption_time +50 < ms_elapsed){
-		last_interruption_time = ms_elapsed;  // guardar tiempo acual
-		switch (lanzadorFlag){
-			case 1:  // moviemiento hacia derecha
-				// si estoy RIGHT
-				if (position==RIGHT){
-					rightInterrupt();
-				}
-				else if (position==LEFT){  // si estoy LEFT
-					middleInterrupt();
-				}
-				break;
-			case 0:  // moviendo hacia izq
-				// si estoy moviendo hacia la izquierda y estoy LEFT
-				if (position==LEFT){
-					leftInterrupt();
-				}
-				// movimiento hacia la izqrda, estoy RIGHT
-				else if (position==RIGHT){
-					middleInterrupt();
-				}
-				break;
-			// Puede haber interrupciones de bajada cuando estoy parado?
-			case 2:  // parado
-				if(position == LEFT){
-					// leftInterrupt();
-				}
-				else{
-					// rightInterrupt();
-				}
-				break;
+	if(ms_elapsed-last_interruption_time>doublePressbuffer){  // doble chequeo, pero no es necesaio
+		if(lanzadorFlag==1){
+			last_interruption_time = ms_elapsed;
+			girarLanzador(0);
+		}
+		else if(lanzadorFlag==0){
+			last_interruption_time = ms_elapsed;
+			girarLanzador(1);
 		}
 	}
 }
