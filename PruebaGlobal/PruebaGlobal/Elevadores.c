@@ -100,20 +100,20 @@ inline void subeEC(){									//Subimos el EC y bloqueamos el programa hasta que
 
 
 inline void bajaER(){
-	if(ERpos==1){								//Bajamos el ER sin bloquear el programa.
+	//if(ERpos==1){								//Bajamos el ER sin bloquear el programa.
 		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
 		clearBit(M5_diPORT,M5_di_X);			//Dirección descendente (0).
 		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
-	}
+	//}
 }
 
 
 inline void subeER(){
-	if(ERpos==0){								//Subimos el ER sin bloquear el programa.
+	//if(ERpos==0){								//Subimos el ER sin bloquear el programa.
 		clearBit(M5_enPORT,M5_en_X);			//M5_enable off.
 		setBit(M5_diPORT,M5_di_X);				//Dirección ascendente	(1);
 		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
-	}
+	//}
 }
 inline void recarga(){								//El elevador sube y cuando llegue arriba bajará.
 	rutina=1;									//Bandera para que baje al llegar arriba.
