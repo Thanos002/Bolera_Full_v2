@@ -23,16 +23,17 @@
 
 // BANDERAS (evitar si posible)
 
-volatile uint8_t parpadearFlag = 0;
-volatile uint8_t ultimoFlag = 0;
-volatile uint8_t habilitarEstadoFinal = 1;  // empezar con 1 y luego se resetea
-volatile uint8_t timerTicks = 0;
+volatile uint8_t parpadearFlag = 0;  // si habilitado, se parpadea el LED
+volatile uint8_t ultimoFlag = 0; // indica cuando ha pasado el timer de 30 segundos (1-si, 0-no)
+volatile uint8_t habilitarEstadoFinal = 1;  // si habilitado pasa al estado final despues de lanzar
+volatile uint8_t timerTicks = 0;  // ticks para medir los 30 segundos
 uint8_t oscillando = 0;
 
 // debugging:
 volatile int state1,state2,state3,state4,state5,state6;
 volatile int interrupt0 = 0;
 volatile int interrupt2 = 0;
+volatile int Pinchange = 0;
 
 /************************************************************************/
 // Interrupciones:
@@ -64,6 +65,7 @@ ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos (10*3 segundos del time
 
 ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
 	OnPinChangeBolos();
+	Pinchange++;
 }
 
 // interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
@@ -105,7 +107,7 @@ int main(void)
 	setup_timer1();
 	setupElevadores();
 	homeER();
-	// bajaER();  // comprobar si es necesario
+	bajaER();  // comprobar si es necesario
 	homeEC();
 	// subeEC();  // comprobar si es necesario
 	vastagoHome();
@@ -118,6 +120,7 @@ int main(void)
 				parpadearFlag = 0;
 				finalizadoFlag = 0;
 				puntuacion = 0;
+				// habilitar estado final se resetea despues
 				// no hacemos nada, esperamos la interrupcion de disparo
 				//loop_until_bit_is_set(SW6PIN,SW6X);
 				//state = SIN_BOLA;
@@ -129,7 +132,7 @@ int main(void)
 				moverVastagoAtras();  // mover vastago atras para evitar que choca (ya esta)
 				_delay_ms(long_delay);
 				bajaEC();  // coger la bola
-				// _delay_ms(long_delay);
+				_delay_ms(500);
 				subeEC(); // subir la bola		
 				// Aqui: verficiar que bola esta cargada:
 				state = BOLA_LANZADOR;
@@ -191,11 +194,12 @@ int main(void)
 					
 			case TIRAR_BOLA:
 			
-				if(habilitarEstadoFinal){  // empezar timer de 30 segundos
+				if(habilitarEstadoFinal==1 && ultimoFlag==0){  // empezar timer de 30 segundos
 					resetTimer1();
 					enableTimer1Int();
+					puntuacion = 0;
 					timerTicks = 0;
-					habilitarEstadoFinal = 0;  // resetear flag de finalizado
+					habilitarEstadoFinal = 0;  // resetear flag de estado final
 				}
 				
 				oscillando=0;  // deshabilitar bandera de oscillacion
@@ -221,6 +225,7 @@ int main(void)
 				_delay_ms(4000);   // esperar hasta la bola llega
 				recarga();
 				_delay_ms(long_delay);
+				deshabilitarInterrupcionesSensores();  // evitar otras interrupciones de los bolos
 				if(habilitarEstadoFinal==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
 					state = FINAL;  // volver a primer estado de espera
 				}
@@ -230,7 +235,6 @@ int main(void)
 				break;
 			case FINAL:
 				finalizadoFlag = 1;  // parpadear display
-				
 				break;
 			default:
 				state = HOME;

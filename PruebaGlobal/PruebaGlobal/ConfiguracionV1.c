@@ -13,7 +13,7 @@ cli();
 //Puerto K						controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.		SensoresBolos.c
 	DDRK = 0xC0;				//0b11000000
 	PCICR = (1<<PCIE2);			// Para activar las PCINT globalmente del grupo 3 (PCINT16-PCINT23)
-	PCMSK2 = 0x3F;				//0b00111111 (Habilitar localmente PCINT16-PCINT21)Hay que habilitarlos cuando llegue la señal de disparo, pq durante las deshabilitamos
+	PCMSK2 = 0x00;				//De inicio deshabilitadas: 0b00111111 (Habilitar localmente PCINT16-PCINT21)Hay que habilitarlos cuando llegue la señal de disparo, pq durante las deshabilitamos
 	
 //Puerto B						controla display de 7 segmentos y el selector de display. Se trata como salidas.
 	DDRB = 0xFF;				//Puerto B configurado como salidas para controlar display 7 segmentos y selector
@@ -22,7 +22,7 @@ cli();
 	
 //Puerto D						dedicado a los fines de carrera como entradas SW y a manejar el motor M5, tratado como salidas.
 	DDRD = 0b10100000;			//PD7 y PD5 son salidas para el motor M5, el resto entradas para los SWi.
-	EICRA = 0xAA;				//0b10101010Todas las int por flanco de bajada 	//Puerto D tiene INT0-INT3 en sus cuatro primeros bits
+	EICRA = 0xA2;				//0b10100010Todas las int por flanco de bajada 	//Puerto D tiene INT0-INT3 en sus cuatro primeros bits
 	//EIMSK = 0x0F;				//Habilitar interrupciones INT0-INT3
 	enableInterrupt(SW2EIFR);
 	enableInterrupt(SW5EIFR);

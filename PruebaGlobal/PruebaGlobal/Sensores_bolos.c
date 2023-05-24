@@ -33,6 +33,14 @@ void deshabilitarInterrupcionesSensores(){
 	PCMSK2 = 0x00;
 }
 
+uint8_t getPuntacion(){
+	return puntuacion;
+}
+
+void setPuntuacion(uint8_t num){
+	puntuacion = num;
+}
+
 
 inline void OnPinChangeBolos(){
 	puntuacion++;

@@ -19,6 +19,11 @@
 void setup_Sensores();
 
 void habilitarInterrupcionesSensores();
+void deshabilitarInterrupcionesSensores();
 void OnPinChangeBolos();
+// extern volatile uint8_t puntuacion;
+
+uint8_t getPuntacion();
+void setPuntuacion(uint8_t num);
 
 #endif /* SENSORES_BOLOS_H_ */
