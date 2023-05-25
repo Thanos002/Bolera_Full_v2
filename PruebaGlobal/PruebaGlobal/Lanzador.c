@@ -75,10 +75,14 @@ void carritoHome(){
 inline void updateTime(){
 	ms_elapsed += 5;
 	if(ms_elapsed - last_interruption_time<doublePressbuffer){  // comprobar si ha pasado el tiempo requisito para rehabilitar interrupciones SW2
+		cli();
 		disableInterrupt(SW2EIFR);
+		sei();
 	}
 	else{
+		cli();
 		enableInterrupt(SW2EIFR);
+		sei();
 	}
 }
 

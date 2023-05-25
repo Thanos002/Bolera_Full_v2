@@ -17,23 +17,6 @@ volatile uint8_t finalizadoFlag = 0;
 uint16_t pulsador;  // se usa esta variable?
 volatile uint8_t puntuacion;
 
-/*Ya hecho en ConfiguracionV1
-// void setup_Displays(){
-// 	cli();
-//     setup_timer0();			//Para el setup del timer 0 Displays
-// 	DDRB = 0xFF;				//Puerto B configurado como salidas para controlar display 7 segmentos y selector Displays
-//
-// 	//El pin 7 del puerto B controla la selección de displays, los otros 7 pines el numero que aparece un '0' en la señal enciende el display
-//	PORTB = 0b00111111;				//Inicialemente a 0 en el display 0
-//
-// 	DDRD = 0b00100000;				//Entradas salvo el bit 5 que es salida para motor (SW1-SW6) Displays
-// 	//Ver si esos sensores SW son normalemente activos o bajos...
-//
-//
-// 	sei();
-//
-*/
-
 inline void apagarDisplay(){
 	clearBitMask(DSPORT, 0b01111111);
 	//PORTB &= ~(1<<PB6)&~(1<<PB5)&~(1<<PB4)&~(1<<PB3)&~(1<<PB2)&~(1<<PB1)&~(1<<PB0);  //Todos los bits de esos puertos a 0
@@ -80,8 +63,6 @@ inline void setDisplay(int numero){
 	}
 }
 
-// Cambio Thanos: poner else if z meter condicion parpadeo>200 en parpadeos >=180 (comprobar porfa)
-// Declarada funcion inline, que se llama dentro del main()
 inline void DisplayUpdater(){		//Se llama cada 5ms con el timer0
 	if(finalizadoFlag == 1){
 		parpadeos++;
@@ -91,10 +72,10 @@ inline void DisplayUpdater(){		//Se llama cada 5ms con el timer0
 			//Posible bandera 'Selector
 			
 			if(~PINB & (1 << DSX)){				//Si está seleccionado Display 1, decenas
-				setDisplay(puntuacion%10);
+				setDisplay(puntuacion/10);
 			}
 			else{								//Si esta seleccionado Display 0, unidades
-				setDisplay(puntuacion/10);
+				setDisplay(puntuacion%10);
 			}
 		}
 		else if(parpadeos >= 180){

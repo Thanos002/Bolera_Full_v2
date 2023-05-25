@@ -122,8 +122,6 @@ int main(void)
 				puntuacion = 0;
 				// habilitar estado final se resetea despues
 				// no hacemos nada, esperamos la interrupcion de disparo
-				//loop_until_bit_is_set(SW6PIN,SW6X);
-				//state = SIN_BOLA;
 				break;
 			case SIN_BOLA:
 				subeEC();  // comprobar que EC esta en posicion alta
@@ -134,6 +132,7 @@ int main(void)
 				bajaEC();  // coger la bola
 				_delay_ms(500);
 				subeEC(); // subir la bola		
+				bajaER();
 				// Aqui: verficiar que bola esta cargada:
 				state = BOLA_LANZADOR;
 				break;
@@ -167,14 +166,10 @@ int main(void)
 				_delay_ms(button_check_delay_ms);}
 				while(getSensor3()!=0);
 				pararVastago();
-					
-				_delay_ms(button_check_delay_ms);
-				
-				//buffer = getTime();  // timer de 30 segundos
 				
 				if(oscillando==0){
 					girarLanzador(0);  // girar hacia la izquierda
-					_delay_ms(1000);
+					_delay_ms(1000);  // hasta que llega a la iqzuierda
 					oscillando = 1;
 				}
 				
@@ -183,6 +178,8 @@ int main(void)
 				break;
 
 			case LANZAMIENTO:
+				
+				bajaER();
 				
 				encenderLED();
 				
@@ -222,12 +219,15 @@ int main(void)
 				state = RETORNO;  // inicar estado de retorno
 				break;
 			case RETORNO:
-				_delay_ms(4000);   // esperar hasta la bola llega
-				recarga();
-				_delay_ms(long_delay);
+				_delay_ms(ballArrivalDelay);   // esperar hasta la bola llega
+				//recarga();
+				// si no funcionan las interrupciones:
+
+				subeER();
+				
 				deshabilitarInterrupcionesSensores();  // evitar otras interrupciones de los bolos
 				if(habilitarEstadoFinal==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
-					state = FINAL;  // volver a primer estado de espera
+					state = FINAL;  // ir al estado de parpadeo
 				}
 				else{
 					state = SIN_BOLA; // volver a recoger la bola 
@@ -235,11 +235,8 @@ int main(void)
 				break;
 			case FINAL:
 				finalizadoFlag = 1;  // parpadear display
+				_delay_ms(2000);
 				break;
-			default:
-				state = HOME;
-				break;
-				
 		}
     }
 }

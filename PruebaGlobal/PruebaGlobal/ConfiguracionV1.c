@@ -57,13 +57,13 @@ cli();
 	setBit(M5_enDDR,M5_en_X);
 	setBit(M5_diDDR,M5_di_X);
 	//EICRA = 0xAA;				//0b10101010Todas las int por flanco de bajada 	//Puerto D tiene INT0-INT3 en sus cuatro primeros bits
-	setBit(EICRA,7);
+	//setBit(EICRA,7);			// deshabilitado por problemas INT3 (Thanos 25/05)
 	setBit(EICRA,5);
 	/*setBit(EICRA,3);*/	 //Nueva actualziacion
 	setBit(EICRA,1);
 	//EIMSK = 0x0F;				//Habilitar interrupciones INT0-INT3
 	enableInterrupt(SW2EIFR);
-	enableInterrupt(SW5EIFR);
+	//enableInterrupt(SW5EIFR);  // deshabilitado por problemas (Thanos 25/05)
 	//setBit(EIMSK,1);         Thanos no usaba interrupciones para sensor vástago
 	enableInterrupt(SW6EIFR);
 //Puerto L						dedicado al manejo de los motores y al LED del sistema lanzador. Todo salidas

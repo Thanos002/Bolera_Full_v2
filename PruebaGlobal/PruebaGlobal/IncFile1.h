@@ -17,6 +17,7 @@
 #define debounce_buffer_ms 50
 #define long_delay 1000
 #define doublePressbuffer 500
+#define ballArrivalDelay 4000
 
 /************************************************************************/
 //MACROS SW

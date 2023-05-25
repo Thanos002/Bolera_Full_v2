@@ -35,8 +35,8 @@ void setupEC(){
 void setupER(){
 	setBit(M5_diDDR,M5_di_X);			//M5_di como salida.
 	setBit(M5_enDDR,M5_en_X);			//M5_en como salida.
- 	EICRA|=0x80;						//SW5 interrumpe por flanco de bajada.
- 	EIMSK|=0x08;						//Habilita INT3(SW5).
+ 	// EICRA|=0x80;						//SW5 interrumpe por flanco de bajada.
+ 	// EIMSK|=0x08;						//Habilita INT3(SW5).
 	clearBit(M5_enPORT,M5_en_X);		//M5_enable off.
 }
 
@@ -115,6 +115,8 @@ inline void subeER(){
 		setBit(M5_enPORT,M5_en_X);				//M5_enable on.
 	//}
 }
+
+// no se usa
 inline void recarga(){								//El elevador sube y cuando llegue arriba bajará.
 	rutina=1;									//Bandera para que baje al llegar arriba.
 	subeER();									//Empieza a subir.
@@ -122,10 +124,12 @@ inline void recarga(){								//El elevador sube y cuando llegue arriba bajará.
 
 
 //INTERRUPCIONES//
-
+// no se usa
 inline void OnSW5Interruption(){						//Interrupción para gestionar las paradas del ER.
+		cli();
 		clearBit(EIMSK,3);						//Deshabilitamos la interrupción.
-		setBit(EIFR,3);							//Limpiamos las banderas de la interrupción.
+		sei();
+		//setBit(EIFR,3);							//Limpiamos las banderas de la interrupción.
 		Time=0;									//Despues de un tiempo la volveremos a habilitar (antirrebotes).
 		if(rutina==0){							//Si queremos que pare.
 			if(readBit(M5_diPIN,M5_di_X)==0){	//Si estaba bajando.
@@ -142,15 +146,15 @@ inline void OnSW5Interruption(){						//Interrupción para gestionar las paradas 
 			rutina=0;							//Bajamos la bandera.
 			bajaER();							//Empieza a bajar.
 		}
-			
-	
-	
 }
+// no se usa
 inline void UpdateTimerElevadores(){				//Rehabilita la interrupción de SW5(antirrebotes).
 	Time=Time+5;							//Salta cada 5ms.
 	if(Time>=20){							//Si ha pasado el tiempo de espera.
+		cli();
 		setBit(EIMSK,3);					//Habilita la interrupción
-		setBit(EIFR,3);						//Limpia la bandera.
+		sei();
+		//setBit(EIFR,3);						//Limpia la bandera.
 	}
 }
 
