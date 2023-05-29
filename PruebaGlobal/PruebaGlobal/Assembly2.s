@@ -1,5 +1,5 @@
-.globl setup_timer0
-.type integrate, @function
+.globl setup_timer0  // definir setup_timer0 como funcion global
+.type setup_timer0, @function  // 
 setup_timer0:
 	push r24      // Push the value of r24 onto the stack
 	cli

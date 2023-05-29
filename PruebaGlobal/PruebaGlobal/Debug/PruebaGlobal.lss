@@ -149,8 +149,8 @@ Disassembly of section .text:
  140:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000144 <setup_timer0>:
-.globl setup_timer0
-.type integrate, @function
+.globl setup_timer0  // definir setup_timer0 como funcion global
+.type setup_timer0, @function  // 
 setup_timer0:
 	push r24      // Push the value of r24 onto the stack
  144:	8f 93       	push	r24
@@ -464,8 +464,8 @@ sei();
  2ea:	08 95       	ret
 
 000002ec <resetTimer1>:
-}
-
+	sei();
+}	
 */
 
 inline void resetTimer1(){
@@ -494,7 +494,7 @@ inline void enableTimer1Int(){
 00000304 <setup_timer1>:
 }
 
-void setup_timer1(){			//Preparado para interrumpir cada 30 seg
+void setup_timer1(){			//Preparado para interrumpir cada 3 seg
 	cli();
  304:	f8 94       	cli
 	//TCCR1A = 0b00000000;

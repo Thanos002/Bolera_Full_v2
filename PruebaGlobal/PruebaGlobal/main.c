@@ -206,8 +206,6 @@ int main(void)
 				break;
 			case RETORNO:
 				_delay_ms(ballArrivalDelay);   // esperar hasta la bola llega
-				//recarga();
-				// si no funcionan las interrupciones:
 
 				subeER();
 				deshabilitarInterrupcionesSensores();  // evitar otras interrupciones de los bolos
@@ -220,8 +218,9 @@ int main(void)
 				}
 				break;
 			case FINAL:
-				bajaER();
 				finalizadoFlag = 1;  // parpadear display
+				_delay_ms(2000);
+				bajaER();
 				break;
 		}
     }
