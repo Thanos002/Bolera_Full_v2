@@ -17,6 +17,7 @@
 #include "Lanzador.h"
 #include "Bolera.h"
 #include "Elevadores.h"
+extern setup_timer0();
 
 // para debugging
 // #define _delay_ms(P) ultimoFlag=ultimoFlag;
@@ -29,34 +30,20 @@ volatile uint8_t habilitarEstadoFinal = 1;  // si habilitado pasa al estado fina
 volatile uint8_t timerTicks = 0;  // ticks para medir los 30 segundos
 uint8_t oscillando = 0;
 
-// debugging:
-volatile int state1,state2,state3,state4,state5,state6;
-volatile int interrupt0 = 0;
-volatile int interrupt2 = 0;
-volatile int Pinchange = 0;
-
 /************************************************************************/
 // Interrupciones:
 
 ISR(TIMER0_COMPA_vect){						//Interrupcion que ocurre cada 5ms
-	DisplayUpdater();  // update displays with high frecuency
-	UpdateTimerElevadores();  // 
+	DisplayUpdater();  // update displays with high frecuency 
 	updateTime();		// update Lanzadores Timer
 	if(parpadearFlag==1){
 		parpadearLED();   // enable parpadeo if necessary
 	}
-	state1 = getSensor1();
-	state2 = getSensor2();
-	state3 = getSensor3();
-	state4 = getSensor4();
-	state5 = getSensor5();
-	state6 = getSensor6();
 }
 
 ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos (10*3 segundos del timer 1)
 	timerTicks++;
 	if(timerTicks==10){
-		parpadearFlag = 1;
 		ultimoFlag = 1;
 		disableTimer1Int();
 		timerTicks = 0;
@@ -65,20 +52,17 @@ ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos (10*3 segundos del time
 
 ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
 	OnPinChangeBolos();
-	Pinchange++;
 }
 
 // interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
 // solo me interesan durante el estado de LANZAMIENTO
 ISR(INT0_vect){
-	interrupt0++;
 	if(state==LANZAMIENTO){
 		OnSW2Interruption();
 	}
 }
 
 ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6), maneja los cambios de estado cuando se pulsa
-	interrupt2 ++;
 	if(state == LANZAMIENTO){
 		habilitarInterrupcionesSensores();
 		state = TIRAR_BOLA;
@@ -89,10 +73,6 @@ ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6), maneja los camb
 	if(state==FINAL){
 		state = HOME;
 	}
-}
-
-ISR(INT3_vect) {  // interrupcion del sensor SW5 
-	OnSW5Interruption();
 }
 
 /************************************************************************/
@@ -107,12 +87,13 @@ int main(void)
 	setup_timer1();
 	setupElevadores();
 	homeER();
-	bajaER();  // comprobar si es necesario
+	// bajaER();  // comprobar si es necesario
 	homeEC();
 	// subeEC();  // comprobar si es necesario
 	vastagoHome();
 	carritoHome();
 	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
+	encenderLED();
     while (1) {
 		switch(state){
 			case HOME:  // despues de init
@@ -124,6 +105,7 @@ int main(void)
 				// no hacemos nada, esperamos la interrupcion de disparo
 				break;
 			case SIN_BOLA:
+				apagarLED();
 				subeEC();  // comprobar que EC esta en posicion alta
 				// _delay_ms(long_delay);  sube bloquante
 				girarLanzador(1);
@@ -180,8 +162,12 @@ int main(void)
 			case LANZAMIENTO:
 				
 				bajaER();
-				
-				encenderLED();
+				if(ultimoFlag){
+					parpadearFlag = 1;
+				}
+				else{
+					encenderLED();
+				}
 				
 				// esperar interupciones
 				// loop_until_bit_is_set(SW6PIN,SW6X);  //esperar hasta se pulsa el disparo
@@ -224,8 +210,8 @@ int main(void)
 				// si no funcionan las interrupciones:
 
 				subeER();
-				
 				deshabilitarInterrupcionesSensores();  // evitar otras interrupciones de los bolos
+				_delay_ms(3000);
 				if(habilitarEstadoFinal==1){ // si hemos tirado la bola y ya estamos en el ultimo disparo
 					state = FINAL;  // ir al estado de parpadeo
 				}
@@ -234,8 +220,8 @@ int main(void)
 				}
 				break;
 			case FINAL:
+				bajaER();
 				finalizadoFlag = 1;  // parpadear display
-				_delay_ms(2000);
 				break;
 		}
     }

@@ -19,7 +19,7 @@
 #include <avr/interrupt.h>
 
 void setup_puertos();
-void setup_timer0();
+// void setup_timer0();
 void setup_timer1();
 
 void resetTimer1();

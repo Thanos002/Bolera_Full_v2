@@ -46,13 +46,15 @@ C_SRCS +=  \
 ../Sensores_bolos.c
 
 
-PREPROCESSING_SRCS += 
+PREPROCESSING_SRCS +=  \
+../Assembly2.s
 
 
 ASM_SRCS += 
 
 
 OBJS +=  \
+Assembly2.o \
 Bolera.o \
 ConfiguracionV1.o \
 Displays.o \
@@ -62,6 +64,7 @@ main.o \
 Sensores_bolos.o
 
 OBJS_AS_ARGS +=  \
+Assembly2.o \
 Bolera.o \
 ConfiguracionV1.o \
 Displays.o \
@@ -71,6 +74,7 @@ main.o \
 Sensores_bolos.o
 
 C_DEPS +=  \
+Assembly2.d \
 Bolera.d \
 ConfiguracionV1.d \
 Displays.d \
@@ -80,6 +84,7 @@ main.d \
 Sensores_bolos.d
 
 C_DEPS_AS_ARGS +=  \
+Assembly2.d \
 Bolera.d \
 ConfiguracionV1.d \
 Displays.d \
@@ -159,6 +164,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU Assembler
+./Assembly2.o: .././Assembly2.s
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU Assembler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -Wa,-gdwarf2 -x assembler-with-cpp -c -mmcu=atmega640 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega640" -I "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -Wa,-g   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 
 
 

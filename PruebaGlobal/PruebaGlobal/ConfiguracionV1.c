@@ -80,6 +80,10 @@ cli();
 sei();
 }
 
+
+// La funcion setup_timer() esta en el fichero Assembly2.s en ensamblador
+/*
+
 void setup_timer0(){			//Preparado para interrumpir cada 5 ms
 	cli();
 	//TCCR0A = 0b00000010;		//Modo CTC
@@ -89,9 +93,9 @@ void setup_timer0(){			//Preparado para interrumpir cada 5 ms
 	//TIMSK0 = 0b00000010;		//Habilita OCR0A 
 	setBit(TIMSK0,OCIE0A);
 	OCR0A =  156;				//Para contar cada 5ms
-	
 	sei();
 }	
+*/
 
 inline void resetTimer1(){
 	TCNT1 = 0x00;
@@ -105,7 +109,7 @@ inline void enableTimer1Int(){
 	TIMSK1 = 0b00000010;
 }
 
-void setup_timer1(){			//Preparado para interrumpir cada 30 seg
+void setup_timer1(){			//Preparado para interrumpir cada 3 seg
 	cli();
 	//TCCR1A = 0b00000000;
 	//TCCR1B = 0b00001101;		//Prescalado 1024
