@@ -8,20 +8,10 @@
 #include "ConfiguracionV1.h"
 #include "IncFile1.h"
 
-// uint32_t cincoms = 0;
-// 
-// void delay_ms(uint32_t ms)
-// {
-// 	uint32_t start = cincoms;
-// 	while ((cincoms - start) < ms)
-// 	{
-// 		// Esperar hasta que se alcance el tiempo deseado
-// 	}
-// }
-
+// controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.
 void setup_puertos(){  // solo para Sensores Opticos y Displays
 cli();
-//Puerto K						controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.		SensoresBolos.c
+//Puerto K						
 	//DDRK = 0xC0;				//0b11000000
 	setBit(M2_diDDR,M2_di_X);
 	setBit(M1_diDDR,M1_di_X);
@@ -96,6 +86,8 @@ void setup_timer0(){			//Preparado para interrumpir cada 5 ms
 	sei();
 }	
 */
+
+// funciones para controlar el Timer1 desde la main().
 
 inline void resetTimer1(){
 	TCNT1 = 0x00;

@@ -21,8 +21,6 @@ volatile uint8_t ECPos;		//Posición del Elevador de Carga(EC).
 volatile uint8_t rutina=0;	//Bandera para subida y bajada del ER.
 volatile uint16_t Time=0;	//Variable de tiempo
 
-
-
 //SET UP//
 
 void setupEC(){

@@ -8,6 +8,8 @@
 
 // Los define MACROS estan en IncFile1.h
 
+// Funcionalidades basicas como mover motores, leer sensores y controlar la LED
+
 // *******
 // MOTORES
 // *******
@@ -155,15 +157,13 @@ inline int getSensor6(){
 // SENSORES OPTICOS
 // *******
 
-//MACROS
-
 // getter para los sensores opticos
 inline int getOptico(int num){
 	return readBit(SOPIN, num);
 }
 
 // *******
-// LED Y DISPLAYS
+// LED
 // *******
 
 inline void encenderLED(){

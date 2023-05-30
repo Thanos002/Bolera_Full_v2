@@ -12,8 +12,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-// uint8_t puntuacion = 0;  // Comentario Thanos: ojo, doble declarcion de la variable en Displays.c
-
 /*Ya hecho en ConfiguracionV1*/
 // void setup_Sensores(){
 // 	cli();
@@ -23,6 +21,8 @@
 // 	sei();
 // }
 
+// funciones para des(habilitar) las interrupciones de los sensores desde la main()
+
 void habilitarInterrupcionesSensores(){
 	SOPCMSK = 0x3F;
 }
@@ -30,6 +30,8 @@ void habilitarInterrupcionesSensores(){
 void deshabilitarInterrupcionesSensores(){
 	SOPCMSK = 0x00;
 }
+
+// getters y setters para la puntuacion
 
 uint8_t getPuntacion(){
 	return puntuacion;
@@ -39,7 +41,7 @@ void setPuntuacion(uint8_t num){
 	puntuacion = num;
 }
 
-
+// rutina cuando se detecta una interrupcion PCINT de los sensores opticos
 inline void OnPinChangeBolos(){
 	puntuacion++;
 	uint8_t puertoactual = ~PINK;  //PINK normalmente estará a 1 !!

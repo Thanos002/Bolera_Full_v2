@@ -1,6 +1,5 @@
 /*
  * Bolera.h
- * Inlcude file that provides basic functionality, such as motor control and sensor getters
  */
 
 #ifndef BOLERA_H

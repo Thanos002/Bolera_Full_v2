@@ -5,8 +5,6 @@
  *  Author: mario
  */ 
 
-
-
 #ifndef CONFIGURACIONV1_H
 #define CONFIGURACIONV1_H
 

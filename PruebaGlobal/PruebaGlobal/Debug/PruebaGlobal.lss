@@ -3,31 +3,31 @@ PruebaGlobal.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000004  00800200  00000bde  00000c72  2**0
+  0 .data         00000004  00800200  00000bf0  00000c84  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000bde  00000000  00000000  00000094  2**1
+  1 .text         00000bf0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000015  00800204  00800204  00000c76  2**0
+  2 .bss          00000015  00800204  00800204  00000c88  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000c76  2**0
+  3 .comment      00000030  00000000  00000000  00000c88  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000ca8  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000cb8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000002b0  00000000  00000000  00000ce8  2**3
+  5 .debug_aranges 000002b0  00000000  00000000  00000cf8  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000218b  00000000  00000000  00000f98  2**0
+  6 .debug_info   000021c4  00000000  00000000  00000fa8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000011e9  00000000  00000000  00003123  2**0
+  7 .debug_abbrev 000011e9  00000000  00000000  0000316c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001511  00000000  00000000  0000430c  2**0
+  8 .debug_line   0000151b  00000000  00000000  00004355  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000005d0  00000000  00000000  00005820  2**2
+  9 .debug_frame  000005d0  00000000  00000000  00005870  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000a70  00000000  00000000  00005df0  2**0
+ 10 .debug_str    00000a70  00000000  00000000  00005e40  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000008e1  00000000  00000000  00006860  2**0
+ 11 .debug_loc    00000929  00000000  00000000  000068b0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000220  00000000  00000000  00007141  2**0
+ 12 .debug_ranges 00000220  00000000  00000000  000071d9  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -120,7 +120,7 @@ Disassembly of section .text:
  112:	12 e0       	ldi	r17, 0x02	; 2
  114:	a0 e0       	ldi	r26, 0x00	; 0
  116:	b2 e0       	ldi	r27, 0x02	; 2
- 118:	ee ed       	ldi	r30, 0xDE	; 222
+ 118:	e0 ef       	ldi	r30, 0xF0	; 240
  11a:	fb e0       	ldi	r31, 0x0B	; 11
  11c:	02 c0       	rjmp	.+4      	; 0x122 <__do_copy_data+0x10>
  11e:	05 90       	lpm	r0, Z+
@@ -143,34 +143,32 @@ Disassembly of section .text:
  134:	b2 07       	cpc	r27, r18
  136:	e1 f7       	brne	.-8      	; 0x130 <.do_clear_bss_loop>
  138:	0e 94 5c 04 	call	0x8b8	; 0x8b8 <main>
- 13c:	0c 94 ed 05 	jmp	0xbda	; 0xbda <_exit>
+ 13c:	0c 94 f6 05 	jmp	0xbec	; 0xbec <_exit>
 
 00000140 <__bad_interrupt>:
  140:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000144 <setup_timer0>:
 .globl setup_timer0  // definir setup_timer0 como funcion global
-.type setup_timer0, @function  // 
+.type setup_timer0, @function  // desclarar setup_timer0 como funcion
 setup_timer0:
-	push r24      // Push the value of r24 onto the stack
+	push r24      // poner el valor de r24 en la pila
  144:	8f 93       	push	r24
 	cli
  146:	f8 94       	cli
-	ldi r24, 0b00000010 // Load the value of OCR0A into r24
+	ldi r24, 0b00000010 //TCCR0A = 0b00000010; Modo CTC
  148:	82 e0       	ldi	r24, 0x02	; 2
 	out 0x24, r24
  14a:	84 bd       	out	0x24, r24	; 36
-	ldi r24, 0b00000100
+	ldi r24, 0b00000100 //TCCR0B = 0b00000100; Prescalado 256
  14c:	84 e0       	ldi	r24, 0x04	; 4
 	out 0x25, r24
  14e:	85 bd       	out	0x25, r24	; 37
-	ldi r24, 0b00000010
+	ldi r24, 0b00000010  //TIMSK0 = 0b00000010;	Habilita OCR0A 
  150:	82 e0       	ldi	r24, 0x02	; 2
-	//out 0x6e, r24
-	//sbi 0x6e, 2
-	sts 0x6e, r24
+	sts 0x6e, r24  // sts porque el registro es memory mapped
  152:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f006e>
-	ldi r24, 0x9C
+	ldi r24, 0x9C  // OCR0A =  156; para contar cada 5ms
  156:	8c e9       	ldi	r24, 0x9C	; 156
 	out 0x27, r24
  158:	87 bd       	out	0x27, r24	; 39
@@ -179,7 +177,7 @@ setup_timer0:
  15c:	8f 91       	pop	r24
 
 0000015e <girarLanzador>:
-//MACROS
+// *******
 
 // getter para los sensores opticos
 inline int getOptico(int num){
@@ -311,7 +309,7 @@ inline int getOptico(int num){
 
 0000024c <encenderLED>:
 // *******
-// LED Y DISPLAYS
+// LED
 // *******
 
 inline void encenderLED(){
@@ -336,14 +334,14 @@ inline void apagarLED(){
  262:	08 95       	ret
 
 00000264 <setup_puertos>:
-// 		// Esperar hasta que se alcance el tiempo deseado
-// 	}
-// }
+#include "ConfiguracionV1.h"
+#include "IncFile1.h"
 
+// controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.
 void setup_puertos(){  // solo para Sensores Opticos y Displays
 cli();
  264:	f8 94       	cli
-//Puerto K						controla PCINTS para sensores de los bolos como entradas y además las señales 'direccion' del Motor M1 y M2 que son salidas. Comprobar si necesitan sus interrupciones activadas o no.		SensoresBolos.c
+//Puerto K						
 	//DDRK = 0xC0;				//0b11000000
 	setBit(M2_diDDR,M2_di_X);
  266:	e7 e0       	ldi	r30, 0x07	; 7
@@ -464,9 +462,9 @@ sei();
  2ea:	08 95       	ret
 
 000002ec <resetTimer1>:
-	sei();
-}	
 */
+
+// funciones para controlar el Timer1 desde la main().
 
 inline void resetTimer1(){
 	TCNT1 = 0x00;
@@ -531,7 +529,7 @@ void setup_timer1(){			//Preparado para interrumpir cada 3 seg
 
 00000336 <apagarDisplay>:
 volatile uint8_t finalizadoFlag = 0;
-uint16_t pulsador;  // se usa esta variable?
+uint16_t pulsador;
 volatile uint8_t puntuacion;
 
 inline void apagarDisplay(){
@@ -573,7 +571,7 @@ inline void setDisplay(int numero){
 	apagarDisplay();
 	//PORTB = 0bX0000000
 	switch(numero)
- 356:	0c 94 e7 05 	jmp	0xbce	; 0xbce <__tablejump2__>
+ 356:	0c 94 f0 05 	jmp	0xbe0	; 0xbe0 <__tablejump2__>
 	{
 		case 0:	//0b00111111;
 		DSPORT |= (1<<DaX)|(1<<DbX)|(1<<DcX)|(1<<DdX)|(1<<DeX)|(1<<DfX);
@@ -694,21 +692,21 @@ inline void DisplayUpdater(){		//Se llama cada 5ms con el timer0
 			setDisplay(puntuacion/10);
  3e6:	80 91 14 02 	lds	r24, 0x0214	; 0x800214 <puntuacion>
  3ea:	6a e0       	ldi	r22, 0x0A	; 10
- 3ec:	0e 94 b9 05 	call	0xb72	; 0xb72 <__udivmodqi4>
+ 3ec:	0e 94 c2 05 	call	0xb84	; 0xb84 <__udivmodqi4>
  3f0:	06 c0       	rjmp	.+12     	; 0x3fe <DisplayUpdater+0x72>
 		}
 		else{								//Si esta seleccionado Display 0, unidades
 			setDisplay(puntuacion%10);
  3f2:	80 91 14 02 	lds	r24, 0x0214	; 0x800214 <puntuacion>
  3f6:	6a e0       	ldi	r22, 0x0A	; 10
- 3f8:	0e 94 b9 05 	call	0xb72	; 0xb72 <__udivmodqi4>
+ 3f8:	0e 94 c2 05 	call	0xb84	; 0xb84 <__udivmodqi4>
  3fc:	89 2f       	mov	r24, r25
  3fe:	90 e0       	ldi	r25, 0x00	; 0
  400:	0c 94 9f 01 	jmp	0x33e	; 0x33e <setDisplay>
  404:	08 95       	ret
 
 00000406 <setupEC>:
-
+volatile uint16_t Time=0;	//Variable de tiempo
 
 //SET UP//
 
@@ -1076,7 +1074,7 @@ inline void parpadearLED(){
  64a:	30 e0       	ldi	r19, 0x00	; 0
  64c:	40 e0       	ldi	r20, 0x00	; 0
  64e:	50 e0       	ldi	r21, 0x00	; 0
- 650:	0e 94 c5 05 	call	0xb8a	; 0xb8a <__udivmodsi4>
+ 650:	0e 94 ce 05 	call	0xb9c	; 0xb9c <__udivmodsi4>
  654:	65 36       	cpi	r22, 0x65	; 101
  656:	71 05       	cpc	r23, r1
  658:	81 05       	cpc	r24, r1
@@ -1090,9 +1088,9 @@ inline void parpadearLED(){
  662:	0c 94 26 01 	jmp	0x24c	; 0x24c <encenderLED>
 
 00000666 <OnSW2Interruption>:
+
 // interrupcion para el boton de disparo
 // incluye proteccion, se atiende solo cuando estamos en LANZAMIENTO
-
 
 inline void OnSW2Interruption(){
 	if(ms_elapsed-last_interruption_time>doublePressbuffer){  // doble chequeo, pero no es necesaio
@@ -1150,7 +1148,7 @@ inline void OnSW2Interruption(){
  6f2:	08 95       	ret
 
 000006f4 <__vector_21>:
-uint8_t oscillando = 0;
+uint8_t oscillando = 0;  // flag que se habilita cuando esta oscillando el lanzador
 
 /************************************************************************/
 // Interrupciones:
@@ -1260,7 +1258,7 @@ ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos (10*3 segundos del time
 
 000007b0 <__vector_11>:
 
-ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
+ISR(PCINT2_vect){ //Interrupcion PCINT de los sensores opticos
  7b0:	1f 92       	push	r1
  7b2:	0f 92       	push	r0
  7b4:	0f b6       	in	r0, 0x3f	; 63
@@ -1279,7 +1277,7 @@ ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
  7ce:	ef 93       	push	r30
  7d0:	ff 93       	push	r31
 	OnPinChangeBolos();
- 7d2:	0e 94 86 05 	call	0xb0c	; 0xb0c <OnPinChangeBolos>
+ 7d2:	0e 94 8f 05 	call	0xb1e	; 0xb1e <OnPinChangeBolos>
 }
  7d6:	ff 91       	pop	r31
  7d8:	ef 91       	pop	r30
@@ -1301,7 +1299,7 @@ ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
 
 000007f8 <__vector_1>:
 
-// interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
+// interrupcon del SW2 (lanzador)
 // solo me interesan durante el estado de LANZAMIENTO
 ISR(INT0_vect){
  7f8:	1f 92       	push	r1
@@ -1372,7 +1370,7 @@ ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6), maneja los camb
  86e:	83 30       	cpi	r24, 0x03	; 3
  870:	29 f4       	brne	.+10     	; 0x87c <__vector_3+0x34>
 		habilitarInterrupcionesSensores();
- 872:	0e 94 7f 05 	call	0xafe	; 0xafe <habilitarInterrupcionesSensores>
+ 872:	0e 94 88 05 	call	0xb10	; 0xb10 <habilitarInterrupcionesSensores>
 		state = TIRAR_BOLA;
  876:	84 e0       	ldi	r24, 0x04	; 4
  878:	80 93 07 02 	sts	0x0207, r24	; 0x800207 <state>
@@ -1438,20 +1436,18 @@ int main(void)
  8da:	0e 94 18 02 	call	0x430	; 0x430 <setupElevadores>
 	homeER();
  8de:	0e 94 3c 02 	call	0x478	; 0x478 <homeER>
-	// bajaER();  // comprobar si es necesario
 	homeEC();
  8e2:	0e 94 1f 02 	call	0x43e	; 0x43e <homeEC>
-	// subeEC();  // comprobar si es necesario
 	vastagoHome();
  8e6:	0e 94 cb 02 	call	0x596	; 0x596 <vastagoHome>
 	carritoHome();
  8ea:	0e 94 da 02 	call	0x5b4	; 0x5b4 <carritoHome>
-	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
+	lanzadorHome();
  8ee:	0e 94 b9 02 	call	0x572	; 0x572 <lanzadorHome>
 	encenderLED();
  8f2:	0e 94 26 01 	call	0x24c	; 0x24c <encenderLED>
 					girarLanzador(0);  // girar hacia la izquierda
-					_delay_ms(1000);  // hasta que llega a la iqzuierda
+					_delay_ms(long_delay);  // hasta que llega a la iqzuierda
 					oscillando = 1;
 				}
 				
@@ -1461,7 +1457,7 @@ int main(void)
 				
 				if(oscillando==0){
 					girarLanzador(0);  // girar hacia la izquierda
-					_delay_ms(1000);  // hasta que llega a la iqzuierda
+					_delay_ms(long_delay);  // hasta que llega a la iqzuierda
 					oscillando = 1;
  8f8:	c1 e0       	ldi	r28, 0x01	; 1
 
@@ -1479,7 +1475,7 @@ int main(void)
 				state = RETORNO;  // inicar estado de retorno
  8fc:	05 e0       	ldi	r16, 0x05	; 5
 				bajaEC();  // coger la bola
-				_delay_ms(500);
+				_delay_ms(doublePressbuffer);
 				subeEC(); // subir la bola		
 				bajaER();
 				// Aqui: verficiar que bola esta cargada:
@@ -1488,7 +1484,7 @@ int main(void)
  900:	f8 2e       	mov	r15, r24
 	vastagoHome();
 	carritoHome();
-	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
+	lanzadorHome();
 	encenderLED();
     while (1) {
 		switch(state){
@@ -1499,8 +1495,8 @@ int main(void)
  90c:	d0 f7       	brcc	.-12     	; 0x902 <main+0x4a>
  90e:	e4 58       	subi	r30, 0x84	; 132
  910:	ff 4f       	sbci	r31, 0xFF	; 255
- 912:	0c 94 e7 05 	jmp	0xbce	; 0xbce <__tablejump2__>
-			case HOME:  // despues de init
+ 912:	0c 94 f0 05 	jmp	0xbe0	; 0xbe0 <__tablejump2__>
+			case HOME:  // primero estado despues del setup
 				ultimoFlag = 0;
  916:	10 92 12 02 	sts	0x0212, r1	; 0x800212 <ultimoFlag>
 				parpadearFlag = 0;
@@ -1509,7 +1505,7 @@ int main(void)
  91e:	10 92 04 02 	sts	0x0204, r1	; 0x800204 <__data_end>
 				puntuacion = 0;
  922:	10 92 14 02 	sts	0x0214, r1	; 0x800214 <puntuacion>
-				// habilitar estado final se resetea despues
+				// la bandera habilitar estado final se resetea despues
 				// no hacemos nada, esperamos la interrupcion de disparo
 				break;
  926:	ed cf       	rjmp	.-38     	; 0x902 <main+0x4a>
@@ -1518,7 +1514,6 @@ int main(void)
  928:	0e 94 2c 01 	call	0x258	; 0x258 <apagarLED>
 				subeEC();  // comprobar que EC esta en posicion alta
  92c:	0e 94 5f 02 	call	0x4be	; 0x4be <subeEC>
-				// _delay_ms(long_delay);  sube bloquante
 				girarLanzador(1);
  930:	81 e0       	ldi	r24, 0x01	; 1
  932:	90 e0       	ldi	r25, 0x00	; 0
@@ -1546,7 +1541,7 @@ int main(void)
  95e:	e1 f7       	brne	.-8      	; 0x958 <main+0xa0>
  960:	00 c0       	rjmp	.+0      	; 0x962 <main+0xaa>
  962:	00 00       	nop
-				_delay_ms(500);
+				_delay_ms(doublePressbuffer);
 				subeEC(); // subir la bola		
  964:	0e 94 5f 02 	call	0x4be	; 0x4be <subeEC>
 				bajaER();
@@ -1660,7 +1655,7 @@ int main(void)
  a16:	e1 f7       	brne	.-8      	; 0xa10 <main+0x158>
  a18:	00 c0       	rjmp	.+0      	; 0xa1a <main+0x162>
  a1a:	00 00       	nop
-					_delay_ms(1000);  // hasta que llega a la iqzuierda
+					_delay_ms(long_delay);  // hasta que llega a la iqzuierda
 					oscillando = 1;
  a1c:	c0 93 10 02 	sts	0x0210, r28	; 0x800210 <oscillando>
 				}
@@ -1773,13 +1768,11 @@ int main(void)
  ac4:	00 00       	nop
 			case RETORNO:
 				_delay_ms(ballArrivalDelay);   // esperar hasta la bola llega
-				//recarga();
-				// si no funcionan las interrupciones:
 
 				subeER();
  ac6:	0e 94 83 02 	call	0x506	; 0x506 <subeER>
 				deshabilitarInterrupcionesSensores();  // evitar otras interrupciones de los bolos
- aca:	0e 94 83 05 	call	0xb06	; 0xb06 <deshabilitarInterrupcionesSensores>
+ aca:	0e 94 8c 05 	call	0xb18	; 0xb18 <deshabilitarInterrupcionesSensores>
  ace:	2f ef       	ldi	r18, 0xFF	; 255
  ad0:	8d e3       	ldi	r24, 0x3D	; 61
  ad2:	99 e4       	ldi	r25, 0x49	; 73
@@ -1805,165 +1798,175 @@ int main(void)
 				}
 				break;
 			case FINAL:
-				bajaER();
- af4:	0e 94 7f 02 	call	0x4fe	; 0x4fe <bajaER>
 				finalizadoFlag = 1;  // parpadear display
- af8:	c0 93 04 02 	sts	0x0204, r28	; 0x800204 <__data_end>
+ af4:	c0 93 04 02 	sts	0x0204, r28	; 0x800204 <__data_end>
+ af8:	2f ef       	ldi	r18, 0xFF	; 255
+ afa:	83 ed       	ldi	r24, 0xD3	; 211
+ afc:	90 e3       	ldi	r25, 0x30	; 48
+ afe:	21 50       	subi	r18, 0x01	; 1
+ b00:	80 40       	sbci	r24, 0x00	; 0
+ b02:	90 40       	sbci	r25, 0x00	; 0
+ b04:	e1 f7       	brne	.-8      	; 0xafe <main+0x246>
+ b06:	00 c0       	rjmp	.+0      	; 0xb08 <main+0x250>
+ b08:	00 00       	nop
+				_delay_ms(2000);
+				bajaER();
+ b0a:	0e 94 7f 02 	call	0x4fe	; 0x4fe <bajaER>
 				break;
- afc:	02 cf       	rjmp	.-508    	; 0x902 <main+0x4a>
+ b0e:	f9 ce       	rjmp	.-526    	; 0x902 <main+0x4a>
 
-00000afe <habilitarInterrupcionesSensores>:
+00000b10 <habilitarInterrupcionesSensores>:
 uint8_t getPuntacion(){
 	return puntuacion;
 }
 
 void setPuntuacion(uint8_t num){
 	puntuacion = num;
- afe:	8f e3       	ldi	r24, 0x3F	; 63
- b00:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b04:	08 95       	ret
+ b10:	8f e3       	ldi	r24, 0x3F	; 63
+ b12:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b16:	08 95       	ret
 
-00000b06 <deshabilitarInterrupcionesSensores>:
- b06:	10 92 6d 00 	sts	0x006D, r1	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b0a:	08 95       	ret
+00000b18 <deshabilitarInterrupcionesSensores>:
+ b18:	10 92 6d 00 	sts	0x006D, r1	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b1c:	08 95       	ret
 
-00000b0c <OnPinChangeBolos>:
+00000b1e <OnPinChangeBolos>:
 }
 
-
+// rutina cuando se detecta una interrupcion PCINT de los sensores opticos
 inline void OnPinChangeBolos(){
 	puntuacion++;
- b0c:	80 91 14 02 	lds	r24, 0x0214	; 0x800214 <puntuacion>
- b10:	8f 5f       	subi	r24, 0xFF	; 255
- b12:	80 93 14 02 	sts	0x0214, r24	; 0x800214 <puntuacion>
+ b1e:	80 91 14 02 	lds	r24, 0x0214	; 0x800214 <puntuacion>
+ b22:	8f 5f       	subi	r24, 0xFF	; 255
+ b24:	80 93 14 02 	sts	0x0214, r24	; 0x800214 <puntuacion>
 	uint8_t puertoactual = ~PINK;  //PINK normalmente estará a 1 !!
- b16:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <__TEXT_REGION_LENGTH__+0x7f0106>
- b1a:	80 95       	com	r24
+ b28:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <__TEXT_REGION_LENGTH__+0x7f0106>
+ b2c:	80 95       	com	r24
 	//Lo negamos para que al tocar (flanco de bajada,0, entonces en puertoactual 1)
 	//AND bit a bit para determinar si un bit en particular ha cambiado en el puerto
 	if(puertoactual & (1<<SO1PIN)){
- b1c:	80 ff       	sbrs	r24, 0
- b1e:	05 c0       	rjmp	.+10     	; 0xb2a <OnPinChangeBolos+0x1e>
+ b2e:	80 ff       	sbrs	r24, 0
+ b30:	05 c0       	rjmp	.+10     	; 0xb3c <OnPinChangeBolos+0x1e>
 		//PCMSK2 &=~(1<<PCINT16);
 		clearBit(SOPCMSK,PCINT16);
- b20:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b24:	9e 7f       	andi	r25, 0xFE	; 254
- b26:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b32:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b36:	9e 7f       	andi	r25, 0xFE	; 254
+ b38:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
 	} //Deshabilito esa interrupcion para que no rebote
 	if(puertoactual & (1<<SO2PIN)){
- b2a:	81 ff       	sbrs	r24, 1
- b2c:	05 c0       	rjmp	.+10     	; 0xb38 <OnPinChangeBolos+0x2c>
+ b3c:	81 ff       	sbrs	r24, 1
+ b3e:	05 c0       	rjmp	.+10     	; 0xb4a <OnPinChangeBolos+0x2c>
 		//PCMSK2 &=~(1<<PCINT17);
 		clearBit(SOPCMSK,PCINT17);
- b2e:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b32:	9d 7f       	andi	r25, 0xFD	; 253
- b34:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b40:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b44:	9d 7f       	andi	r25, 0xFD	; 253
+ b46:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
 	}
 	if(puertoactual & (1<<SO3PIN)){
- b38:	82 ff       	sbrs	r24, 2
- b3a:	05 c0       	rjmp	.+10     	; 0xb46 <OnPinChangeBolos+0x3a>
+ b4a:	82 ff       	sbrs	r24, 2
+ b4c:	05 c0       	rjmp	.+10     	; 0xb58 <OnPinChangeBolos+0x3a>
 		//PCMSK2 &=~(1<<PCINT18);
 		clearBit(SOPCMSK,PCINT18);
- b3c:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b40:	9b 7f       	andi	r25, 0xFB	; 251
- b42:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b4e:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b52:	9b 7f       	andi	r25, 0xFB	; 251
+ b54:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
 	}
 	if(puertoactual & (1<<SO4PIN)){
- b46:	83 ff       	sbrs	r24, 3
- b48:	05 c0       	rjmp	.+10     	; 0xb54 <OnPinChangeBolos+0x48>
+ b58:	83 ff       	sbrs	r24, 3
+ b5a:	05 c0       	rjmp	.+10     	; 0xb66 <OnPinChangeBolos+0x48>
 		//PCMSK2 &=~(1<<PCINT19);
 		clearBit(SOPCMSK,PCINT19);
- b4a:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b4e:	97 7f       	andi	r25, 0xF7	; 247
- b50:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b5c:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b60:	97 7f       	andi	r25, 0xF7	; 247
+ b62:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
 	}
 	if(puertoactual & (1<<SO5PIN)){
- b54:	84 ff       	sbrs	r24, 4
- b56:	05 c0       	rjmp	.+10     	; 0xb62 <OnPinChangeBolos+0x56>
+ b66:	84 ff       	sbrs	r24, 4
+ b68:	05 c0       	rjmp	.+10     	; 0xb74 <OnPinChangeBolos+0x56>
 		//PCMSK2 &=~(1<<PCINT20);
 		clearBit(SOPCMSK,PCINT20);
- b58:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b5c:	9f 7e       	andi	r25, 0xEF	; 239
- b5e:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b6a:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b6e:	9f 7e       	andi	r25, 0xEF	; 239
+ b70:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
 	}
 	if(puertoactual & (1<<SO6PIN)){
- b62:	85 ff       	sbrs	r24, 5
- b64:	05 c0       	rjmp	.+10     	; 0xb70 <OnPinChangeBolos+0x64>
+ b74:	85 ff       	sbrs	r24, 5
+ b76:	05 c0       	rjmp	.+10     	; 0xb82 <OnPinChangeBolos+0x64>
 		//PCMSK2 &=~(1<<PCINT21);
 		clearBit(SOPCMSK,PCINT21);
- b66:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b6a:	8f 7d       	andi	r24, 0xDF	; 223
- b6c:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
- b70:	08 95       	ret
+ b78:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b7c:	8f 7d       	andi	r24, 0xDF	; 223
+ b7e:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <__TEXT_REGION_LENGTH__+0x7f006d>
+ b82:	08 95       	ret
 
-00000b72 <__udivmodqi4>:
- b72:	99 1b       	sub	r25, r25
- b74:	79 e0       	ldi	r23, 0x09	; 9
- b76:	04 c0       	rjmp	.+8      	; 0xb80 <__udivmodqi4_ep>
+00000b84 <__udivmodqi4>:
+ b84:	99 1b       	sub	r25, r25
+ b86:	79 e0       	ldi	r23, 0x09	; 9
+ b88:	04 c0       	rjmp	.+8      	; 0xb92 <__udivmodqi4_ep>
 
-00000b78 <__udivmodqi4_loop>:
- b78:	99 1f       	adc	r25, r25
- b7a:	96 17       	cp	r25, r22
- b7c:	08 f0       	brcs	.+2      	; 0xb80 <__udivmodqi4_ep>
- b7e:	96 1b       	sub	r25, r22
+00000b8a <__udivmodqi4_loop>:
+ b8a:	99 1f       	adc	r25, r25
+ b8c:	96 17       	cp	r25, r22
+ b8e:	08 f0       	brcs	.+2      	; 0xb92 <__udivmodqi4_ep>
+ b90:	96 1b       	sub	r25, r22
 
-00000b80 <__udivmodqi4_ep>:
- b80:	88 1f       	adc	r24, r24
- b82:	7a 95       	dec	r23
- b84:	c9 f7       	brne	.-14     	; 0xb78 <__udivmodqi4_loop>
- b86:	80 95       	com	r24
- b88:	08 95       	ret
+00000b92 <__udivmodqi4_ep>:
+ b92:	88 1f       	adc	r24, r24
+ b94:	7a 95       	dec	r23
+ b96:	c9 f7       	brne	.-14     	; 0xb8a <__udivmodqi4_loop>
+ b98:	80 95       	com	r24
+ b9a:	08 95       	ret
 
-00000b8a <__udivmodsi4>:
- b8a:	a1 e2       	ldi	r26, 0x21	; 33
- b8c:	1a 2e       	mov	r1, r26
- b8e:	aa 1b       	sub	r26, r26
- b90:	bb 1b       	sub	r27, r27
- b92:	fd 01       	movw	r30, r26
- b94:	0d c0       	rjmp	.+26     	; 0xbb0 <__udivmodsi4_ep>
+00000b9c <__udivmodsi4>:
+ b9c:	a1 e2       	ldi	r26, 0x21	; 33
+ b9e:	1a 2e       	mov	r1, r26
+ ba0:	aa 1b       	sub	r26, r26
+ ba2:	bb 1b       	sub	r27, r27
+ ba4:	fd 01       	movw	r30, r26
+ ba6:	0d c0       	rjmp	.+26     	; 0xbc2 <__udivmodsi4_ep>
 
-00000b96 <__udivmodsi4_loop>:
- b96:	aa 1f       	adc	r26, r26
- b98:	bb 1f       	adc	r27, r27
- b9a:	ee 1f       	adc	r30, r30
- b9c:	ff 1f       	adc	r31, r31
- b9e:	a2 17       	cp	r26, r18
- ba0:	b3 07       	cpc	r27, r19
- ba2:	e4 07       	cpc	r30, r20
- ba4:	f5 07       	cpc	r31, r21
- ba6:	20 f0       	brcs	.+8      	; 0xbb0 <__udivmodsi4_ep>
- ba8:	a2 1b       	sub	r26, r18
- baa:	b3 0b       	sbc	r27, r19
- bac:	e4 0b       	sbc	r30, r20
- bae:	f5 0b       	sbc	r31, r21
+00000ba8 <__udivmodsi4_loop>:
+ ba8:	aa 1f       	adc	r26, r26
+ baa:	bb 1f       	adc	r27, r27
+ bac:	ee 1f       	adc	r30, r30
+ bae:	ff 1f       	adc	r31, r31
+ bb0:	a2 17       	cp	r26, r18
+ bb2:	b3 07       	cpc	r27, r19
+ bb4:	e4 07       	cpc	r30, r20
+ bb6:	f5 07       	cpc	r31, r21
+ bb8:	20 f0       	brcs	.+8      	; 0xbc2 <__udivmodsi4_ep>
+ bba:	a2 1b       	sub	r26, r18
+ bbc:	b3 0b       	sbc	r27, r19
+ bbe:	e4 0b       	sbc	r30, r20
+ bc0:	f5 0b       	sbc	r31, r21
 
-00000bb0 <__udivmodsi4_ep>:
- bb0:	66 1f       	adc	r22, r22
- bb2:	77 1f       	adc	r23, r23
- bb4:	88 1f       	adc	r24, r24
- bb6:	99 1f       	adc	r25, r25
- bb8:	1a 94       	dec	r1
- bba:	69 f7       	brne	.-38     	; 0xb96 <__udivmodsi4_loop>
- bbc:	60 95       	com	r22
- bbe:	70 95       	com	r23
- bc0:	80 95       	com	r24
- bc2:	90 95       	com	r25
- bc4:	9b 01       	movw	r18, r22
- bc6:	ac 01       	movw	r20, r24
- bc8:	bd 01       	movw	r22, r26
- bca:	cf 01       	movw	r24, r30
- bcc:	08 95       	ret
+00000bc2 <__udivmodsi4_ep>:
+ bc2:	66 1f       	adc	r22, r22
+ bc4:	77 1f       	adc	r23, r23
+ bc6:	88 1f       	adc	r24, r24
+ bc8:	99 1f       	adc	r25, r25
+ bca:	1a 94       	dec	r1
+ bcc:	69 f7       	brne	.-38     	; 0xba8 <__udivmodsi4_loop>
+ bce:	60 95       	com	r22
+ bd0:	70 95       	com	r23
+ bd2:	80 95       	com	r24
+ bd4:	90 95       	com	r25
+ bd6:	9b 01       	movw	r18, r22
+ bd8:	ac 01       	movw	r20, r24
+ bda:	bd 01       	movw	r22, r26
+ bdc:	cf 01       	movw	r24, r30
+ bde:	08 95       	ret
 
-00000bce <__tablejump2__>:
- bce:	ee 0f       	add	r30, r30
- bd0:	ff 1f       	adc	r31, r31
- bd2:	05 90       	lpm	r0, Z+
- bd4:	f4 91       	lpm	r31, Z
- bd6:	e0 2d       	mov	r30, r0
- bd8:	09 94       	ijmp
+00000be0 <__tablejump2__>:
+ be0:	ee 0f       	add	r30, r30
+ be2:	ff 1f       	adc	r31, r31
+ be4:	05 90       	lpm	r0, Z+
+ be6:	f4 91       	lpm	r31, Z
+ be8:	e0 2d       	mov	r30, r0
+ bea:	09 94       	ijmp
 
-00000bda <_exit>:
- bda:	f8 94       	cli
+00000bec <_exit>:
+ bec:	f8 94       	cli
 
-00000bdc <__stop_program>:
- bdc:	ff cf       	rjmp	.-2      	; 0xbdc <__stop_program>
+00000bee <__stop_program>:
+ bee:	ff cf       	rjmp	.-2      	; 0xbee <__stop_program>

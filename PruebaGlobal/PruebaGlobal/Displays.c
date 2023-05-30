@@ -14,7 +14,7 @@
 
 volatile uint16_t parpadeos=0;  // volatile pues se cambia con INT
 volatile uint8_t finalizadoFlag = 0;
-uint16_t pulsador;  // se usa esta variable?
+uint16_t pulsador;
 volatile uint8_t puntuacion;
 
 inline void apagarDisplay(){

@@ -1,8 +1,11 @@
 /*
- * PruebaGlobal.c
+ * main.c
  *
  * Created: 19/05/2023 12:01:44
- * Author : mario
+ * Author : Grupo 4 Bolera
+ * Contributors: Iago, Ricardo, Belen, Javi, Mario, Thanos
+ * Version: 0.14.2
+ * Last modified: 30.05.2023
  */ 
 
 #include <avr/io.h>
@@ -17,10 +20,7 @@
 #include "Lanzador.h"
 #include "Bolera.h"
 #include "Elevadores.h"
-extern setup_timer0();
-
-// para debugging
-// #define _delay_ms(P) ultimoFlag=ultimoFlag;
+extern void setup_timer0();  // marcar funcion que esta en ensamblador
 
 // BANDERAS (evitar si posible)
 
@@ -28,7 +28,7 @@ volatile uint8_t parpadearFlag = 0;  // si habilitado, se parpadea el LED
 volatile uint8_t ultimoFlag = 0; // indica cuando ha pasado el timer de 30 segundos (1-si, 0-no)
 volatile uint8_t habilitarEstadoFinal = 1;  // si habilitado pasa al estado final despues de lanzar
 volatile uint8_t timerTicks = 0;  // ticks para medir los 30 segundos
-uint8_t oscillando = 0;
+uint8_t oscillando = 0;  // flag que se habilita cuando esta oscillando el lanzador
 
 /************************************************************************/
 // Interrupciones:
@@ -50,11 +50,11 @@ ISR(TIMER1_COMPA_vect){  // cuando pasan los 30 segundos (10*3 segundos del time
 	}
 }
 
-ISR(PCINT2_vect){ //Cuidado que era por flanco de bajada
+ISR(PCINT2_vect){ //Interrupcion PCINT de los sensores opticos
 	OnPinChangeBolos();
 }
 
-// interrupcon del SW2 que sirva para distinguir que pulsador se ha pulsado
+// interrupcon del SW2 (lanzador)
 // solo me interesan durante el estado de LANZAMIENTO
 ISR(INT0_vect){
 	if(state==LANZAMIENTO){
@@ -76,6 +76,13 @@ ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6), maneja los camb
 }
 
 /************************************************************************/
+// Explicacion de los estados:
+// HOME: el setup esta hecho y se puede empezar el juego pulsando SW6
+// SIN_BOLA: la bola esta en el elevador de cargas, pero no en el lanzador
+// BOLA_LANZADOR: la bola esta colocada en el lanzador
+// LANZAMIENTO: el sistema se encuentra el el proceso de lanzar la bola
+// TIRAR_BOLA: la bola fue lanzada para tirar los bolos
+// FINAL: el juego esta finalizado y el display parpadea
 
 int main(void)
 {
@@ -87,32 +94,29 @@ int main(void)
 	setup_timer1();
 	setupElevadores();
 	homeER();
-	// bajaER();  // comprobar si es necesario
 	homeEC();
-	// subeEC();  // comprobar si es necesario
 	vastagoHome();
 	carritoHome();
-	lanzadorHome();  // comprobar si se puede hacer el home de manera segura (ELEVADOR)
+	lanzadorHome();
 	encenderLED();
     while (1) {
 		switch(state){
-			case HOME:  // despues de init
+			case HOME:  // primero estado despues del setup
 				ultimoFlag = 0;
 				parpadearFlag = 0;
 				finalizadoFlag = 0;
 				puntuacion = 0;
-				// habilitar estado final se resetea despues
+				// la bandera habilitar estado final se resetea despues
 				// no hacemos nada, esperamos la interrupcion de disparo
 				break;
 			case SIN_BOLA:
 				apagarLED();
 				subeEC();  // comprobar que EC esta en posicion alta
-				// _delay_ms(long_delay);  sube bloquante
 				girarLanzador(1);
 				moverVastagoAtras();  // mover vastago atras para evitar que choca (ya esta)
 				_delay_ms(long_delay);
 				bajaEC();  // coger la bola
-				_delay_ms(500);
+				_delay_ms(doublePressbuffer);
 				subeEC(); // subir la bola		
 				bajaER();
 				// Aqui: verficiar que bola esta cargada:
@@ -151,7 +155,7 @@ int main(void)
 				
 				if(oscillando==0){
 					girarLanzador(0);  // girar hacia la izquierda
-					_delay_ms(1000);  // hasta que llega a la iqzuierda
+					_delay_ms(long_delay);  // hasta que llega a la iqzuierda
 					oscillando = 1;
 				}
 				

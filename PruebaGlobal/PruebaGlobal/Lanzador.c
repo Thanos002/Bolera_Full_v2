@@ -49,6 +49,8 @@ void setupLanzador(){
 	sei();
 }
 
+// HOME
+
 // lanzador home: se mueve a la izquierda y se guarda el flag position
 void lanzadorHome(){
 	girarLanzador(0);
@@ -110,7 +112,6 @@ inline void parpadearLED(){
 // interrupcion para el boton de disparo
 // incluye proteccion, se atiende solo cuando estamos en LANZAMIENTO
 
-
 inline void OnSW2Interruption(){
 	if(ms_elapsed-last_interruption_time>doublePressbuffer){  // doble chequeo, pero no es necesaio
 		if(lanzadorFlag==1){
@@ -123,11 +124,5 @@ inline void OnSW2Interruption(){
 		}
 	}
 }
-// Explicacion de los estados:
-// SIN_BOLA: la bola esta en el elevador de cargas, pero no en el lanzador
-// BOLA_LANZADOR: la bola esta colocada en el lanzador
-// LANZAMIENTO: el sistema se encuentra el el proceso de lanzar la bola
-// TIRAR_BOLA: la bola fue lanzada para tirar los bolos
-
 
 
