@@ -67,7 +67,7 @@ ISR(INT2_vect){  // interrupcion del pulsador del disparo (SW6), maneja los camb
 		habilitarInterrupcionesSensores();
 		state = TIRAR_BOLA;
 	}
-	if(state == HOME){
+	if((state == HOME) && (puntuacion==0)){
 		state = SIN_BOLA;
 	}
 	if(state==FINAL){
@@ -98,7 +98,6 @@ int main(void)
 	vastagoHome();
 	carritoHome();
 	lanzadorHome();
-	encenderLED();
     while (1) {
 		switch(state){
 			case HOME:  // primero estado despues del setup
@@ -106,8 +105,10 @@ int main(void)
 				parpadearFlag = 0;
 				finalizadoFlag = 0;
 				puntuacion = 0;
+				lanzadorHome();
 				// la bandera habilitar estado final se resetea despues
 				// no hacemos nada, esperamos la interrupcion de disparo
+				encenderLED();
 				break;
 			case SIN_BOLA:
 				apagarLED();
